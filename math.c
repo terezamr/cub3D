@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:02:51 by mvicente          #+#    #+#             */
-/*   Updated: 2023/06/29 15:50:55 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:04:04 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,13 @@ double	*get_dist(t_data *data, int *map, double *ray)
 	dist = malloc(sizeof(double) * 4);
 	//ray_len = sqrt((ray[0] * ray[0]) + (ray[1] * ray[1]));
     if (ray[0] != 0)
-    {
         dist[0] = fabs(1 / ray[0]);
-    }
     else
-    {
         dist[0] = -1;    
-    }
     if (ray[1] != 0)
-    {
         dist[1] = fabs(1 / ray[1]);
-    }
     else
-    {
         dist[1] = -1; 
-    }
 	if (ray[0] < 0)
 		dist[2] = (data->posX - map[0]) * dist[0]; 
 	else
