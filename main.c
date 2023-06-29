@@ -18,7 +18,7 @@ void	vars_init(t_data *data)
 	data->win = 0;
 	data->img.offset_r = -2;
 	data->img.offset_i = 2;
-	data->posX = 5;
+	data->posX = 2;
 	data->posY = 1;
 	data->dirX = 0;
 	data->dirY = 1;

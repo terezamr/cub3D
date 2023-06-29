@@ -40,7 +40,9 @@ double	*get_dist(t_data *data, int *map, double *ray)
     if (ray[1] != 0)
         dist[1] = fabs(1 / ray[1]);
     else
+	{
         dist[1] = -1; 
+	}
 	if (ray[0] < 0)
 		dist[2] = (data->posX - map[0]) * dist[0]; 
 	else
@@ -107,4 +109,5 @@ void    calculations(t_data *data)
 		free(map);
 		x++;
 	}
+	free(step);
 }
