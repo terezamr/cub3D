@@ -13,6 +13,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+// INCLUDES
+
 # include "minilibx-linux/mlx.h"
 # include <unistd.h>
 # include <stdio.h>
@@ -21,11 +23,20 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 
+// DEFINES
+
 # define WINDOW_WIDTH 1400
 # define WINDOW_HEIGHT 1400
 
 # define WHITE_PIXEL 0xc0c0c0
 # define BLACK_PIXEL 0xFFFFFF
+
+// ERROR HANDLING
+
+# define INVALID_MAP "Invalid map."
+# define INVALID_CHAR "Invalid character found."
+
+// STRUCTS
 
 typedef struct s_img
 {
@@ -56,6 +67,8 @@ typedef struct s_data
 	int		end;
 	int		hit;
 }	t_data;
+
+// FUNCTIONS
 
 /*Events*/
 int	exit_cub(t_data *data);
