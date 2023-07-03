@@ -27,29 +27,30 @@ void    get_picture_vars(t_data *data, int side, double *dist)
 		data->end = WINDOW_HEIGHT - 1;
 }
 
-void	drawing(int x, t_data *data, int side, double *dist)
+void	drawing(int x, t_data *data, double *dist)
 {
 	char	*index;
     int     y;
 
     y = 0;
-    get_picture_vars(data, side, dist);
+    get_picture_vars(data, data->side, dist);
     while (y < WINDOW_HEIGHT)
     {
-        if (y>= data->start && y < data->end)
+        index = data->img.addr + (y * data->img.line_len
+                    + x * (data->img.bpp / 8));
+        if (y < data->start)
+            *(int *)index = WHITE_PIXEL;
+        // else if (y >= data->end)
+        //     *(int *)index = BLACK_PIXEL;
+        else if (y>= data->start && y < data->end)
         {
-            if (data->hit == 0)
-            {
-                index = data->img.addr + (y * data->img.line_len
-                        + x * (data->img.bpp / 8));
-                *(int *)index = BLACK_PIXEL;
-            }
-            else
-            {
-                index = data->img.addr + (y * data->img.line_len
-                        + x * (data->img.bpp / 8));
-                *(int *)index = WHITE_PIXEL;
-            }
+            // {
+            //     index = data->img.addr + (y * data->img.line_len
+            //             + x * (data->img.bpp / 8));
+            //     *(int *)index = PINK_PIXEL;
+            // }
+            // else
+            *(int *)index = PINK_PIXEL;
         }
         y++;
     }

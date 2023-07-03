@@ -29,6 +29,9 @@ void	vars_init(t_data *data)
 	data->start = 0;
 	data->end = 0;
 	data->hit = 0;
+	data->step_x = 0;
+	data->step_y = 0;
+	data->side = 0;
 }
 
 int	render(t_data *data)

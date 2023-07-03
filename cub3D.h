@@ -26,6 +26,9 @@
 
 # define WHITE_PIXEL 0xc0c0c0
 # define BLACK_PIXEL 0xFFFFFF
+# define PINK_PIXEL 0xFFC0CB
+
+# define INF 1000000
 
 typedef struct s_img
 {
@@ -55,6 +58,9 @@ typedef struct s_data
 	int		start;
 	int		end;
 	int		hit;
+	int		step_x;
+	int		step_y;
+	int		side;
 }	t_data;
 
 /*Events*/
@@ -65,6 +71,6 @@ int	handle_key(int key, t_data *data);
 void    calculations(t_data *data);
 
 /*Picture*/
-void	drawing(int x, t_data *data, int side, double *dist);
+void	drawing(int x, t_data *data, double *dist);
 
 #endif

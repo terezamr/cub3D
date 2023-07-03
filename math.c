@@ -41,29 +41,55 @@ double	*get_dist(t_data *data, int *map, double *ray)
         dist[1] = fabs(1 / ray[1]);
     else
 	{
-        dist[1] = -1; 
+        dist[1] = -1;
 	}
-	if (ray[0] < 0)
+	if (ray[0] < 0 && dist[0] > 0)
+	{
+		data->step_x = -1;
 		dist[2] = (data->posX - map[0]) * dist[0]; 
-	else
+	}
+	else if (dist[0] > 0)
+	{
+		data->step_x = 1;
 		dist[2] = (map[0] + 1 - data->posX) * dist[0];
-	if (ray[1] < 0)
-		dist[3] = (data->posY - map[1]) * dist[1];
+	}
 	else
+	{
+		data->step_x = 0;
+		dist[2] = INF;
+	}
+	if (ray[1] < 0 && dist[1] > 0)
+	{
+		data->step_y = -1;
+		dist[3] = (data->posY - map[1]) * dist[1];
+	}
+	else if (dist[1] > 0)
+	{
+		data->step_y = 1;
 		dist[3] = (map[1] + 1 - data->posY) * dist[1];
+	}
+	else
+	{
+		data->step_y = 0;
+		dist[3] = INF;
+	}
 	return (dist);
 }
 
-int	*get_step(int *step, double *ray)
+int	*get_step(int *step, double *ray, double *dist)
 {
-	if (ray[0] < 0)
+	if (ray[0] < 0 && dist[0] > 0)
 		step[0] = -1;
-	else
+	else if (dist[0] > 0)
 		step[0] = 1;	
-	if (ray[1] < 0)
-		step[1] = -1;
 	else
+		step[0] = 0;
+	if (ray[1] < 0 && dist[1] > 0)
+		step[1] = -1;
+	else if (dist[1] > 0)
 		step[1] = 1;
+	else
+		step[1] = 0;
 	return (step);
 }
 
@@ -73,12 +99,10 @@ void    calculations(t_data *data)
 	double	*ray;
 	double	*dist;
 	int		*map;
-	int		*step;
-	int		side;
+	//int		side;
 
-    step = malloc(sizeof(int) * 2);
     x = 0;
-    side = 0;
+    //side = 0;
     while (x < WINDOW_WIDTH - 1)
 	{
         data->hit = 0;
@@ -87,27 +111,25 @@ void    calculations(t_data *data)
 		map[1] = (int)data->posY;
 		ray = get_ray(data, x);
 		dist = get_dist(data, map, ray);
-		step = get_step(step, ray);
 		while (data->hit == 0)
 		{
 			if (dist[2] < dist[3])
 			{
 				dist[2] = dist[2] + dist[0];
-				map[0] = map[0] + step[0];
-				side = 0;
+				map[0] = map[0] + data->step_x;
+				data->side = 0;
 			}
 			else
 			{
 				dist[3] = dist[3] + dist[1];
-				map[1] = map[1] + step[1];
-				side = 1;
+				map[1] = map[1] + data->step_y;
+				data->side = 1;
 			}
 			if (data->world_map[map[0]][map[1]] == 1)
 				data->hit = 1;
 		}
-        drawing(x, data, side, dist);
+        drawing(x, data, dist);
 		free(map);
 		x++;
 	}
-	free(step);
 }
