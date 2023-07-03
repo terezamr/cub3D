@@ -31,8 +31,17 @@
 # define WHITE_PIXEL 0xc0c0c0
 # define BLACK_PIXEL 0xFFFFFF
 
+// COLORS 
+
+# define RED	"\033[0;31m"
+# define YELLOW	"\033[0;33m"
+# define GREEN	"\033[1;32m"
+# define BLUE "\033[1;34m"
+# define RESET	"\033[0m"
+
 // ERROR HANDLING
 
+# define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_MAP "Invalid map."
 # define INVALID_CHAR "Invalid character found."
 
@@ -70,14 +79,21 @@ typedef struct s_data
 
 // FUNCTIONS
 
-/*Events*/
+/* Geral */
+int	error_msg(char *message);
+
+/* Events */
 int	exit_cub(t_data *data);
 int	handle_key(int key, t_data *data);
 
-/*Math*/
+/* Math */
 void    calculations(t_data *data);
 
-/*Picture*/
+/* Picture */
 void	drawing(int x, t_data *data, int side, double *dist);
+
+/* Libft */
+
+
 
 #endif

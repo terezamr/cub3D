@@ -23,9 +23,23 @@ MLX_PATH	= ./inc/minilibx-linux/
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
 
-SRC = ./src/main.c ./src/events.c ./src/math.c ./src/picture.c
+SRC = 	./src/main.c \
+		./src/events.c \
+		./src/math.c \
+		./src/picture.c \
+
 OBJ = $(SRC:.c=.o)
 LDLIBS = -g -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
+
+########## 		   COLORS 		##########
+
+GREEN		=	\033[0;32m
+YELLOW		=	\033[0;33m
+RED			=	\033[0;31m
+BLUE_PISK	=	\033[0;34;5;199m
+BLUE		=	\033[0;36m
+VIOLET		=	\033[0;38;5;199m
+RESET		=	\033[0m
 
 ########## 		   TARGETS 		##########
 
@@ -55,13 +69,3 @@ norm:
 .SILENT: ${OBJ} clean fclean
 
 .PHONY: all clean fclean re norm
-
-########## 		   COLORS 		##########
-
-GREEN		=	\033[0;32m
-YELLOW	=	\033[0;33m
-RED		=	\033[0;31m
-BLUE_PISK		=	\033[0;34;5;199m
-BLUE		=	\033[0;36m
-VIOLET	=	\033[0;38;5;199m
-RESET		=	\033[0m
