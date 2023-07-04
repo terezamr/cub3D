@@ -23,10 +23,12 @@ MLX_PATH	= ./inc/minilibx-linux/
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
 
-SRC = 	./src/main.c \
-		./src/events.c \
-		./src/math.c \
-		./src/picture.c \
+SRC_PATH = ./src/
+
+SRC = 	$(SRC_PATH)main.c \
+		$(SRC_PATH)events.c \
+		$(SRC_PATH)math.c \
+		$(SRC_PATH)picture.c \
 
 OBJ = $(SRC:.c=.o)
 LDLIBS = -g -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
@@ -44,21 +46,32 @@ RESET		=	\033[0m
 ########## 		   TARGETS 		##########
 
 all:	$(MLX) $(NAME)
+	@echo "<====== $(GREEN)$(NAME) created $(RESET) ======>"
 
 %.o: %.c
 	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	@echo "$(YELLOW)compiling $<...$(RESET)"
 	
 $(MLX):
 	make -sC $(MLX_PATH)
 
+# NO $(NAME):
+#
+# DÁ ME ERRO ASSIM (como tinhas): 
+#       $(CC) $(OBJ) $(LDLIBS) $(MLX) -o $(NAME) 
+#
+# CONSIGO COMPILAR ASSIM: 
+#       $(CC) $(OBJ) $(MLX) -o $(NAME) $(LDLIBS)
+
 $(NAME):	$(OBJ)
-			$(CC) $(OBJ) $(LDLIBS) $(MLX) -o $(NAME)
+			$(CC) $(OBJ) $(LDLIBS) $(MLX) -o $(NAME) 
 
 clean:
 			$(RM) $(OBJ)
 
 fclean:	clean
 			$(RM) $(NAME)
+	@echo "<====== $(RED)$(NAME) removed $(RESET) ======>"
 
 re:	fclean all
 
@@ -66,6 +79,6 @@ norm:
 	@cd ./src && norminette -R CheckForbiddenSourceHeader *.c
 	@norminette -R CheckDefine cub3D.h
 
-.SILENT: ${OBJ} clean fclean
+.SILENT: ${NAME} $(OBJ) clean fclean
 
 .PHONY: all clean fclean re norm
