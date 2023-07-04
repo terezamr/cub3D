@@ -12,6 +12,19 @@
 
 #include "../inc/cub3D.h"
 
+void	free_data(t_data *data)
+{
+	if (data->nTexture)
+		free(data->nTexture);
+	if (data->sTexture)
+		free(data->sTexture);
+	if (data->wTexture)
+		free(data->wTexture);
+	if (data->eTexture)
+		free(data->eTexture);
+	// ft_free_mtx(data->world_map);
+}
+
 int	exit_cub(t_data *data)
 {
 	if (!data)
@@ -22,6 +35,7 @@ int	exit_cub(t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
+	// free_data(data);
 	free(data->mlx);
 	exit(0);
 }

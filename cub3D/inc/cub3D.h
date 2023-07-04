@@ -34,6 +34,11 @@
 
 // ERROR HANDLING
 
+# define OPEN_ERROR "File not found."
+# define DIR_ERROR "File path is a directory"
+# define INVALID_ARGS "The program should take 1 argument."
+# define INVALID_TYPE "Texture type must be composed by one or two characters."
+# define INVALID_TEXTURE "Texture file not found."
 # define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_MAP "Invalid map."
 # define INVALID_CHAR "Invalid character found."
@@ -71,21 +76,32 @@ typedef struct s_data
 	int		step_x;
 	int		step_y;
 	int		side;
+	char	*nTexture;
+	char	*sTexture;
+	char	*wTexture;
+	char	*eTexture;
+	char	*fTexture;
+	char	*cTexture;
 }	t_data;
 
 // FUNCTIONS
 
-/* Geral */
-int	error_msg(char *message);
+/* Parsing */
+
+void	parse_all(t_data *data, int argc, char *file_path);
+void	error_msg(char *message);
 
 /* Events */
-int	exit_cub(t_data *data);
-int	handle_key(int key, t_data *data);
+
+int		exit_cub(t_data *data);
+int		handle_key(int key, t_data *data);
 
 /* Math */
+
 void    calculations(t_data *data);
 
-/*Picture*/
+/* Picture */
+
 void	drawing(int x, t_data *data, double *dist);
 
 

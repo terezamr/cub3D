@@ -32,15 +32,12 @@ void	vars_init(t_data *data)
 	data->step_x = 0;
 	data->step_y = 0;
 	data->side = 0;
-}
-
-int	render(t_data *data)
-{
-
-	mlx_clear_window(data->mlx, data->win);
-	calculations(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_img, 0, 0);
-	return (1);
+	// data->nTexture = NULL;
+	// data->sTexture = NULL;
+	// data->wTexture = NULL;
+	// data->eTexture = NULL;
+	// data->fTexture = NULL;
+	// data->cTexture = NULL;
 }
 
 int	**get_map(void)
@@ -96,14 +93,21 @@ int	**get_map(void)
 	return (map);
 }
 
+int	render(t_data *data)
+{
+
+	mlx_clear_window(data->mlx, data->win);
+	calculations(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_img, 0, 0);
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	(void)argv;
-	if (argc != 1)
-		return (0);
 	vars_init(&data);
+	parse_all(&data, argc, argv[1]);
 	data.world_map = get_map();
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3d");

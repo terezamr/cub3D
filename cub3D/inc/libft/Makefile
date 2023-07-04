@@ -30,14 +30,9 @@ SRC = 	$(LIBFT_PATH)ft_atoi.c 		\
 		$(LIBFT_PATH)ft_free_mtx.c		\
 		$(LIBFT_PATH)ft_equals.c		\
 		$(LIBFT_PATH)ft_mtxlen.c		\
+		$(LIBFT_PATH)ft_strcpy.c	\
 		$(GNL_PATH)/get_next_line.c			\
 		$(GNL_PATH)/get_next_line_utils.c	\
-		$(PRINT_F_PATH)/ft_printf.c			\
-		$(PRINT_F_PATH)/ft_putchar.c		\
-		$(PRINT_F_PATH)/ft_putstr.c			\
-		$(PRINT_F_PATH)/ft_putnbr.c			\
-		$(PRINT_F_PATH)/ft_puthexa.c		\
-		$(PRINT_F_PATH)/ft_putvoid.c		\
 
 #		$(LIBFT_PATH)ft_isalpha.c	\
 		$(LIBFT_PATH)ft_isdigit.c	\
@@ -81,7 +76,12 @@ SRC = 	$(LIBFT_PATH)ft_atoi.c 		\
 		$(LIBFT_PATH)ft_lstiter.c 		\
 		$(LIBFT_PATH)ft_lstmap.c		\
 		$(LIBFT_PATH)ft_putlst_fd.c		\
-		$(LIBFT_PATH)ft_strcpy.c	\
+		$(PRINT_F_PATH)/ft_printf.c			\
+		$(PRINT_F_PATH)/ft_putchar.c		\
+		$(PRINT_F_PATH)/ft_putstr.c			\
+		$(PRINT_F_PATH)/ft_putnbr.c			\
+		$(PRINT_F_PATH)/ft_puthexa.c		\
+		$(PRINT_F_PATH)/ft_putvoid.c		\
 
 
 ########## 		  INCLUDES 		##########
