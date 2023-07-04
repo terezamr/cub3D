@@ -29,9 +29,30 @@ SRC = 	$(SRC_PATH)main.c \
 		$(SRC_PATH)events.c \
 		$(SRC_PATH)math.c \
 		$(SRC_PATH)picture.c \
+		$(SRC_PATH)error_msg.c \
 
 OBJ = $(SRC:.c=.o)
 LDLIBS = -g -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
+
+########## 		   LIBFT 		##########
+
+LIBFT = libft
+
+LIBFT_PATH = ./inc/libft/
+
+MAKE_LIBFT = cd ${LIBFT_PATH} && make all
+
+CLEAN_LIBFT = cd ${LIBFT_PATH} && make clean
+
+FCLEAN_LIBFT = cd ${LIBFT_PATH} && make fclean
+
+########## 		   MESSAGES 		##########
+
+NORM_LIBFT_MSG = @echo "\n[ $(YELLOW)Norm $(LIBFT)$(RESET) ]\n"
+
+NORM_PROJ_MSG = @echo "\n[ $(YELLOW)Norm $(NAME)$(RESET) ]\n"
+
+NORM_CORRECT = @echo "\nNorminette: [$(GREEN)OK$(RESET)]\n"
 
 ########## 		   COLORS 		##########
 
@@ -55,29 +76,28 @@ all:	$(MLX) $(NAME)
 $(MLX):
 	make -sC $(MLX_PATH)
 
-# NO $(NAME):
-#
-# DÁ ME ERRO ASSIM (como tinhas): 
-#       $(CC) $(OBJ) $(LDLIBS) $(MLX) -o $(NAME) 
-#
-# CONSIGO COMPILAR ASSIM: 
-#       $(CC) $(OBJ) $(MLX) -o $(NAME) $(LDLIBS)
-
 $(NAME):	$(OBJ)
-			$(CC) $(OBJ) $(LDLIBS) $(MLX) -o $(NAME) 
+			${MAKE_LIBFT} -s
+			$(CC) $(OBJ) $(MLX) -o $(NAME) -L $(LIBFT_PATH) -lft $(LDLIBS) 
 
-clean:
-			$(RM) $(OBJ)
+clean:	
+	${CLEAN_LIBFT} -s
+	$(RM) $(OBJ)
 
 fclean:	clean
-			$(RM) $(NAME)
+	${FCLEAN_LIBFT} -s
+	$(RM) $(NAME)
 	@echo "<====== $(RED)$(NAME) removed $(RESET) ======>"
 
 re:	fclean all
 
 norm:
+	${NORM_LIBFT_MSG}
+	@cd ${LIBFT_PATH} && make norm
+	${NORM_PROJ_MSG}
 	@cd ./src && norminette -R CheckForbiddenSourceHeader *.c
-	@norminette -R CheckDefine cub3D.h
+	@cd ./inc && norminette -R CheckDefine *.h
+	${NORM_CORRECT}
 
 .SILENT: ${NAME} $(OBJ) clean fclean
 

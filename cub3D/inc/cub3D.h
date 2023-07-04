@@ -15,11 +15,8 @@
 
 // INCLUDES
 
-# include "minilibx-linux/mlx.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <math.h>
-# include <stdlib.h>
+# include "./libft/libft.h"
+# include "./minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
 
@@ -27,20 +24,13 @@
 
 # define WINDOW_WIDTH 1400
 # define WINDOW_HEIGHT 1400
+# define ESCAPE 65307
 
 # define WHITE_PIXEL 0xc0c0c0
 # define BLACK_PIXEL 0xFFFFFF
 # define PINK_PIXEL 0xFFC0CB
 
 # define INF 1000000
-
-// COLORS 
-
-# define RED	"\033[0;31m"
-# define YELLOW	"\033[0;33m"
-# define GREEN	"\033[1;32m"
-# define BLUE "\033[1;34m"
-# define RESET	"\033[0m"
 
 // ERROR HANDLING
 
@@ -98,7 +88,6 @@ void    calculations(t_data *data);
 /*Picture*/
 void	drawing(int x, t_data *data, double *dist);
 
-/* Libft */
 
 
 

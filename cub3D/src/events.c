@@ -28,7 +28,7 @@ int	exit_cub(t_data *data)
 
 int	handle_key(int key, t_data *data)
 {
-	if (key == 65307)
+	if (key == ESCAPE)
 		exit_cub(data);
 	return (0);
 }
