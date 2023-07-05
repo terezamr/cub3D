@@ -38,11 +38,11 @@ void	drawing(int x, t_data *data, double *dist)
     {
         index = data->img.addr + (y * data->img.line_len
                     + x * (data->img.bpp / 8));
-        if (y < data->start)
-            *(int *)index = WHITE_PIXEL;
-        // else if (y >= data->end)
+        // if (y < data->start)
         //     *(int *)index = BLACK_PIXEL;
-        else if (y>= data->start && y < data->end)
+        if (y > data->end)
+            *(int *)index = WHITE_PIXEL;
+        else if (y>= data->start && y <= data->end)
         {
             // {
             //     index = data->img.addr + (y * data->img.line_len

@@ -25,8 +25,8 @@
 
 // DEFINES
 
-# define WINDOW_WIDTH 1400
-# define WINDOW_HEIGHT 1400
+# define WINDOW_WIDTH 500
+# define WINDOW_HEIGHT 500
 
 # define WHITE_PIXEL 0xc0c0c0
 # define BLACK_PIXEL 0xFFFFFF
