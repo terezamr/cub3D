@@ -22,14 +22,9 @@
 
 // DEFINES
 
-<<<<<<< HEAD
 # define WINDOW_WIDTH 500
 # define WINDOW_HEIGHT 500
-=======
-# define WINDOW_WIDTH 1400
-# define WINDOW_HEIGHT 1400
 # define ESCAPE 65307
->>>>>>> da944d223f20ea0e88f535c7e3dd6855886b54fb
 
 # define WHITE_PIXEL 0xc0c0c0
 # define BLACK_PIXEL 0xFFFFFF
