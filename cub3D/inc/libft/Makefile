@@ -31,17 +31,18 @@ SRC = 	$(LIBFT_PATH)ft_atoi.c 		\
 		$(LIBFT_PATH)ft_equals.c		\
 		$(LIBFT_PATH)ft_mtxlen.c		\
 		$(LIBFT_PATH)ft_strcpy.c	\
+		$(LIBFT_PATH)ft_strdup.c 	\
+		$(LIBFT_PATH)ft_isalnum.c	\
 		$(GNL_PATH)/get_next_line.c			\
 		$(GNL_PATH)/get_next_line_utils.c	\
 
 #		$(LIBFT_PATH)ft_isalpha.c	\
+		$(LIBFT_PATH)ft_bzero.c 	\
 		$(LIBFT_PATH)ft_isdigit.c	\
 		$(LIBFT_PATH)ft_strcmp.c	\
 		$(LIBFT_PATH)ft_isascii.c	\
-		$(LIBFT_PATH)ft_isalnum.c	\
 		$(LIBFT_PATH)ft_isprint.c	\
 		$(LIBFT_PATH)ft_memcpy.c 	\
-		$(LIBFT_PATH)ft_bzero.c 	\
 		$(LIBFT_PATH)ft_memset.c 	\
 		$(LIBFT_PATH)ft_strchr.c 	\
 		$(LIBFT_PATH)ft_strlcat.c 	\
@@ -55,7 +56,6 @@ SRC = 	$(LIBFT_PATH)ft_atoi.c 		\
 		$(LIBFT_PATH)ft_memchr.c 	\
 		$(LIBFT_PATH)ft_memmove.c 	\
 		$(LIBFT_PATH)ft_calloc.c 	\
-		$(LIBFT_PATH)ft_strdup.c 	\
 		$(LIBFT_PATH)ft_substr.c 	\
 		$(LIBFT_PATH)ft_strjoin.c 	\
 		$(LIBFT_PATH)ft_strtrim.c 	\

@@ -22,6 +22,10 @@ void	free_data(t_data *data)
 		free(data->wTexture);
 	if (data->eTexture)
 		free(data->eTexture);
+	if (data->fTexture)
+		free(data->fTexture);
+	if (data->cTexture)
+		free(data->cTexture);
 	// ft_free_mtx(data->world_map);
 }
 
@@ -35,7 +39,6 @@ int	exit_cub(t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
-	// free_data(data);
 	free(data->mlx);
 	exit(0);
 }

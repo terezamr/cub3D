@@ -32,11 +32,13 @@
 
 # define INF 1000000
 
-// ERROR HANDLING
+// ERROR MESSAGES
 
-# define OPEN_ERROR "File not found."
+# define OPEN_ERROR "File not found or permission denied."
 # define DIR_ERROR "File path is a directory"
+# define MLC_ERROR "Allocation problem."
 # define INVALID_ARGS "The program should take 1 argument."
+# define INVALID_EXTENSION "Invalid file extension. File must be a .cub file."
 # define INVALID_TYPE "Texture type must be composed by one or two characters."
 # define INVALID_TEXTURE "Texture file not found."
 # define INVALID_ARGS "The program should take 1 argument."
@@ -67,7 +69,11 @@ typedef struct s_data
 	double	dirY;
 	double	planeX;
 	double	planeY;
-	int		**world_map;
+	char	*file_path;
+	char	**world_map;
+	int		**world_mapi;
+	int		map_width;
+	int		map_height;
 	int		distance;
 	int		height;
 	int		start;

@@ -32,12 +32,12 @@ void	vars_init(t_data *data)
 	data->step_x = 0;
 	data->step_y = 0;
 	data->side = 0;
-	// data->nTexture = NULL;
-	// data->sTexture = NULL;
-	// data->wTexture = NULL;
-	// data->eTexture = NULL;
-	// data->fTexture = NULL;
-	// data->cTexture = NULL;
+	data->nTexture = 0;
+	data->sTexture = 0;
+	data->wTexture = 0;
+	data->eTexture = 0;
+	data->fTexture = 0;
+	data->cTexture = 0;
 }
 
 int	**get_map(void)
@@ -106,9 +106,11 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	// (void)argc;
+	// (void)argv;
 	vars_init(&data);
 	parse_all(&data, argc, argv[1]);
-	data.world_map = get_map();
+	data.world_mapi = get_map();
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3d");
 	data.img.mlx_img = mlx_new_image(data.mlx, WINDOW_WIDTH,

@@ -34,6 +34,8 @@ SRC = 	$(SRC_PATH)main.c \
 
 OBJ = $(SRC:.c=.o)
 LDLIBS = -g -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
+LEAKS_FLAG = -g -fsanitize=address
+C_FLAGS = -Wall -Wextra -Werror
 
 ########## 		   LIBFT 		##########
 
@@ -71,7 +73,7 @@ all:	$(MLX) $(NAME)
 	@echo "<====== $(GREEN)$(NAME) created $(RESET) ======>"
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) $(C_FLAGS) $(LEAKS_FLAG) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 	@echo "$(YELLOW)compiling $<...$(RESET)"
 	
 $(MLX):
@@ -79,7 +81,7 @@ $(MLX):
 
 $(NAME):	$(OBJ)
 			${MAKE_LIBFT} -s
-			$(CC) $(OBJ) $(MLX) -o $(NAME) -L $(LIBFT_PATH) -lft $(LDLIBS) 
+			$(CC) $(OBJ) $(MLX) $(LEAKS_FLAG) -o $(NAME) -L $(LIBFT_PATH) -lft $(LDLIBS) 
 
 clean:	
 	${CLEAN_LIBFT} -s
