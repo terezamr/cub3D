@@ -23,13 +23,36 @@ MLX_PATH	= ./inc/minilibx-linux/
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
 
-SRC = 	./src/main.c \
-		./src/events.c \
-		./src/math.c \
-		./src/picture.c \
+SRC_PATH = ./src/
+
+SRC = 	$(SRC_PATH)main.c \
+		$(SRC_PATH)events.c \
+		$(SRC_PATH)math.c \
+		$(SRC_PATH)picture.c \
+		$(SRC_PATH)error_msg.c \
 
 OBJ = $(SRC:.c=.o)
 LDLIBS = -g -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
+
+########## 		   LIBFT 		##########
+
+LIBFT = libft
+
+LIBFT_PATH = ./inc/libft/
+
+MAKE_LIBFT = cd ${LIBFT_PATH} && make all
+
+CLEAN_LIBFT = cd ${LIBFT_PATH} && make clean
+
+FCLEAN_LIBFT = cd ${LIBFT_PATH} && make fclean
+
+########## 		   MESSAGES 		##########
+
+NORM_LIBFT_MSG = @echo "\n[ $(YELLOW)Norm $(LIBFT)$(RESET) ]\n"
+
+NORM_PROJ_MSG = @echo "\n[ $(YELLOW)Norm $(NAME)$(RESET) ]\n"
+
+NORM_CORRECT = @echo "\nNorminette: [$(GREEN)OK$(RESET)]\n"
 
 ########## 		   COLORS 		##########
 
@@ -44,28 +67,38 @@ RESET		=	\033[0m
 ########## 		   TARGETS 		##########
 
 all:	$(MLX) $(NAME)
+	@echo "<====== $(GREEN)$(NAME) created $(RESET) ======>"
 
 %.o: %.c
 	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	@echo "$(YELLOW)compiling $<...$(RESET)"
 	
 $(MLX):
 	make -sC $(MLX_PATH)
 
 $(NAME):	$(OBJ)
-			$(CC) $(OBJ) $(LDLIBS) $(MLX) -o $(NAME)
+			${MAKE_LIBFT} -s
+			$(CC) $(OBJ) $(MLX) -o $(NAME) -L $(LIBFT_PATH) -lft $(LDLIBS) 
 
-clean:
-			$(RM) $(OBJ)
+clean:	
+	${CLEAN_LIBFT} -s
+	$(RM) $(OBJ)
 
 fclean:	clean
-			$(RM) $(NAME)
+	${FCLEAN_LIBFT} -s
+	$(RM) $(NAME)
+	@echo "<====== $(RED)$(NAME) removed $(RESET) ======>"
 
 re:	fclean all
 
 norm:
+	${NORM_LIBFT_MSG}
+	@cd ${LIBFT_PATH} && make norm
+	${NORM_PROJ_MSG}
 	@cd ./src && norminette -R CheckForbiddenSourceHeader *.c
-	@norminette -R CheckDefine cub3D.h
+	@cd ./inc && norminette -R CheckDefine *.h
+	${NORM_CORRECT}
 
-.SILENT: ${OBJ} clean fclean
+.SILENT: ${NAME} $(OBJ) clean fclean
 
 .PHONY: all clean fclean re norm
