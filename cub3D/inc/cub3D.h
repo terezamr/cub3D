@@ -39,8 +39,9 @@
 # define MLC_ERROR "Allocation problem."
 # define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_EXTENSION "Invalid file extension. File must be a .cub file."
-# define INVALID_TYPE "Texture type must be composed by one or two characters."
+# define INVALID_TEXTURE_TYPE "Texture type must be composed by one or two characters."
 # define INVALID_TEXTURE "Texture file not found."
+# define INVALID_RGB "Invalid RGB color."
 # define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_MAP "Invalid map."
 # define INVALID_CHAR "Invalid character found."
@@ -92,10 +93,15 @@ typedef struct s_data
 
 // FUNCTIONS
 
-/* Parsing */
+/* Parsing & Check */
 
 void	parse_all(t_data *data, int argc, char *file_path);
 void	error_msg(char *message);
+void	check_extension(char *path);
+char	*next_line(char *line, int fd);
+int		is_only_spaces(char *line);
+int		check_texture(char *line);
+
 
 /* Events */
 

@@ -1,22 +1,5 @@
 #include "../inc/cub3D.h"
 
-char	*next_line(char *line, int fd)
-{
-	free(line);
-	return (get_next_line(fd));
-}
-
-int	is_only_spaces(char *line)
-{
-	int	i;
-
-	i = 0;
-	while(line[i])
-		if (ft_isalnum(line[i++]))
-			return (0);
-	return (1);
-}
-
 int	get_map_height(char *line, int fd)
 {
 	int		height;
@@ -65,17 +48,17 @@ void	parse_map(t_data *data, int lineOfMap)
 
 int	read_textures(t_data *data, char *line)
 {
-	if (!data->nTexture)
+	if (!data->nTexture && check_texture(line))
 		data->nTexture = ft_strdup(line);
-	else if (!data->sTexture)
+	else if (!data->sTexture && check_texture(line))
 		data->sTexture = ft_strdup(line);
-	else if (!data->wTexture)
+	else if (!data->wTexture && check_texture(line))
 		data->wTexture = ft_strdup(line);
-	else if (!data->eTexture)
+	else if (!data->eTexture && check_texture(line))
 		data->eTexture = ft_strdup(line);
-	else if (!data->fTexture)
+	else if (!data->fTexture && check_rgb(line))
 		data->fTexture = ft_strdup(line);
-	else if (!data->cTexture)
+	else if (!data->cTexture && check_rgb(line))
 		data->cTexture = ft_strdup(line);
 	else
 		return (0);
@@ -104,19 +87,6 @@ void	parse_file(t_data *data, int fd)
 		lineOfMap++;
 	}
 	parse_map(data, lineOfMap);
-}
-
-void	check_extension(char *path)
-{
-	char	**splitted_path;
-
-	splitted_path = ft_split(path, '.');
-	if (!ft_equals(splitted_path[ft_mtxlen(splitted_path) - 1], "cub"))
-	{
-		ft_free_mtx(splitted_path);
-		error_msg(INVALID_EXTENSION);
-	}
-	ft_free_mtx(splitted_path);
 }
 
 void	parse_all(t_data *data, int argc, char *file_path)
