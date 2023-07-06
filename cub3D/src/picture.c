@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:25:56 by mvicente          #+#    #+#             */
-/*   Updated: 2023/06/29 15:48:56 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:42:42 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,28 @@ void    get_picture_vars(t_data *data, int side, double *dist)
 		data->end = WINDOW_HEIGHT - 1;
 }
 
-void	drawing(int x, t_data *data, double *dist)
+void			ft_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*index;
+
+	index = data->img.addr + (y * data->img.line_len + x * (data->img.bpp / 8));
+	*(unsigned int*)index = color;
+}
+
+void	drawing(int x, t_data *data, double *dist)
+{
     int     y;
 
     y = 0;
     get_picture_vars(data, data->side, dist);
     while (y < WINDOW_HEIGHT)
     {
-        index = data->img.addr + (y * data->img.line_len
-                    + x * (data->img.bpp / 8));
-        // if (y < data->start)
-        //     *(int *)index = BLACK_PIXEL;
-        if (y > data->end)
-            *(int *)index = WHITE_PIXEL;
-        else if (y>= data->start && y <= data->end)
-        {
-            // {
-            //     index = data->img.addr + (y * data->img.line_len
-            //             + x * (data->img.bpp / 8));
-            //     *(int *)index = PINK_PIXEL;
-            // }
-            // else
-            *(int *)index = PINK_PIXEL;
-        }
+        if (y >= 0 && y < data->start)
+			ft_mlx_pixel_put(data, x, y, WHITE_PIXEL);
+		else if (y >= data->start && y < data->end)
+			ft_mlx_pixel_put(data, x, y, PINK_PIXEL);
+		else if (y >= data->end)
+			ft_mlx_pixel_put(data, x, y, BLACK_PIXEL);
         y++;
     }
 }

@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:57:26 by mvicente          #+#    #+#             */
-/*   Updated: 2023/06/29 15:42:06 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:42:20 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define WINDOW_HEIGHT 500
 # define ESCAPE 65307
 
-# define WHITE_PIXEL 0xc0c0c0
-# define BLACK_PIXEL 0xFFFFFF
+# define WHITE_PIXEL 0xFFFFFF
+# define BLACK_PIXEL 0x000000
 # define PINK_PIXEL 0xFFC0CB
 
 # define INF 1000000
@@ -63,8 +63,8 @@ typedef struct s_data
 	double	planeX;
 	double	planeY;
 	int		**world_map;
-	int		distance;
-	int		height;
+	double	distance;
+	double	height;
 	int		start;
 	int		end;
 	int		hit;

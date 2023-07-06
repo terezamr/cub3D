@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:02:51 by mvicente          #+#    #+#             */
-/*   Updated: 2023/06/29 16:04:04 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:31:41 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ between pos and next x axis, dist between pos and next y axis*/
 double	*get_dist(t_data *data, int *map, double *ray)
 {
 	double	*dist;
-	//double	ray_len;
+	double	ray_len;
 	
 	dist = malloc(sizeof(double) * 4);
-	//ray_len = sqrt((ray[0] * ray[0]) + (ray[1] * ray[1]));
+	ray_len = sqrt((ray[0] * ray[0]) + (ray[1] * ray[1]));
     if (ray[0] != 0)
         dist[0] = fabs(1 / ray[0]);
     else
@@ -99,10 +99,8 @@ void    calculations(t_data *data)
 	double	*ray;
 	double	*dist;
 	int		*map;
-	//int		side;
 
     x = 0;
-    //side = 0;
     while (x < WINDOW_WIDTH - 1)
 	{
         data->hit = 0;

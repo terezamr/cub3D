@@ -50,19 +50,19 @@ int	**get_map(void)
 	int	**map;
 
 	i = 0;
-	map = malloc(sizeof(int *) * 10);
-	while (i < 10)
+	map = malloc(sizeof(int *) * 20);
+	while (i < 20)
 	{
-		map[i] = malloc(sizeof(int) * 10);
+		map[i] = malloc(sizeof(int) * 20);
 		i++;
 	}
 	i = 0;
-	while (i < 10)
+	while (i < 20)
 	{
 		j = 0;
-		if (i == 0 || i == 9)
+		if (i == 0 || i == 19)
 		{
-			while (j < 10)
+			while (j < 20)
 			{
 				map[i][j] = 1;
 				j++;
@@ -72,7 +72,7 @@ int	**get_map(void)
 		{
 			map[i][j] = 1;
 			j++;
-			while (j < 9)
+			while (j < 20)
 			{
 				map[i][j] = 0;
 				j++;
@@ -82,10 +82,10 @@ int	**get_map(void)
 		i++;
 	}
 	i = 0;
-	while (i < 10)
+	while (i < 20)
 	{
 		j = 0;	
-		while (j < 10)
+		while (j < 20)
 		{
 			printf("%i ", map[i][j]);
 			j++;
