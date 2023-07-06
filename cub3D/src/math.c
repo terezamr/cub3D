@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:02:51 by mvicente          #+#    #+#             */
-/*   Updated: 2023/07/06 13:31:41 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:19:35 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,16 @@ void    calculations(t_data *data)
 	int		*map;
 
     x = 0;
+	printf("cos %f sen %f\n", data->dirX, data->dirY);
+	data->angle_r = (data->angle_d * PI) / 180;
     while (x < WINDOW_WIDTH - 1)
 	{
         data->hit = 0;
 		map = malloc(sizeof(int) * 2);
 		map[0] = (int)data->posX;
 		map[1] = (int)data->posY;
+		data->dirX = cos(data->angle_r);
+		data->dirY = sin(data->angle_r);
 		ray = get_ray(data, x);
 		dist = get_dist(data, map, ray);
 		while (data->hit == 0)

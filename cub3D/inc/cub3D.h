@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:57:26 by mvicente          #+#    #+#             */
-/*   Updated: 2023/07/06 13:42:20 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:20:37 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,21 @@
 # define WINDOW_WIDTH 500
 # define WINDOW_HEIGHT 500
 # define ESCAPE 65307
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_D 100
 
 # define WHITE_PIXEL 0xFFFFFF
 # define BLACK_PIXEL 0x000000
 # define PINK_PIXEL 0xFFC0CB
+# define PINK1_PIXEL 0xe5acb6
+# define PINK2_PIXEL 0xcc99a2
 
 # define INF 1000000
+#define PI 3.141592654
 
 // ERROR HANDLING
 
@@ -71,6 +80,8 @@ typedef struct s_data
 	int		step_x;
 	int		step_y;
 	int		side;
+	double	angle_d;
+	double	angle_r;
 }	t_data;
 
 // FUNCTIONS
@@ -87,8 +98,5 @@ void    calculations(t_data *data);
 
 /*Picture*/
 void	drawing(int x, t_data *data, double *dist);
-
-
-
 
 #endif

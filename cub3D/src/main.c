@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:10:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/06/29 15:56:46 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:19:19 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ void	vars_init(t_data *data)
 	data->win = 0;
 	data->img.offset_r = -2;
 	data->img.offset_i = 2;
-	data->posX = 2;
+	data->posX = 8;
 	data->posY = 1;
-	data->dirX = 0;
-	data->dirY = 1;
+	data->angle_d = 90;
+	data->angle_r = (data->angle_d * PI) / 180;
+	data->dirX = cos(data->angle_r);
+	data->dirY = sin(data->angle_r);
 	data->planeX = 0.66;
 	data->planeY = 0;
 	data->distance = 0;
@@ -36,7 +38,6 @@ void	vars_init(t_data *data)
 
 int	render(t_data *data)
 {
-
 	mlx_clear_window(data->mlx, data->win);
 	calculations(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_img, 0, 0);
@@ -82,6 +83,9 @@ int	**get_map(void)
 		i++;
 	}
 	i = 0;
+	map[5][10] = 1;
+	map[15][10] = 1;
+	map[9][5] = 1;
 	while (i < 20)
 	{
 		j = 0;	

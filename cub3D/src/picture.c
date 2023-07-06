@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:25:56 by mvicente          #+#    #+#             */
-/*   Updated: 2023/07/06 13:42:42 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:50:02 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ void    get_picture_vars(t_data *data, int side, double *dist)
 		data->end = WINDOW_HEIGHT - 1;
 }
 
-void			ft_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*index;
 
+	if (data->side == 0 && y >= data->start && y < data->end)
+		color = PINK2_PIXEL;
 	index = data->img.addr + (y * data->img.line_len + x * (data->img.bpp / 8));
 	*(unsigned int*)index = color;
 }
@@ -46,7 +48,7 @@ void	drawing(int x, t_data *data, double *dist)
         if (y >= 0 && y < data->start)
 			ft_mlx_pixel_put(data, x, y, WHITE_PIXEL);
 		else if (y >= data->start && y < data->end)
-			ft_mlx_pixel_put(data, x, y, PINK_PIXEL);
+			ft_mlx_pixel_put(data, x, y, PINK1_PIXEL);
 		else if (y >= data->end)
 			ft_mlx_pixel_put(data, x, y, BLACK_PIXEL);
         y++;
