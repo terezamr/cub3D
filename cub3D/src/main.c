@@ -82,21 +82,9 @@ int	**get_map(void)
 		}
 		i++;
 	}
-	i = 0;
 	map[5][10] = 1;
 	map[15][10] = 1;
 	map[9][5] = 1;
-	while (i < 20)
-	{
-		j = 0;	
-		while (j < 20)
-		{
-			printf("%i ", map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
 	return (map);
 }
 

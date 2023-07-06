@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:02:51 by mvicente          #+#    #+#             */
-/*   Updated: 2023/07/06 16:19:35 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:28:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ between pos and next x axis, dist between pos and next y axis*/
 double	*get_dist(t_data *data, int *map, double *ray)
 {
 	double	*dist;
-	double	ray_len;
+	//double	ray_len;
 	
 	dist = malloc(sizeof(double) * 4);
-	ray_len = sqrt((ray[0] * ray[0]) + (ray[1] * ray[1]));
+	//ray_len = sqrt((ray[0] * ray[0]) + (ray[1] * ray[1]));
     if (ray[0] != 0)
         dist[0] = fabs(1 / ray[0]);
     else
@@ -101,7 +101,6 @@ void    calculations(t_data *data)
 	int		*map;
 
     x = 0;
-	printf("cos %f sen %f\n", data->dirX, data->dirY);
 	data->angle_r = (data->angle_d * PI) / 180;
     while (x < WINDOW_WIDTH - 1)
 	{
@@ -132,6 +131,8 @@ void    calculations(t_data *data)
 		}
         drawing(x, data, dist);
 		free(map);
+		free(ray);
+		free(dist);
 		x++;
 	}
 }

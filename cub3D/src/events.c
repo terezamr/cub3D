@@ -14,6 +14,7 @@
 
 int	exit_cub(t_data *data)
 {
+	int	i = 0;
 	if (!data)
 		exit(0);
 	if (data->img.mlx_img)
@@ -22,6 +23,12 @@ int	exit_cub(t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
+	while (i < 20)
+	{
+		free(data->world_map[i]);
+		i++;
+	}
+	free(data->world_map);
 	free(data->mlx);
 	exit(0);
 }
