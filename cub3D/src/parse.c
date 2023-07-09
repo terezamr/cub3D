@@ -31,15 +31,15 @@ void	parse_map(t_data *data, int lineOfMap)
 	i = 0;
 	j = 0;
 	fd = open(data->file_path, O_RDONLY);
-	data->world_map = malloc(sizeof(char *) * (data->map_height + 1));
-	if (!data->world_map)
+	data->map = malloc(sizeof(char *) * (data->map_height + 1));
+	if (!data->map)
 		error_msg(MLC_ERROR);
 	line = get_next_line(fd);
 	while (j++ != lineOfMap)
 		line = next_line(line, fd);
 	while (line && !is_only_spaces(line))
 	{
-		data->world_map[i++] = ft_strdup(line);
+		data->map[i++] = ft_strdup(line);
 		line = next_line(line, fd);
 	}
 	free(line);
@@ -48,17 +48,17 @@ void	parse_map(t_data *data, int lineOfMap)
 
 int	read_textures(t_data *data, char *line)
 {
-	if (!data->nTexture && check_texture(line))
+	if (!data->nTexture && check_texture(line, 0))
 		data->nTexture = ft_strdup(line);
-	else if (!data->sTexture && check_texture(line))
+	else if (!data->sTexture && check_texture(line, 0))
 		data->sTexture = ft_strdup(line);
-	else if (!data->wTexture && check_texture(line))
+	else if (!data->wTexture && check_texture(line, 0))
 		data->wTexture = ft_strdup(line);
-	else if (!data->eTexture && check_texture(line))
+	else if (!data->eTexture && check_texture(line, 0))
 		data->eTexture = ft_strdup(line);
-	else if (!data->fTexture && check_rgb(line))
+	else if (!data->fTexture && check_texture(line, 1))
 		data->fTexture = ft_strdup(line);
-	else if (!data->cTexture && check_rgb(line))
+	else if (!data->cTexture && check_texture(line, 1))
 		data->cTexture = ft_strdup(line);
 	else
 		return (0);
@@ -93,7 +93,6 @@ void	parse_all(t_data *data, int argc, char *file_path)
 {
     int		fd;
 
-	(void)data;
     if (argc != 2)
 		error_msg(INVALID_ARGS);
     fd = open(file_path, __O_DIRECTORY);
@@ -107,5 +106,6 @@ void	parse_all(t_data *data, int argc, char *file_path)
 	check_extension(file_path);
 	data->file_path = file_path;
     parse_file(data, fd);
+	check_map(data);
     close(fd);
 }

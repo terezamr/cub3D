@@ -32,6 +32,7 @@ SRC = 	$(SRC_PATH)main.c \
 		$(SRC_PATH)error_msg.c \
 		$(SRC_PATH)parse.c \
 		$(SRC_PATH)check.c \
+		$(SRC_PATH)check_map.c \
 
 OBJ = $(SRC:.c=.o)
 LDLIBS = -g -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm

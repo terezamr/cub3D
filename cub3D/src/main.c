@@ -106,8 +106,6 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	// (void)argc;
-	// (void)argv;
 	vars_init(&data);
 	parse_all(&data, argc, argv[1]);
 	data.world_mapi = get_map();

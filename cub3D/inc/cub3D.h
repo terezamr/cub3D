@@ -44,6 +44,7 @@
 # define INVALID_RGB "Invalid RGB color."
 # define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_MAP "Invalid map."
+# define INVALID_BORDER "Invalid border."
 # define INVALID_CHAR "Invalid character found."
 
 // STRUCTS
@@ -71,7 +72,7 @@ typedef struct s_data
 	double	planeX;
 	double	planeY;
 	char	*file_path;
-	char	**world_map;
+	char	**map;
 	int		**world_mapi;
 	int		map_width;
 	int		map_height;
@@ -98,10 +99,11 @@ typedef struct s_data
 void	parse_all(t_data *data, int argc, char *file_path);
 void	error_msg(char *message);
 void	check_extension(char *path);
+void	check_map(t_data *data);
 char	*next_line(char *line, int fd);
 int		is_only_spaces(char *line);
-int		check_texture(char *line);
-
+int		check_texture(char *line, int rgb);
+int		check_rgb(char **splitted);
 
 /* Events */
 

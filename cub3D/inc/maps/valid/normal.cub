@@ -1,10 +1,10 @@
 N ./inc/textures/north
-S ./inc/textures/south
+S ./inc/textures/south   
 W ./inc/textures/west
 E ./inc/textures/east
 
 F 255,0,0
-C 255,0,0
+C 255,0,0   
 
 
 
