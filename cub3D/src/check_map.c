@@ -1,60 +1,81 @@
 #include "../inc/cub3D.h"
 
-void    check_map(t_data *data)
+int ft_isspace(int c)
 {
-    (void)data;
+	c = (unsigned char)c;
+	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
+		|| c == ' ')
+		return (1);
+	return (0);
+}
+
+int check_map_edges(char **map, t_point p, int max_x, int max_y)
+{
+	if (p.y == 0 && (map[p.y][p.x] == '1' || ft_isspace(map[p.y][p.x])))
+		return (1);
+	if (p.y == max_y && (map[p.y][p.x] == '1' || ft_isspace(map[p.y][p.x])))
+		return (1);
+	if (p.x == 0 && (map[p.y][p.x] == '1' || ft_isspace(map[max_y - 1][p.x])))
+		return (1);
+	if (p.x == max_x - 1 && (map[p.y][p.x] == '1' || ft_isspace(map[p.y][p.x])))
+		return (1);
+	return (0);
+}
+
+int	is_map_char(char c)
+{
+	if (c && !ft_isspace(c))
+		return (1);
+	return (0);
+}
+
+int	is_closed(char **map, t_point p, int max_x, int max_y)
+{
+	int	adjacent;
+
+	adjacent = 0;
+	if (p.x == 0 || p.y == 0 || p.x == 0 || p.x == max_x - 1)
+		return (check_map_edges(map, p, max_x, max_y));
+	else
+	{
+		if (map[p.y - 1][p.x] && is_map_char(map[p.y - 1][p.x])
+			&& map[p.y - 1][p.x - 1] && is_map_char(map[p.y - 1][p.x - 1])
+			&& map[p.y - 1][p.x + 1] && is_map_char(map[p.y - 1][p.x + 1]))
+			adjacent++;
+		if (map[p.y + 1] && map[p.y + 1][p.x] && is_map_char(map[p.y + 1][p.x])
+			&& map[p.y + 1][p.x - 1] && is_map_char(map[p.y + 1][p.x - 1])
+			&& map[p.y + 1][p.x + 1] && is_map_char(map[p.y + 1][p.x + 1]))
+			adjacent++;
+		if (map[p.y][p.x - 1] && is_map_char(map[p.y][p.x - 1]))
+			adjacent++;
+		if (map[p.y][p.x + 1] && is_map_char(map[p.y][p.x + 1]))
+			adjacent++;
+		if (adjacent == 4)
+			return (1);
+	}
+	return (0);
 }
 
 
+void    check_map(t_data *data)
+{
+    int x;
+    int y;
+    int width;
 
-// void    check_border(char *line)
-// {
-//     int i;
-
-//     i = 0;
-//     while (line[i])
-//     {
-//         i++;
-//     }
-// }
-
-// void    check_all_ones(char *line)
-// {
-//     int i;
-
-//     i = -1;
-//     while (line[++i])
-//         if (line[i] != '1')
-//             error_msg(INVALID_BORDER);
-// }
-
-// void    check_line(char *line, int ones)
-// {
-//     char    **splitted;
-//     int     i;
-
-//     i = 0;
-//     splitted = ft_split(line, ' ');
-//     while (splitted[i])
-//     {
-//         if (ones)
-//             check_all_ones(splitted[i]);
-//         else
-//             check_border(splitted[i]);
-//         i++;
-//     }
-// }
-
-// void    check_map(t_data *data)
-// {
-//     int i;
-
-//     i = 0;
-//     if (ft_mtxlen(data->map) < 3)
-//         error_msg(INVALID_MAP);
-//     check_line(data->map[i++], 1);
-//     while (data->map && data->map[i + 1])
-//         check_line(data->map[i++], 0);
-//     check_line(data->map[i], 1);
-// }
+    y = -1;
+    if (ft_mtxlen(data->map) < 3)
+        error_msg(INVALID_MAP);   
+    while (++y != data->map_height)
+    {
+        x = -1;
+        width = ft_strlen(data->map[y]);
+        while (data->map[y][++x])
+        {
+            if (data->map[y][x] != '1' && !ft_isspace(data->map[y][x])
+                && !is_closed(data->map, (t_point){x,y}, width, data->map_height))
+                error_msg(INVALID_BORDER);
+        }
+    }
+}
 

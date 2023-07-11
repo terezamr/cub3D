@@ -49,6 +49,12 @@
 
 // STRUCTS
 
+typedef struct s_point
+{
+	int		x;
+	int		y;
+}	t_point;
+
 typedef struct s_img
 {
 	void	*mlx_img;
@@ -84,6 +90,7 @@ typedef struct s_data
 	int		step_x;
 	int		step_y;
 	int		side;
+	t_point	p;
 	char	*nTexture;
 	char	*sTexture;
 	char	*wTexture;
