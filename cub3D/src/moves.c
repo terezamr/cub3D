@@ -43,4 +43,3 @@ void    move_a(t_data *data)
 	if (data->world_map[(int)data->posX][(int)(data->posY - data->dirX)] == 0)
 		data->posY += data->dirX;
 }
-    

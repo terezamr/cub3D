@@ -46,10 +46,10 @@ int	handle_key(int key, t_data *data)
 		move_w(data);
 	else if (key == KEY_S)
 		move_s(data);
-	else if (key == KEY_D)
-		move_d(data);
-	else if (key == KEY_A)
-		move_a(data);
+	// else if (key == KEY_D)
+	// 	move_d(data);
+	// else if (key == KEY_A)
+	// 	move_a(data);
 	else if (key == KEY_LEFT)
 	{
 		data->angle_r = data->angle_r - 0.5;
@@ -60,4 +60,3 @@ int	handle_key(int key, t_data *data)
 	}
 	return (0);
 }
-
