@@ -50,7 +50,7 @@ void	drawing(int x, t_data *data, double *dist)
 		else if (y >= data->start && y < data->end)
 			ft_mlx_pixel_put(data, x, y, PINK1_PIXEL);
 		else if (y >= data->end)
-			ft_mlx_pixel_put(data, x, y, BLACK_PIXEL);
+			ft_mlx_pixel_put(data, x, y, GREY_PIXEL);
         y++;
     }
 }

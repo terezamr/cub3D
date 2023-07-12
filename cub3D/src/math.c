@@ -108,8 +108,8 @@ void    calculations(t_data *data)
 		map = malloc(sizeof(int) * 2);
 		map[0] = (int)data->posX;
 		map[1] = (int)data->posY;
-		data->dirX = cos(data->angle_r);
-		data->dirY = sin(data->angle_r);
+		// data->dirX = cos(data->angle_r);
+		// data->dirY = sin(data->angle_r);
 		ray = get_ray(data, x);
 		dist = get_dist(data, map, ray);
 		while (data->hit == 0)

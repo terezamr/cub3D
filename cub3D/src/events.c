@@ -35,32 +35,29 @@ int	exit_cub(t_data *data)
 
 int	handle_key(int key, t_data *data)
 {
+	double oldDirX;
+	double oldPlaneX;
+	
+	oldDirX = data->dirX;
+	oldPlaneX = data->planeX;
 	if (key == ESCAPE)
 		exit_cub(data);
 	else if (key == KEY_W)
-	{
-		if (data->world_map[(int)data->posX][(int)data->posY + 1] == 0)
-			data->posY += 1;
-	}
+		move_w(data);
 	else if (key == KEY_S)
-	{
-		if (data->world_map[(int)data->posX][(int)data->posY - 1] == 0)
-			data->posY -= 1;
-	}
+		move_s(data);
 	else if (key == KEY_D)
-	{
-		if (data->world_map[(int)data->posX + 1][(int)data->posY] == 0)
-			data->posX += 1;
-	}
+		move_d(data);
 	else if (key == KEY_A)
-	{
-		if (data->world_map[(int)data->posX - 1][(int)data->posY] == 0)
-			data->posX -= 1;
-	}
-	else if (key == KEY_RIGHT)
-		data->angle_d = data->angle_d - 5;
+		move_a(data);
 	else if (key == KEY_LEFT)
-		data->angle_d = data->angle_d + 5;
+	{
+		data->angle_r = data->angle_r - 0.5;
+      	data->dirX = data->dirX * cos(0.5) - data->dirY * sin(0.5);
+     	data->dirY = oldDirX * sin(0.5) + data->dirY * cos(0.5);
+		data->planeX = data->planeX * cos(0.5) - data->planeY * sin(0.5);
+		data->planeY = oldPlaneX * sin(0.5) + data->planeY * cos(0.5);
+	}
 	return (0);
 }
 

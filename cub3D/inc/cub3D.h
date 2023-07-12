@@ -19,11 +19,12 @@
 # include "./minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include "math.h"
 
 // DEFINES
 
-# define WINDOW_WIDTH 500
-# define WINDOW_HEIGHT 500
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 800
 # define ESCAPE 65307
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
@@ -34,6 +35,7 @@
 
 # define WHITE_PIXEL 0xFFFFFF
 # define BLACK_PIXEL 0x000000
+# define GREY_PIXEL 0x808080
 # define PINK_PIXEL 0xFFC0CB
 # define PINK1_PIXEL 0xe5acb6
 # define PINK2_PIXEL 0xcc99a2
@@ -92,6 +94,12 @@ int	error_msg(char *message);
 /* Events */
 int	exit_cub(t_data *data);
 int	handle_key(int key, t_data *data);
+
+/* Moves */
+void    move_w(t_data *data);
+void    move_s(t_data *data);
+void    move_d(t_data *data);
+void    move_a(t_data *data);
 
 /* Math */
 void    calculations(t_data *data);
