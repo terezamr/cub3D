@@ -12,6 +12,23 @@
 
 #include "../inc/cub3D.h"
 
+void	free_data(t_data *data)
+{
+	if (data->nTexture)
+		free(data->nTexture);
+	if (data->sTexture)
+		free(data->sTexture);
+	if (data->wTexture)
+		free(data->wTexture);
+	if (data->eTexture)
+		free(data->eTexture);
+	if (data->fTexture)
+		free(data->fTexture);
+	if (data->cTexture)
+		free(data->cTexture);
+	// ft_free_mtx(data->world_map);
+}
+
 int	exit_cub(t_data *data)
 {
 	int	i = 0;

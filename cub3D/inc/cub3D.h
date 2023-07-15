@@ -43,13 +43,28 @@
 # define INF 1000000
 #define PI 3.141592654
 
-// ERROR HANDLING
+// ERROR MESSAGES
 
+# define OPEN_ERROR "File not found or permission denied."
+# define DIR_ERROR "File path is a directory"
+# define MLC_ERROR "Allocation problem."
+# define INVALID_ARGS "The program should take 1 argument."
+# define INVALID_EXTENSION "Invalid file extension. File must be a .cub file."
+# define INVALID_TEXTURE_TYPE "Texture type must be composed by one or two characters."
+# define INVALID_TEXTURE "Texture file not found."
+# define INVALID_RGB "Invalid RGB color."
 # define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_MAP "Invalid map."
+# define INVALID_BORDER "Invalid border."
 # define INVALID_CHAR "Invalid character found."
 
 // STRUCTS
+
+typedef struct s_point
+{
+	int		x;
+	int		y;
+}	t_point;
 
 typedef struct s_img
 {
@@ -73,6 +88,13 @@ typedef struct s_data
 	double	dirY;
 	double	planeX;
 	double	planeY;
+	char	*file_path;
+	char	**map;
+	int		**world_mapi;
+	int		map_width;
+	int		map_height;
+	int		distance;
+	int		height;
 	int		**world_map;
 	double	distance;
 	double	height;
@@ -82,18 +104,34 @@ typedef struct s_data
 	int		step_x;
 	int		step_y;
 	int		side;
+	t_point	p;
+	char	*nTexture;
+	char	*sTexture;
+	char	*wTexture;
+	char	*eTexture;
+	char	*fTexture;
+	char	*cTexture;
 	double	angle_d;
 	double	angle_r;
 }	t_data;
 
 // FUNCTIONS
 
-/* Geral */
-int	error_msg(char *message);
+/* Parsing & Check */
+
+void	parse_all(t_data *data, int argc, char *file_path);
+void	error_msg(char *message);
+void	check_extension(char *path);
+void	check_map(t_data *data);
+char	*next_line(char *line, int fd);
+int		is_only_spaces(char *line);
+int		check_texture(char *line, int rgb);
+int		check_rgb(char **splitted);
 
 /* Events */
-int	exit_cub(t_data *data);
-int	handle_key(int key, t_data *data);
+
+int		exit_cub(t_data *data);
+int		handle_key(int key, t_data *data);
 
 /* Moves */
 void    move_w(t_data *data);
@@ -102,9 +140,11 @@ void    move_d(t_data *data);
 void    move_a(t_data *data);
 
 /* Math */
+
 void    calculations(t_data *data);
 
-/*Picture*/
+/* Picture */
+
 void	drawing(int x, t_data *data, double *dist);
 
 #endif
