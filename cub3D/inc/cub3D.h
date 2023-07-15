@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:57:26 by mvicente          #+#    #+#             */
-/*   Updated: 2023/06/29 15:42:06 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:20:37 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,29 @@
 # include "./minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include "math.h"
 
 // DEFINES
 
-# define WINDOW_WIDTH 1400
-# define WINDOW_HEIGHT 1400
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 800
 # define ESCAPE 65307
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_D 100
 
-# define WHITE_PIXEL 0xc0c0c0
-# define BLACK_PIXEL 0xFFFFFF
+# define WHITE_PIXEL 0xFFFFFF
+# define BLACK_PIXEL 0x000000
+# define GREY_PIXEL 0x808080
 # define PINK_PIXEL 0xFFC0CB
+# define PINK1_PIXEL 0xe5acb6
+# define PINK2_PIXEL 0xcc99a2
 
 # define INF 1000000
+#define PI 3.141592654
 
 // ERROR MESSAGES
 
@@ -84,6 +95,9 @@ typedef struct s_data
 	int		map_height;
 	int		distance;
 	int		height;
+	int		**world_map;
+	double	distance;
+	double	height;
 	int		start;
 	int		end;
 	int		hit;
@@ -97,6 +111,8 @@ typedef struct s_data
 	char	*eTexture;
 	char	*fTexture;
 	char	*cTexture;
+	double	angle_d;
+	double	angle_r;
 }	t_data;
 
 // FUNCTIONS
@@ -117,6 +133,12 @@ int		check_rgb(char **splitted);
 int		exit_cub(t_data *data);
 int		handle_key(int key, t_data *data);
 
+/* Moves */
+void    move_w(t_data *data);
+void    move_s(t_data *data);
+void    move_d(t_data *data);
+void    move_a(t_data *data);
+
 /* Math */
 
 void    calculations(t_data *data);
@@ -124,8 +146,5 @@ void    calculations(t_data *data);
 /* Picture */
 
 void	drawing(int x, t_data *data, double *dist);
-
-
-
 
 #endif

@@ -27,6 +27,7 @@ SRC_PATH = ./src/
 
 SRC = 	$(SRC_PATH)main.c \
 		$(SRC_PATH)events.c \
+		$(SRC_PATH)moves.c \
 		$(SRC_PATH)math.c \
 		$(SRC_PATH)picture.c \
 		$(SRC_PATH)error_msg.c \

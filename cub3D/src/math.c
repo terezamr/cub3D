@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:02:51 by mvicente          #+#    #+#             */
-/*   Updated: 2023/06/29 16:04:04 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:28:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,17 @@ void    calculations(t_data *data)
 	double	*ray;
 	double	*dist;
 	int		*map;
-	//int		side;
 
     x = 0;
-    //side = 0;
+	data->angle_r = (data->angle_d * PI) / 180;
     while (x < WINDOW_WIDTH - 1)
 	{
         data->hit = 0;
 		map = malloc(sizeof(int) * 2);
 		map[0] = (int)data->posX;
 		map[1] = (int)data->posY;
+		// data->dirX = cos(data->angle_r);
+		// data->dirY = sin(data->angle_r);
 		ray = get_ray(data, x);
 		dist = get_dist(data, map, ray);
 		free(ray);
@@ -131,6 +132,7 @@ void    calculations(t_data *data)
 		}
         drawing(x, data, dist);
 		free(map);
+		free(ray);
 		free(dist);
 		x++;
 	}
