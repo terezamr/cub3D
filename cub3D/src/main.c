@@ -60,7 +60,7 @@ int	**get_map(void)
 	map = malloc(sizeof(int *) * 20);
 	while (i < 20)
 	{
-		map[i] = malloc(sizeof(int) * 20);
+		map[i] = malloc(sizeof(int) * 21);
 		i++;
 	}
 	i = 0;
@@ -94,22 +94,13 @@ int	**get_map(void)
 	return (map);
 }
 
-int	render(t_data *data)
-{
-
-	mlx_clear_window(data->mlx, data->win);
-	calculations(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_img, 0, 0);
-	return (1);
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
 	vars_init(&data);
 	parse_all(&data, argc, argv[1]);
-	data.world_mapi = get_map();
+	data.world_map = get_map();
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3d");
 	data.img.mlx_img = mlx_new_image(data.mlx, WINDOW_WIDTH,

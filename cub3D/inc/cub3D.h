@@ -90,11 +90,8 @@ typedef struct s_data
 	double	planeY;
 	char	*file_path;
 	char	**map;
-	int		**world_mapi;
 	int		map_width;
 	int		map_height;
-	int		distance;
-	int		height;
 	int		**world_map;
 	double	distance;
 	double	height;
