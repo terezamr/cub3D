@@ -1,0 +1,19 @@
+N ./inc/textures/north
+S ./inc/textures/south   
+W ./inc/textures/west
+E ./inc/textures/east
+
+F 255,0,0
+C 255,0,0   
+
+
+  111111
+  100001
+1110000111
+1000000001
+1000000001
+1000000001
+1000000001
+1110000111
+  10000
+  111111

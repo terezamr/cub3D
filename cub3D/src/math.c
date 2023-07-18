@@ -112,6 +112,7 @@ void    calculations(t_data *data)
 		// data->dirY = sin(data->angle_r);
 		ray = get_ray(data, x);
 		dist = get_dist(data, map, ray);
+		free(ray);
 		while (data->hit == 0)
 		{
 			if (dist[2] < dist[3])
@@ -131,7 +132,6 @@ void    calculations(t_data *data)
 		}
         drawing(x, data, dist);
 		free(map);
-		free(ray);
 		free(dist);
 		x++;
 	}

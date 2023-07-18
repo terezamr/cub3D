@@ -30,23 +30,20 @@ SRC = 	$(LIBFT_PATH)ft_atoi.c 		\
 		$(LIBFT_PATH)ft_free_mtx.c		\
 		$(LIBFT_PATH)ft_equals.c		\
 		$(LIBFT_PATH)ft_mtxlen.c		\
+		$(LIBFT_PATH)ft_strcpy.c	\
+		$(LIBFT_PATH)ft_strdup.c 	\
+		$(LIBFT_PATH)ft_isalnum.c	\
+		$(LIBFT_PATH)ft_strtrim.c 	\
 		$(GNL_PATH)/get_next_line.c			\
 		$(GNL_PATH)/get_next_line_utils.c	\
-		$(PRINT_F_PATH)/ft_printf.c			\
-		$(PRINT_F_PATH)/ft_putchar.c		\
-		$(PRINT_F_PATH)/ft_putstr.c			\
-		$(PRINT_F_PATH)/ft_putnbr.c			\
-		$(PRINT_F_PATH)/ft_puthexa.c		\
-		$(PRINT_F_PATH)/ft_putvoid.c		\
 
 #		$(LIBFT_PATH)ft_isalpha.c	\
+		$(LIBFT_PATH)ft_bzero.c 	\
 		$(LIBFT_PATH)ft_isdigit.c	\
 		$(LIBFT_PATH)ft_strcmp.c	\
 		$(LIBFT_PATH)ft_isascii.c	\
-		$(LIBFT_PATH)ft_isalnum.c	\
 		$(LIBFT_PATH)ft_isprint.c	\
 		$(LIBFT_PATH)ft_memcpy.c 	\
-		$(LIBFT_PATH)ft_bzero.c 	\
 		$(LIBFT_PATH)ft_memset.c 	\
 		$(LIBFT_PATH)ft_strchr.c 	\
 		$(LIBFT_PATH)ft_strlcat.c 	\
@@ -60,10 +57,8 @@ SRC = 	$(LIBFT_PATH)ft_atoi.c 		\
 		$(LIBFT_PATH)ft_memchr.c 	\
 		$(LIBFT_PATH)ft_memmove.c 	\
 		$(LIBFT_PATH)ft_calloc.c 	\
-		$(LIBFT_PATH)ft_strdup.c 	\
 		$(LIBFT_PATH)ft_substr.c 	\
 		$(LIBFT_PATH)ft_strjoin.c 	\
-		$(LIBFT_PATH)ft_strtrim.c 	\
 		$(LIBFT_PATH)ft_strmapi.c 	\
 		$(LIBFT_PATH)ft_striteri.c 	\
 		$(LIBFT_PATH)ft_putchar_fd.c	\
@@ -81,7 +76,12 @@ SRC = 	$(LIBFT_PATH)ft_atoi.c 		\
 		$(LIBFT_PATH)ft_lstiter.c 		\
 		$(LIBFT_PATH)ft_lstmap.c		\
 		$(LIBFT_PATH)ft_putlst_fd.c		\
-		$(LIBFT_PATH)ft_strcpy.c	\
+		$(PRINT_F_PATH)/ft_printf.c			\
+		$(PRINT_F_PATH)/ft_putchar.c		\
+		$(PRINT_F_PATH)/ft_putstr.c			\
+		$(PRINT_F_PATH)/ft_putnbr.c			\
+		$(PRINT_F_PATH)/ft_puthexa.c		\
+		$(PRINT_F_PATH)/ft_putvoid.c		\
 
 
 ########## 		  INCLUDES 		##########

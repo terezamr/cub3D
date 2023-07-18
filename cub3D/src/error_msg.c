@@ -1,10 +1,8 @@
 #include "../inc/cub3D.h"
 
-int error_message(char *message)
+void    error_msg(char *message)
 {
-    ft_printf("%s", RED);
-    ft_printf("%s", "Error: ");
-    ft_printf("%s", RESET);
-    ft_printf("%s\n", message);
-    return (1);
+    printf("%s%s%s\n", RED, "Error", RESET);
+    printf("%s\n", message);
+    exit(1);
 }

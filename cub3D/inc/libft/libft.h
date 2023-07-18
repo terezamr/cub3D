@@ -61,10 +61,10 @@ char		**ft_split(char const *s, char c);
 char		*ft_strdup(const char *s1);
 // char		*ft_substr(char const *s, unsigned int start, size_t len);
 // char		*ft_strjoin(char const *s1, char const *s2);
-// char		*ft_strtrim(char const *s1, char const *set);
+char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_itoa(int n);
 // char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-// char		*ft_strcpy(char *dest, char *src);
+char		*ft_strcpy(char *dest, char *src);
 
 void		ft_free_mtx(char **mtx);
 // void		ft_striteri(char *s, void (*f)(unsigned int, char*));
@@ -96,7 +96,7 @@ void		ft_free_mtx(char **mtx);
 // int			ft_isprint(int c);
 // int			ft_isalpha(int c);
 // int			ft_isdigit(int c);
-// int			ft_isalnum(int c);
+int			ft_isalnum(int c);
 // int			ft_tolower(int c);
 // int			ft_toupper(int c);
 // int			ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -105,7 +105,7 @@ void		ft_free_mtx(char **mtx);
 int			ft_atoi(const char *str);
 // int			ft_lstsize(t_list *lst);
 int			ft_equals(const char *a, const char *b);
-// int			ft_mtxlen(char **mtx);
+int			ft_mtxlen(char **mtx);
 
 long long	ft_atol(const char *str);
 
@@ -119,13 +119,13 @@ int			ft_count_nl(char *str);
 
 /* FT_PRINT_F */
 
-int			ft_printf(const char *str, ...);
-int			ft_check_flag(va_list list, char c);
-int			ft_putchar(char c);
-int			ft_putstr(char *str);
-int			ft_putnbr(int n);
-int			ft_put_unsigned_nbr(unsigned int n);
-int			ft_putvoid(unsigned long n, char *base, int start);
-int			ft_puthexa(unsigned int n, char *base);
+// int			ft_printf(const char *str, ...);
+// int			ft_check_flag(va_list list, char c);
+// int			ft_putchar(char c);
+// int			ft_putstr(char *str);
+// int			ft_putnbr(int n);
+// int			ft_put_unsigned_nbr(unsigned int n);
+// int			ft_putvoid(unsigned long n, char *base, int start);
+// int			ft_puthexa(unsigned int n, char *base);
 
 #endif
