@@ -40,7 +40,7 @@ int	exit_cub(t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
-	while (i < data->height)
+	while (i < data->map_height)
 	{
 		free(data->map[i]);
 		i++;
@@ -77,7 +77,7 @@ int	handle_key(int key, t_data *data)
 	}
 	else if (key == KEY_RIGHT)
 	{
-		data->angle_r = data->angle_r - PI / 15;
+		data->angle_r = data->angle_r + PI / 15;
       	data->dirX = data->dirX * cos(-PI / 15) - data->dirY * sin(-PI / 15);
      	data->dirY = oldDirX * sin(-PI / 15) + data->dirY * cos(-PI / 15);
 		data->planeX = data->planeX * cos(-PI / 15) - data->planeY * sin(-PI / 15);

@@ -109,6 +109,7 @@ typedef struct s_data
 	char	*eTexture;
 	char	*fTexture;
 	char	*cTexture;
+	int		*colors;
 	double	angle_d;
 	double	angle_r;
 }	t_data;

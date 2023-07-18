@@ -20,8 +20,6 @@ void	vars_init(t_data *data)
 	data->img.offset_i = 2;
 	data->angle_d = 90;
 	data->angle_r = (data->angle_d * PI) / 180;
-	data->planeX = 0.66;
-	data->planeY = 0;
 	data->distance = 0;
 	data->height = 0;
 	data->start = 0;
@@ -58,11 +56,11 @@ void	get_position(t_data *data)
 		j = 0;
 		while (j < data->map_height)
 		{
-			if (data->map[i][j] == 'N')
+			if (data->map[i][j] == 'N' || data->map[i][j] == 'S')
 			{
 				data->posX = i;
 				data->posY = j;
-				data->letter = 'N';
+				data->letter = data->map[i][j];
 				return ;
 			}
 			j++;
@@ -71,13 +69,44 @@ void	get_position(t_data *data)
 	}
 }
 
+int		get_rgb(int r, int g, int b)
+{
+	return (0 << 24 | (int)r << 16 | (int)g << 8 | (int)b);
+}
+
 void	get_dir(t_data *data)
 {
 	if (data->letter == 'N')
 	{
 		data->dirX = 0;
 		data->dirY = 1;
+		data->planeX = 0.66;
+		data->planeY = 0;
 	}
+	else if (data->letter == 'S')
+	{
+		data->dirX = 0;
+		data->dirY = -1;
+		data->planeX = -0.66;
+		data->planeY = 0;
+	}
+	else if (data->letter == 'E')
+	{
+		data->dirX = 1;
+		data->dirY = 0;
+		data->planeX = 0;
+		data->planeY = 0.66;
+	}
+	else if (data->letter == 'O')
+	{
+		data->dirX = -1;
+		data->dirY = 0;
+		data->planeX = 0;
+		data->planeY = -0.66;
+	}
+	data->colors = malloc(sizeof(int) * 2);
+	data->colors[0] = get_rgb(255, 255, 255);
+	data->colors[1] = get_rgb(128, 128, 128);
 }
 
 int	main(int argc, char **argv)
@@ -86,7 +115,6 @@ int	main(int argc, char **argv)
 
 	vars_init(&data);
 	parse_all(&data, argc, argv[1]);
-	//data.world_map = get_map();
 	get_position(&data);
 	get_dir(&data);
 	data.mlx = mlx_init();

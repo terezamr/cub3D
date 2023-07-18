@@ -43,6 +43,7 @@ void	ft_mlx_pixel_put(t_data *data, int x, int y, int color, double *ray)
 	*(unsigned int*)index = color;
 }
 
+
 void	drawing(int x, t_data *data, double *dist, double *ray)
 {
     int     y;
@@ -52,11 +53,11 @@ void	drawing(int x, t_data *data, double *dist, double *ray)
     while (y < WINDOW_HEIGHT)
     {
         if (y >= 0 && y < data->start)
-			ft_mlx_pixel_put(data, x, y, WHITE_PIXEL, ray);
+			ft_mlx_pixel_put(data, x, y, data->colors[0], ray);
 		else if (y >= data->start && y < data->end)
 			ft_mlx_pixel_put(data, x, y, PINK1_PIXEL, ray);
 		else if (y >= data->end)
-			ft_mlx_pixel_put(data, x, y, GREY_PIXEL, ray);
+			ft_mlx_pixel_put(data, x, y, data->colors[1], ray);
         y++;
     }
 }
