@@ -84,6 +84,7 @@ typedef struct s_data
 	t_img	img;
 	double	posX;
 	double	posY;
+	char	letter;
 	double	dirX;
 	double	dirY;
 	double	planeX;
@@ -142,6 +143,6 @@ void    calculations(t_data *data);
 
 /* Picture */
 
-void	drawing(int x, t_data *data, double *dist);
+void	drawing(int x, t_data *data, double *dist, double *ray);
 
 #endif

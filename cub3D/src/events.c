@@ -26,7 +26,7 @@ void	free_data(t_data *data)
 		free(data->fTexture);
 	if (data->cTexture)
 		free(data->cTexture);
-	// ft_free_mtx(data->world_map);
+	// ft_free_mtx(data->map);
 }
 
 int	exit_cub(t_data *data)
@@ -40,12 +40,12 @@ int	exit_cub(t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
-	while (i < 20)
+	while (i < data->height)
 	{
-		free(data->world_map[i]);
+		free(data->map[i]);
 		i++;
 	}
-	free(data->world_map);
+	free(data->map);
 	free(data->mlx);
 	exit(0);
 }

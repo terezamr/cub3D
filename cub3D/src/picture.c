@@ -19,7 +19,8 @@ void    get_picture_vars(t_data *data, int side, double *dist)
 	else
 		data->distance = (dist[3] - dist[1]);
 	data->height = WINDOW_HEIGHT / data->distance;
-	data->start =WINDOW_HEIGHT / 2 - data->height / 2;
+
+	data->start = WINDOW_HEIGHT / 2 - data->height / 2;
 	if (data->start < 0)
 		data->start = 0;
 	data->end = WINDOW_HEIGHT / 2 + data->height / 2;
@@ -27,17 +28,22 @@ void    get_picture_vars(t_data *data, int side, double *dist)
 		data->end = WINDOW_HEIGHT - 1;
 }
 
-void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	ft_mlx_pixel_put(t_data *data, int x, int y, int color, double *ray)
 {
 	char	*index;
 
 	if (data->side == 0 && y >= data->start && y < data->end)
-		color = PINK2_PIXEL;
+	{
+		if (ray[0] > 0)
+			color = PINK2_PIXEL;
+		else
+			color = PINK_PIXEL;
+	}
 	index = data->img.addr + (y * data->img.line_len + x * (data->img.bpp / 8));
 	*(unsigned int*)index = color;
 }
 
-void	drawing(int x, t_data *data, double *dist)
+void	drawing(int x, t_data *data, double *dist, double *ray)
 {
     int     y;
 
@@ -46,11 +52,11 @@ void	drawing(int x, t_data *data, double *dist)
     while (y < WINDOW_HEIGHT)
     {
         if (y >= 0 && y < data->start)
-			ft_mlx_pixel_put(data, x, y, WHITE_PIXEL);
+			ft_mlx_pixel_put(data, x, y, WHITE_PIXEL, ray);
 		else if (y >= data->start && y < data->end)
-			ft_mlx_pixel_put(data, x, y, PINK1_PIXEL);
+			ft_mlx_pixel_put(data, x, y, PINK1_PIXEL, ray);
 		else if (y >= data->end)
-			ft_mlx_pixel_put(data, x, y, GREY_PIXEL);
+			ft_mlx_pixel_put(data, x, y, GREY_PIXEL, ray);
         y++;
     }
 }
