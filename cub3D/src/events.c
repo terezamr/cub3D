@@ -46,17 +46,25 @@ int	handle_key(int key, t_data *data)
 		move_w(data);
 	else if (key == KEY_S)
 		move_s(data);
-	// else if (key == KEY_D)
-	// 	move_d(data);
-	// else if (key == KEY_A)
-	// 	move_a(data);
+	else if (key == KEY_D)
+		move_d(data);
+	else if (key == KEY_A)
+		move_a(data);
 	else if (key == KEY_LEFT)
 	{
-		data->angle_r = data->angle_r - 0.5;
-      	data->dirX = data->dirX * cos(0.5) - data->dirY * sin(0.5);
-     	data->dirY = oldDirX * sin(0.5) + data->dirY * cos(0.5);
-		data->planeX = data->planeX * cos(0.5) - data->planeY * sin(0.5);
-		data->planeY = oldPlaneX * sin(0.5) + data->planeY * cos(0.5);
+		data->angle_r = data->angle_r - PI / 15;
+      	data->dirX = data->dirX * cos(PI / 15) - data->dirY * sin(PI / 15);
+     	data->dirY = oldDirX * sin(PI / 15) + data->dirY * cos(PI / 15);
+		data->planeX = data->planeX * cos(PI / 15) - data->planeY * sin(PI / 15);
+		data->planeY = oldPlaneX * sin(PI / 15) + data->planeY * cos(PI / 15);
+	}
+	else if (key == KEY_RIGHT)
+	{
+		data->angle_r = data->angle_r - PI / 15;
+      	data->dirX = data->dirX * cos(-PI / 15) - data->dirY * sin(-PI / 15);
+     	data->dirY = oldDirX * sin(-PI / 15) + data->dirY * cos(-PI / 15);
+		data->planeX = data->planeX * cos(-PI / 15) - data->planeY * sin(-PI / 15);
+		data->planeY = oldPlaneX * sin(-PI / 15) + data->planeY * cos(-PI / 15);
 	}
 	return (0);
 }

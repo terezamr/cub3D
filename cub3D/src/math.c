@@ -29,16 +29,16 @@ between pos and next x axis, dist between pos and next y axis*/
 double	*get_dist(t_data *data, int *map, double *ray)
 {
 	double	*dist;
-	//double	ray_len;
 	
 	dist = malloc(sizeof(double) * 4);
-	//ray_len = sqrt((ray[0] * ray[0]) + (ray[1] * ray[1]));
+    //dist[0] = sqrt((ray[1] * ray[1]) / (ray[0] * ray[0]) + 1);
+    //dist[1] = sqrt((ray[0] * ray[0]) / (ray[1] * ray[1]) + 1);
     if (ray[0] != 0)
-        dist[0] = fabs(1 / ray[0]);
+		dist[0] = fabs(1 / ray[0]);
     else
         dist[0] = -1;    
     if (ray[1] != 0)
-        dist[1] = fabs(1 / ray[1]);
+		dist[1] = fabs(1 / ray[1]);
     else
 	{
         dist[1] = -1;

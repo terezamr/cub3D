@@ -28,18 +28,28 @@ void    move_s(t_data *data)
 		data->posY -= data->dirY;
 }
 
-void    move_d(t_data *data)
-{
-    if (data->world_map[(int)(data->posX + data->dirY)][(int)data->posY] == 0)
-		data->posX += data->dirY;
-	if (data->world_map[(int)data->posX][(int)(data->posY + data->dirX)] == 0)
-		data->posY += data->dirX;
-}
-
 void    move_a(t_data *data)
 {
-    if (data->world_map[(int)(data->posX - data->dirY)][(int)data->posY] == 0)
-		data->posX += data->dirY;
-	if (data->world_map[(int)data->posX][(int)(data->posY - data->dirX)] == 0)
-		data->posY += data->dirX;
+	double dir1;
+	double dir2;
+
+	dir1 = -data->dirY;
+	dir2 = data->dirX;
+    if (data->world_map[(int)(data->posX)][(int)(data->posX + dir1)] == 0)
+		data->posX += dir1;
+	if (data->world_map[(int)(data->posY + dir2)][(int)(data->posY)] == 0)
+		data->posY += dir2;
+}
+
+void    move_d(t_data *data)
+{
+	double dir1;
+	double dir2;
+
+	dir1 = data->dirY;
+	dir2 = -data->dirX;
+    if (data->world_map[(int)(data->posX)][(int)(data->posX + dir1)] == 0)
+		data->posX += dir1;
+	if (data->world_map[(int)(data->posY + dir2)][(int)(data->posY)] == 0)
+		data->posY += dir2;
 }

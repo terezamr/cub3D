@@ -22,8 +22,8 @@ void	vars_init(t_data *data)
 	data->posY = 1;
 	data->angle_d = 90;
 	data->angle_r = (data->angle_d * PI) / 180;
-	data->dirX = cos(data->angle_r);
-	data->dirY = sin(data->angle_r);
+	data->dirX = 0;
+	data->dirY = 1;
 	data->planeX = 0.66;
 	data->planeY = 0;
 	data->distance = 0;
