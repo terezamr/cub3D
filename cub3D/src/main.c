@@ -56,7 +56,7 @@ void	get_position(t_data *data)
 		j = 0;
 		while (j < data->map_height)
 		{
-			if (data->map[i][j] == 'N' || data->map[i][j] == 'S')
+			if (data->map[i][j] == 'N' || data->map[i][j] == 'S' || data->map[i][j] == 'O' || data->map[i][j] == 'E')
 			{
 				data->posX = i;
 				data->posY = j;
@@ -95,14 +95,14 @@ void	get_dir(t_data *data)
 		data->dirX = 1;
 		data->dirY = 0;
 		data->planeX = 0;
-		data->planeY = 0.66;
+		data->planeY = -0.66;
 	}
 	else if (data->letter == 'O')
 	{
 		data->dirX = -1;
 		data->dirY = 0;
 		data->planeX = 0;
-		data->planeY = -0.66;
+		data->planeY = 0.66;
 	}
 	data->colors = malloc(sizeof(int) * 2);
 	data->colors[0] = get_rgb(255, 255, 255);
@@ -118,7 +118,7 @@ int	main(int argc, char **argv)
 	get_position(&data);
 	get_dir(&data);
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3d");
+	data.win = mlx_new_window(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
 	data.img.mlx_img = mlx_new_image(data.mlx, WINDOW_WIDTH,
 			WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,

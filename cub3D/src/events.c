@@ -47,6 +47,7 @@ int	exit_cub(t_data *data)
 	}
 	free(data->map);
 	free(data->mlx);
+	free(data->colors);
 	exit(0);
 }
 
