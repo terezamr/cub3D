@@ -48,6 +48,7 @@
 # define OPEN_ERROR "File not found or permission denied."
 # define DIR_ERROR "File path is a directory"
 # define MLC_ERROR "Allocation problem."
+# define PLAYER_ERROR "The map must have 1 player."
 # define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_EXTENSION "Invalid file extension. File must be a .cub file."
 # define INVALID_TEXTURE_TYPE "Texture type must be composed by one or two characters."

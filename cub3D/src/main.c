@@ -28,6 +28,7 @@ void	vars_init(t_data *data)
 	data->step_x = 0;
 	data->step_y = 0;
 	data->side = -1;
+	data->letter = 0;
 	data->nTexture = 0;
 	data->sTexture = 0;
 	data->wTexture = 0;
