@@ -104,12 +104,7 @@ typedef struct s_data
 	int		step_y;
 	int		side;
 	t_point	p;
-	char	*nTexture;
-	char	*sTexture;
-	char	*wTexture;
-	char	*eTexture;
-	char	*fTexture;
-	char	*cTexture;
+	char	**textures;
 	int		*colors;
 	double	angle_d;
 	double	angle_r;
@@ -125,8 +120,7 @@ void	check_extension(char *path);
 void	check_map(t_data *data);
 char	*next_line(char *line, int fd);
 int		is_only_spaces(char *line);
-int		check_texture(char *line, int rgb);
-int		check_rgb(char **splitted);
+int		check_texture(t_data *data, char *line, int rgb);
 
 /* Events */
 
@@ -144,7 +138,7 @@ void    move_a(t_data *data);
 void    calculations(t_data *data);
 
 /* Picture */
-
+int		get_rgb(int r, int g, int b);
 void	drawing(int x, t_data *data, double *dist, double *ray);
 
 #endif

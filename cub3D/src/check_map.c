@@ -81,8 +81,8 @@ void    check_map(t_data *data)
 					if (data->letter == 0)
 					{
 						data->letter = data->map[y][x];
-						data->posX = x;
-						data->posY = y;
+						data->posX = y;
+						data->posY = x;
 					}
 					else
 						error_msg(PLAYER_ERROR);
