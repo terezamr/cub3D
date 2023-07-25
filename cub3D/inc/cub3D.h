@@ -48,6 +48,7 @@
 # define OPEN_ERROR "File not found or permission denied."
 # define DIR_ERROR "File path is a directory"
 # define MLC_ERROR "Allocation problem."
+# define PLAYER_ERROR "The map must have 1 player."
 # define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_EXTENSION "Invalid file extension. File must be a .cub file."
 # define INVALID_TEXTURE_TYPE "Texture type must be composed by one or two characters."
@@ -114,12 +115,7 @@ typedef struct s_data
 	int		step_y;
 	int		side;
 	t_point	p;
-	char	*nTexture;
-	char	*sTexture;
-	char	*wTexture;
-	char	*eTexture;
-	char	*fTexture;
-	char	*cTexture;
+	char	**textures;
 	int		*colors;
 	t_wall	wall;
 	double	angle_d;
@@ -136,8 +132,7 @@ void	check_extension(char *path);
 void	check_map(t_data *data);
 char	*next_line(char *line, int fd);
 int		is_only_spaces(char *line);
-int		check_texture(char *line, int rgb);
-int		check_rgb(char **splitted);
+int		check_texture(t_data *data, char *line, int rgb);
 
 /* Events */
 
@@ -155,7 +150,7 @@ void    move_a(t_data *data);
 void    calculations(t_data *data);
 
 /* Picture */
-
+int		get_rgb(int r, int g, int b);
 void	drawing(int x, t_data *data, double *dist, double *ray);
 
 #endif

@@ -14,6 +14,9 @@
 
 void	vars_init(t_data *data)
 {
+	int	i;
+
+	i = 0;
 	data->mlx = 0;
 	data->win = 0;
 	data->img.offset_r = -2;
@@ -28,12 +31,14 @@ void	vars_init(t_data *data)
 	data->step_x = 0;
 	data->step_y = 0;
 	data->side = -1;
-	data->nTexture = 0;
-	data->sTexture = 0;
-	data->wTexture = 0;
-	data->eTexture = 0;
-	data->fTexture = 0;
-	data->cTexture = 0;
+	data->letter = 0;
+	data->textures = malloc(sizeof(char) * 4);
+	data->colors = malloc(sizeof(int) * 2);
+	while (i != 4)
+		data->textures[i++] = 0;
+	i = 0;
+	while (i != 2)
+		data->colors[i++] = 0;
 }
 
 int	render(t_data *data)
@@ -42,36 +47,6 @@ int	render(t_data *data)
 	calculations(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_img, 0, 0);
 	return (1);
-}
-
-void	get_position(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	data->map_width = 14;
-	while (i < data->map_width)
-	{
-		j = 0;
-		while (j < data->map_height)
-		{
-			if (data->map[i][j] == 'N' || data->map[i][j] == 'S' || data->map[i][j] == 'O' || data->map[i][j] == 'E')
-			{
-				data->posX = i;
-				data->posY = j;
-				data->letter = data->map[i][j];
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-int		get_rgb(int r, int g, int b)
-{
-	return (0 << 24 | (int)r << 16 | (int)g << 8 | (int)b);
 }
 
 void	get_dir(t_data *data)
@@ -128,7 +103,6 @@ int	main(int argc, char **argv)
 
 	vars_init(&data);
 	parse_all(&data, argc, argv[1]);
-	get_position(&data);
 	get_dir(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");

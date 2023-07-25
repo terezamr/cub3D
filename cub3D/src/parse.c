@@ -48,18 +48,18 @@ void	parse_map(t_data *data, int lineOfMap)
 
 int	read_textures(t_data *data, char *line)
 {
-	if (!data->nTexture && check_texture(line, 0))
-		data->nTexture = ft_strdup(line);
-	else if (!data->sTexture && check_texture(line, 0))
-		data->sTexture = ft_strdup(line);
-	else if (!data->wTexture && check_texture(line, 0))
-		data->wTexture = ft_strdup(line);
-	else if (!data->eTexture && check_texture(line, 0))
-		data->eTexture = ft_strdup(line);
-	else if (!data->fTexture && check_texture(line, 1))
-		data->fTexture = ft_strdup(line);
-	else if (!data->cTexture && check_texture(line, 1))
-		data->cTexture = ft_strdup(line);
+	if (!data->textures[0] && check_texture(data, line, 0))
+		data->textures[0] = ft_strdup(line);
+	else if (!data->textures[1] && check_texture(data, line, 0))
+		data->textures[1] = ft_strdup(line);
+	else if (!data->textures[2] && check_texture(data, line, 0))
+		data->textures[2] = ft_strdup(line);
+	else if (!data->textures[3] && check_texture(data, line, 0))
+		data->textures[3] = ft_strdup(line);
+	else if (!data->colors[0] && check_texture(data, line, 1))
+		(void)data->colors[0];
+	else if (!data->colors[1] && check_texture(data, line, 2))
+		(void)data->colors[1];
 	else
 		return (0);
 	return (1);

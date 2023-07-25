@@ -75,7 +75,21 @@ void    check_map(t_data *data)
             if (data->map[y][x] != '1' && !ft_isspace(data->map[y][x])
                 && !is_closed(data->map, (t_point){x,y}, width, data->map_height))
                 error_msg(INVALID_BORDER);
-        }
+				if (data->map[y][x] == 'N' || data->map[y][x] == 'E'
+					|| data->map[y][x] == 'W' || data->map[y][x] == 'S')
+				{
+					if (data->letter == 0)
+					{
+						data->letter = data->map[y][x];
+						data->posX = y;
+						data->posY = x;
+					}
+					else
+						error_msg(PLAYER_ERROR);
+				}
+			}
     }
+	if (data->letter == 0)
+		error_msg(PLAYER_ERROR);
 }
 

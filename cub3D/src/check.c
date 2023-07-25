@@ -30,7 +30,7 @@ void	check_extension(char *path)
 	ft_free_mtx(splitted_path);
 }
 
-int check_rgb(char **splitted)
+int check_rgb(t_data *data, char **splitted, int pos)
 {
     char    **rgb;
     char    *trim;
@@ -48,12 +48,13 @@ int check_rgb(char **splitted)
             error_msg(INVALID_RGB);
         free(trim);
     }
+    data->colors[pos - 1] = get_rgb(ft_atol(rgb[0]), ft_atol(rgb[1]), ft_atol(rgb[2]));
     ft_free_mtx(rgb);
     ft_free_mtx(splitted);
     return (1);
 }
 
-int check_texture(char *line, int rgb)
+int check_texture(t_data *data, char *line, int rgb)
 {
     char    **splitted;
     char    *texture_path;
@@ -67,7 +68,7 @@ int check_texture(char *line, int rgb)
     if (!splitted[1] || ft_mtxlen(splitted) > 3)
         error_msg(INVALID_TEXTURE);
     if (rgb)
-        return (check_rgb(splitted));
+        return (check_rgb(data, splitted, rgb));
     texture_path = ft_strtrim(splitted[1], "\n");
     fd = open(texture_path, O_RDONLY);
     if (fd == -1)

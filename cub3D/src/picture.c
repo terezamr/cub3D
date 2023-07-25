@@ -12,6 +12,11 @@
 
 #include "../inc/cub3D.h"
 
+int		get_rgb(int r, int g, int b)
+{
+	return (0 << 24 | (int)r << 16 | (int)g << 8 | (int)b);
+}
+
 void    get_picture_vars(t_data *data, int side, double *dist)
 {
     if (side == 0)
