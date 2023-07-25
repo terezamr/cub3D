@@ -106,6 +106,8 @@ typedef struct s_data
 	char	letter;
 	double	dirX;
 	double	dirY;
+	double	dirX_init;
+	double	dirY_init;
 	double	planeX;
 	double	planeY;
 	char	*file_path;
@@ -114,6 +116,8 @@ typedef struct s_data
 	int		map_height;
 	int		**world_map;
 	double	distance;
+	double	ray_distance;
+	double	camp;
 	double	height;
 	int		start;
 	int		end;

@@ -24,6 +24,7 @@ void	vars_init(t_data *data)
 	data->angle_d = 90;
 	data->angle_r = (data->angle_d * PI) / 180;
 	data->distance = 0;
+	data->ray_distance = 0;
 	data->height = 0;
 	data->start = 0;
 	data->end = 0;
@@ -82,6 +83,8 @@ void	get_dir(t_data *data)
 	data->colors = malloc(sizeof(int) * 2);
 	data->colors[0] = get_rgb(255, 255, 255);
 	data->colors[1] = get_rgb(128, 128, 128);
+	data->dirX_init = data->dirX;
+	data->dirY_init = data->dirY;
 }
 
 void	init_tex_image(t_data *data)
@@ -89,19 +92,17 @@ void	init_tex_image(t_data *data)
 	int		i;
 	char	**file;
 
-	file = malloc(sizeof(char *) * 3);
-	file[0] = ft_strdup("./inc/textures/wood.xpm");
-	file[1] = ft_strdup("./inc/textures/grass.xpm");
-	file[2] = ft_strdup("./inc/textures/stone.xpm");
-	file[3] = ft_strdup("./inc/textures/mossy.xpm");
+	file = malloc(sizeof(char *) * 4);
+	file[0] = ft_strdup("./inc/textures/wall_1.xpm");
+	file[1] = ft_strdup("./inc/textures/wall_2.xpm");
+	file[2] = ft_strdup("./inc/textures/wall_3.xpm");
+	file[3] = ft_strdup("./inc/textures/wall_4.xpm");
 	i = 0;
 	while (i < 4)
 	{
 		data->wall[i].img = mlx_xpm_file_to_image(data->mlx, file[i], &data->wall[i].width, &data->wall[i].height);
 		if (!data->wall[i].img)
 			return ;
-		printf("check xpm\n");
-		printf("%i %i\n", data->wall[i].height, data->wall[i].width);
 		data->wall[i].addr = mlx_get_data_addr(data->wall[i].img, &data->wall[i].bpp, &data->wall[i].line_len, &data->wall[i].endian);
 		i++;
 	}

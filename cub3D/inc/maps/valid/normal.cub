@@ -1,7 +1,7 @@
-N /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/grass.xpm
-S /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/grass.xpm  
-W /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/wood.xpm
-E /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/wood.xpm
+N /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/wall_1.xpm
+S /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/wall_2.xpm  
+W /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/wall_3.xpm
+E /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/wall_4.xpm
 
 F 255,0,0
 C 255,0,0   
