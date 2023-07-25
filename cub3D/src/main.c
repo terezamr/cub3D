@@ -86,15 +86,25 @@ void	get_dir(t_data *data)
 
 void	init_tex_image(t_data *data)
 {
-	char	*file;
+	int		i;
+	char	**file;
 
-	file = "../inc/textures/grass.xpm";
-	data->wall.img = mlx_xpm_file_to_image(data->mlx, file, &data->wall.width, &data->wall.height);
-	printf("width %i height %i\n", data->wall.width, data->wall.height);
-	if (!data->wall.img)
-		return ;
-	printf("check 2\n");
-	data->wall.addr = mlx_get_data_addr(data->wall.img, &data->wall.bpp, &data->wall.line_len, &data->wall.endian);
+	file = malloc(sizeof(char *) * 3);
+	file[0] = ft_strdup("./inc/textures/wood.xpm");
+	file[1] = ft_strdup("./inc/textures/grass.xpm");
+	file[2] = ft_strdup("./inc/textures/stone.xpm");
+	file[3] = ft_strdup("./inc/textures/mossy.xpm");
+	i = 0;
+	while (i < 4)
+	{
+		data->wall[i].img = mlx_xpm_file_to_image(data->mlx, file[i], &data->wall[i].width, &data->wall[i].height);
+		if (!data->wall[i].img)
+			return ;
+		printf("check xpm\n");
+		printf("%i %i\n", data->wall[i].height, data->wall[i].width);
+		data->wall[i].addr = mlx_get_data_addr(data->wall[i].img, &data->wall[i].bpp, &data->wall[i].line_len, &data->wall[i].endian);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -104,6 +114,8 @@ int	main(int argc, char **argv)
 	vars_init(&data);
 	parse_all(&data, argc, argv[1]);
 	get_dir(&data);
+	data.map_width = 14;
+	data.map_height = 11;
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
 	data.img.mlx_img = mlx_new_image(data.mlx, WINDOW_WIDTH,
@@ -111,7 +123,6 @@ int	main(int argc, char **argv)
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
 	init_tex_image(&data);
-	printf("check\n");
 	mlx_loop_hook(data.mlx, render, &data);
 	mlx_key_hook(data.win, handle_key, &data);
 	mlx_hook(data.win, 17, 1L << 17, exit_cub, &data);

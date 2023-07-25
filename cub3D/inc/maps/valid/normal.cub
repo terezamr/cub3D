@@ -1,7 +1,7 @@
-N ./inc/textures/north
-S ./inc/textures/south   
-W ./inc/textures/west
-E ./inc/textures/east
+N /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/grass.xpm
+S /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/grass.xpm  
+W /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/wood.xpm
+E /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/wood.xpm
 
 F 255,0,0
 C 255,0,0   

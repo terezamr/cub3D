@@ -89,6 +89,13 @@ typedef struct s_wall
 	int		height;
 }	t_wall;
 
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+} t_color;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -117,7 +124,7 @@ typedef struct s_data
 	t_point	p;
 	char	**textures;
 	int		*colors;
-	t_wall	wall;
+	t_wall	wall[4];
 	double	angle_d;
 	double	angle_r;
 }	t_data;

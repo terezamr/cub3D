@@ -57,24 +57,31 @@ void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
 unsigned int	get_pixel_texture(t_data *data, int x, int y, double *ray)
 {
 	char	*color;
-	int		coord_x;
-	int		coord_y;
+	float	coord_x;
+	float	coord_y;
 	int		aux;
-	t_wall *img;
+	int		square_x;
+	int		i;
 
-	img = &data->wall;
-	aux = (data->posX + data->planeX * ray[0]);
-	coord_y = (y * img->height) / (data->end - data->start);
-	coord_x = (x * img->width) / (aux - ceil(aux));
-	//printf("coord_x %i coord_y %i\n", coord_x, coord_y);
-	color = (img->addr + (coord_y * img->line_len + coord_x * (img->bpp / 8)));
+	(void)ray;
+	if (data->side == 1)
+		i = 2;
+	else
+		i = 1;
+	square_x = WINDOW_WIDTH / data->map_width;
+	aux = data->wall[i].width * (x - (x/square_x));
+	coord_y = ((y - data->start) * data->wall[i].height) / (data->end - data->start);
+	coord_x = aux / square_x;                                   
+	//printf("coord_x %f coord_y %f\n", coord_x, coord_y);
+	color = (data->wall[i].addr + ((int)coord_y * data->wall[i].line_len + (int)coord_x * (data->wall[i].bpp / 8)));
+	//printf("check 1\n");
 	return (*(unsigned int*)color);
 }
 
 void	drawing(int x, t_data *data, double *dist, double *ray)
 {
     int   			y;
-	unsigned int	color;
+	unsigned int	color;        
 
     y = 0;
     get_picture_vars(data, data->side, dist);
@@ -87,7 +94,7 @@ void	drawing(int x, t_data *data, double *dist, double *ray)
 		else if (y >= data->start && y < data->end)
 		{
 			color = get_pixel_texture(data, x, y, ray);
-			ft_mlx_pixel_put(data, x, y, color);
+    		ft_mlx_pixel_put(data, x, y, color);
 		}
 		y++;
     }
