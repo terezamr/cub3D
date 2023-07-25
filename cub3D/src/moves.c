@@ -35,9 +35,9 @@ void    move_a(t_data *data)
 
 	dir1 = -data->dirY;
 	dir2 = data->dirX;
-    if (data->map[(int)(data->posX)][(int)(data->posX + dir1)] == '0')
+    if (data->map[(int)(data->posX + dir1)][(int)(data->posY)] == '0')
 		data->posX += dir1;
-	if (data->map[(int)(data->posY + dir2)][(int)(data->posY)] == '0')
+	if (data->map[(int)(data->posX)][(int)(data->posY + dir2)] == '0')
 		data->posY += dir2;
 }
 
@@ -48,8 +48,8 @@ void    move_d(t_data *data)
 
 	dir1 = data->dirY;
 	dir2 = -data->dirX;
-    if (data->map[(int)(data->posX)][(int)(data->posX + dir1)] == '0')
+    if (data->map[(int)(data->posX + dir1)][(int)(data->posY)] == '0')
 		data->posX += dir1;
-	if (data->map[(int)(data->posY + dir2)][(int)(data->posY)] == '0')
+	if (data->map[(int)(data->posX)][(int)(data->posY + dir2)] == '0')
 		data->posY += dir2;
 }

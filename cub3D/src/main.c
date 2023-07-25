@@ -24,7 +24,6 @@ void	vars_init(t_data *data)
 	data->angle_d = 90;
 	data->angle_r = (data->angle_d * PI) / 180;
 	data->distance = 0;
-	data->ray_distance = 0;
 	data->height = 0;
 	data->start = 0;
 	data->end = 0;

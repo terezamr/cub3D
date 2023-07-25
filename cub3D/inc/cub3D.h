@@ -116,8 +116,6 @@ typedef struct s_data
 	int		map_height;
 	int		**world_map;
 	double	distance;
-	double	ray_distance;
-	double	camp;
 	double	height;
 	int		start;
 	int		end;

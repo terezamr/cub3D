@@ -127,15 +127,6 @@ void    calculations(t_data *data)
 			if ((data->map[map[0]][map[1]]) == '1')
 				data->hit = 1;
 		}
-		if (x == 0)
-		{
-			if (data->side == 0)
-				data->ray_distance = (dist[2] - dist[0]);
-			else
-				data->ray_distance = (dist[3] - dist[1]);
-			data->camp = 2 * (float)data->ray_distance * sin(0.66);
-			printf("camp %f\n", data->camp);
-		}
         drawing(x, data, dist, ray);
 		free(ray);
 		free(map);

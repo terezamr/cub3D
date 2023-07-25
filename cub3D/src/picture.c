@@ -59,11 +59,10 @@ unsigned int	get_pixel_texture(t_data *data, int x, int y, double *ray)
 	char	*color;
 	float	coord_x;
 	float	coord_y;
-	int		aux;
-	int		square_x;
 	int		i;
-	//float		camp;
 
+	(void)ray;
+	(void)x;
 	if (data->side == 1)
 	{
 		if (ray[1] < 0)
@@ -78,10 +77,17 @@ unsigned int	get_pixel_texture(t_data *data, int x, int y, double *ray)
 		else
 			i = 3;
 	}
-	square_x = WINDOW_WIDTH / data->camp;
-	aux = data->wall[i].width * (x - (x/square_x));
-	coord_y = ((y - data->start) * data->wall[i].height) / (data->end - data->start);
-	coord_x = aux / square_x;                                 
+	//square_x = (WINDOW_WIDTH / data->map_width);
+	//square_x = WINDOW_WIDTH / data->camp;
+	//aux = data->wall[i].width * (x - (x/square_x));
+	//coord_x = aux / square_x;
+	if (data->side == 0)
+		coord_x = data->posY + data->distance * ray[1];
+	else
+		coord_x = data->posX + data->distance * ray[0];
+	coord_x = coord_x - floor(coord_x);
+	coord_x = coord_x * data->wall[i].width;
+	coord_y = ((y - data->start) * data->wall[i].height) / ((data->end - data->start));
 	color = (data->wall[i].addr + ((int)coord_y * data->wall[i].line_len + (int)coord_x * (data->wall[i].bpp / 8)));
 	return (*(unsigned int*)color);
 }
