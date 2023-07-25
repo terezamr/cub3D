@@ -77,10 +77,6 @@ unsigned int	get_pixel_texture(t_data *data, int x, int y, double *ray)
 		else
 			i = 3;
 	}
-	//square_x = (WINDOW_WIDTH / data->map_width);
-	//square_x = WINDOW_WIDTH / data->camp;
-	//aux = data->wall[i].width * (x - (x/square_x));
-	//coord_x = aux / square_x;
 	if (data->side == 0)
 		coord_x = data->posY + data->distance * ray[1];
 	else
