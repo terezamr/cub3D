@@ -77,6 +77,17 @@ typedef struct s_img
 	float	offset_i;
 }	t_img;
 
+typedef struct s_wall
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_wall;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -110,6 +121,7 @@ typedef struct s_data
 	char	*fTexture;
 	char	*cTexture;
 	int		*colors;
+	t_wall	wall;
 	double	angle_d;
 	double	angle_r;
 }	t_data;

@@ -109,6 +109,19 @@ void	get_dir(t_data *data)
 	data->colors[1] = get_rgb(128, 128, 128);
 }
 
+void	init_tex_image(t_data *data)
+{
+	char	*file;
+
+	file = "../inc/textures/grass.xpm";
+	data->wall.img = mlx_xpm_file_to_image(data->mlx, file, &data->wall.width, &data->wall.height);
+	printf("width %i height %i\n", data->wall.width, data->wall.height);
+	if (!data->wall.img)
+		return ;
+	printf("check 2\n");
+	data->wall.addr = mlx_get_data_addr(data->wall.img, &data->wall.bpp, &data->wall.line_len, &data->wall.endian);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -123,6 +136,8 @@ int	main(int argc, char **argv)
 			WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
+	init_tex_image(&data);
+	printf("check\n");
 	mlx_loop_hook(data.mlx, render, &data);
 	mlx_key_hook(data.win, handle_key, &data);
 	mlx_hook(data.win, 17, 1L << 17, exit_cub, &data);
