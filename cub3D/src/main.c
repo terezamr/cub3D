@@ -59,18 +59,18 @@ void	direction_values(t_data *data, int sig)
 
 void	get_dir(t_data *data)
 {
-	if (data->letter == 'N')
+	if (data->letter == 'E')
 		direction_values(data, 1);
-	else if (data->letter == 'S')
+	else if (data->letter == 'O')
 		direction_values(data, -1);
-	else if (data->letter == 'E')
+	else if (data->letter == 'S')
 	{
 		data->dirX = 1;
 		data->dirY = 0;
 		data->planeX = 0;
 		data->planeY = -0.66;
 	}
-	else if (data->letter == 'O')
+	else if (data->letter == 'N')
 	{
 		data->dirX = -1;
 		data->dirY = 0;

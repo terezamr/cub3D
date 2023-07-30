@@ -14,7 +14,9 @@
 
 int	exit_cub(t_data *data)
 {
-	int	i = 0;
+	int	i;
+
+	i = 0;
 	if (!data)
 		exit(0);
 	if (data->img.mlx_img)
@@ -23,7 +25,7 @@ int	exit_cub(t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
-	while (i < data->map_height)
+	while (data->map[i])
 	{
 		free(data->map[i]);
 		i++;
