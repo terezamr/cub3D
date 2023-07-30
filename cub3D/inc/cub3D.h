@@ -74,8 +74,6 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
-	float	offset_r;
-	float	offset_i;
 }	t_img;
 
 typedef struct s_wall
@@ -110,6 +108,7 @@ typedef struct s_data
 	double	dirY_init;
 	double	planeX;
 	double	planeY;
+	int		*map_c;
 	char	*file_path;
 	char	**map;
 	int		map_width;
@@ -127,8 +126,6 @@ typedef struct s_data
 	char	**textures;
 	int		*colors;
 	t_wall	wall[4];
-	double	angle_d;
-	double	angle_r;
 }	t_data;
 
 // FUNCTIONS
@@ -149,17 +146,21 @@ int		exit_cub(t_data *data);
 int		handle_key(int key, t_data *data);
 
 /* Moves */
-void    move_w(t_data *data);
-void    move_s(t_data *data);
-void    move_d(t_data *data);
-void    move_a(t_data *data);
+void	move_w(t_data *data);
+void	move_s(t_data *data);
+void	move_d(t_data *data);
+void	move_a(t_data *data);
 
 /* Math */
 
-void    calculations(t_data *data);
+void	calculations(t_data *data);
 
 /* Picture */
-int		get_rgb(int r, int g, int b);
 void	drawing(int x, t_data *data, double *dist, double *ray);
+
+/* Picture_aux */
+int		get_rgb(int r, int g, int b);
+void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		get_i(t_data *data, double *ray);
 
 #endif

@@ -19,10 +19,6 @@ void	vars_init(t_data *data)
 	i = 0;
 	data->mlx = 0;
 	data->win = 0;
-	data->img.offset_r = -2;
-	data->img.offset_i = 2;
-	data->angle_d = 90;
-	data->angle_r = (data->angle_d * PI) / 180;
 	data->distance = 0;
 	data->height = 0;
 	data->start = 0;
@@ -32,13 +28,17 @@ void	vars_init(t_data *data)
 	data->step_y = 0;
 	data->side = -1;
 	data->letter = 0;
+	data->map_c = malloc(sizeof(int) * 2);
 	data->textures = malloc(sizeof(char) * 4);
 	data->colors = malloc(sizeof(int) * 2);
 	while (i != 4)
 		data->textures[i++] = 0;
 	i = 0;
 	while (i != 2)
+	{
+		data->map_c[i] = 0;
 		data->colors[i++] = 0;
+	}
 }
 
 int	render(t_data *data)
@@ -49,22 +49,20 @@ int	render(t_data *data)
 	return (1);
 }
 
+void	direction_values(t_data *data, int sig)
+{
+	data->dirX = 0;
+	data->dirY = sig;
+	data->planeX = 0.66 * sig;
+	data->planeY = 0;
+}
+
 void	get_dir(t_data *data)
 {
 	if (data->letter == 'N')
-	{
-		data->dirX = 0;
-		data->dirY = 1;
-		data->planeX = 0.66;
-		data->planeY = 0;
-	}
+		direction_values(data, 1);
 	else if (data->letter == 'S')
-	{
-		data->dirX = 0;
-		data->dirY = -1;
-		data->planeX = -0.66;
-		data->planeY = 0;
-	}
+		direction_values(data, -1);
 	else if (data->letter == 'E')
 	{
 		data->dirX = 1;
@@ -103,8 +101,10 @@ void	init_tex_image(t_data *data)
 		if (!data->wall[i].img)
 			return ;
 		data->wall[i].addr = mlx_get_data_addr(data->wall[i].img, &data->wall[i].bpp, &data->wall[i].line_len, &data->wall[i].endian);
+		free(file[i]);
 		i++;
 	}
+	free(file);
 }
 
 int	main(int argc, char **argv)

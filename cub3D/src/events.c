@@ -31,16 +31,38 @@ int	exit_cub(t_data *data)
 	free(data->map);
 	free(data->mlx);
 	free(data->colors);
+	free(data->map_c);
 	exit(0);
 }
 
-int	handle_key(int key, t_data *data)
+void	rotate_left(t_data *data)
 {
 	double oldDirX;
 	double oldPlaneX;
 	
 	oldDirX = data->dirX;
 	oldPlaneX = data->planeX;
+	data->dirX = data->dirX * cos(PI / 15) - data->dirY * sin(PI / 15);
+    data->dirY = oldDirX * sin(PI / 15) + data->dirY * cos(PI / 15);
+	data->planeX = data->planeX * cos(PI / 15) - data->planeY * sin(PI / 15);
+	data->planeY = oldPlaneX * sin(PI / 15) + data->planeY * cos(PI / 15);
+}
+
+void	rotate_right(t_data *data)
+{
+	double oldDirX;
+	double oldPlaneX;
+	
+	oldDirX = data->dirX;
+	oldPlaneX = data->planeX;
+	data->dirX = data->dirX * cos(-PI / 15) - data->dirY * sin(-PI / 15);
+    data->dirY = oldDirX * sin(-PI / 15) + data->dirY * cos(-PI / 15);
+	data->planeX = data->planeX * cos(-PI / 15) - data->planeY * sin(-PI / 15);
+	data->planeY = oldPlaneX * sin(-PI / 15) + data->planeY * cos(-PI / 15);
+}
+
+int	handle_key(int key, t_data *data)
+{
 	if (key == ESCAPE)
 		exit_cub(data);
 	else if (key == KEY_W)
@@ -52,20 +74,8 @@ int	handle_key(int key, t_data *data)
 	else if (key == KEY_A)
 		move_a(data);
 	else if (key == KEY_LEFT)
-	{
-		data->angle_r = data->angle_r - PI / 15;
-      	data->dirX = data->dirX * cos(PI / 15) - data->dirY * sin(PI / 15);
-     	data->dirY = oldDirX * sin(PI / 15) + data->dirY * cos(PI / 15);
-		data->planeX = data->planeX * cos(PI / 15) - data->planeY * sin(PI / 15);
-		data->planeY = oldPlaneX * sin(PI / 15) + data->planeY * cos(PI / 15);
-	}
+		rotate_left(data);
 	else if (key == KEY_RIGHT)
-	{
-		data->angle_r = data->angle_r + PI / 15;
-      	data->dirX = data->dirX * cos(-PI / 15) - data->dirY * sin(-PI / 15);
-     	data->dirY = oldDirX * sin(-PI / 15) + data->dirY * cos(-PI / 15);
-		data->planeX = data->planeX * cos(-PI / 15) - data->planeY * sin(-PI / 15);
-		data->planeY = oldPlaneX * sin(-PI / 15) + data->planeY * cos(-PI / 15);
-	}
+		rotate_right(data);
 	return (0);
 }

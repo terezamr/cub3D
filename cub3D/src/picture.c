@@ -12,11 +12,6 @@
 
 #include "../inc/cub3D.h"
 
-int		get_rgb(int r, int g, int b)
-{
-	return (0 << 24 | (int)r << 16 | (int)g << 8 | (int)b);
-}
-
 void    get_picture_vars(t_data *data, int side, double *dist)
 {
     if (side == 0)
@@ -32,51 +27,14 @@ void    get_picture_vars(t_data *data, int side, double *dist)
 		data->end = WINDOW_HEIGHT - 1;
 }
 
-// void	ft_mlx_pixel_put2(t_data *data, int x, int y, double *ray)
-// {
-// 	char			*index;
-// 	unsigned int	color;
-
-// 	(void)ray;
-// 	if (data->side == 1)
-// 		color = get_pixel_texture(data, x, y, ray);
-// 	else
-// 		color = PINK1_PIXEL;
-// 	index = data->img.addr + (y * data->img.line_len + x * (data->img.bpp / 8));
-// 	*(unsigned int*)index = color;
-// }
-
-void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*index;
-
-	index = data->img.addr + (y * data->img.line_len + x * (data->img.bpp / 8));
-	*(unsigned int*)index = color;
-}
-
-unsigned int	get_pixel_texture(t_data *data, int x, int y, double *ray)
+unsigned int	get_pixel_texture(t_data *data, int y, double *ray)
 {
 	char	*color;
 	float	coord_x;
 	float	coord_y;
 	int		i;
 
-	(void)ray;
-	(void)x;
-	if (data->side == 1)
-	{
-		if (ray[1] < 0)
-			i = 0;
-		else
-			i = 1;
-	}
-	else
-	{
-		if (ray[0] < 0)
-			i = 2;
-		else
-			i = 3;
-	}
+	i = get_i(data, ray);
 	if (data->side == 0)
 		coord_x = data->posY + data->distance * ray[1];
 	else
@@ -103,7 +61,7 @@ void	drawing(int x, t_data *data, double *dist, double *ray)
 			ft_mlx_pixel_put(data, x, y, data->colors[1]);
 		else if (y >= data->start && y < data->end)
 		{
-			color = get_pixel_texture(data, x, y, ray);
+			color = get_pixel_texture(data, y, ray);
     		ft_mlx_pixel_put(data, x, y, color);
 		}
 		y++;

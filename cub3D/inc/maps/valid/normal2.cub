@@ -1,7 +1,7 @@
-N ./inc/textures/north
-S ./inc/textures/south   
-W ./inc/textures/west
-E ./inc/textures/east
+N ./inc/textures/wall_1.xpm
+S ./inc/textures/wall_2.xpm   
+W ./inc/textures/wall_3.xpm
+E ./inc/textures/wall_4.xpm
 
 F 255,0,0
 C 255,0,0   

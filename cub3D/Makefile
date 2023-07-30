@@ -30,6 +30,7 @@ SRC = 	$(SRC_PATH)main.c \
 		$(SRC_PATH)moves.c \
 		$(SRC_PATH)math.c \
 		$(SRC_PATH)picture.c \
+		$(SRC_PATH)picture_aux.c \
 		$(SRC_PATH)error_msg.c \
 		$(SRC_PATH)parse.c \
 		$(SRC_PATH)check.c \
