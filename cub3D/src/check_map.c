@@ -1,14 +1,5 @@
 #include "../inc/cub3D.h"
 
-int ft_isspace(int c)
-{
-	c = (unsigned char)c;
-	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
-		|| c == ' ')
-		return (1);
-	return (0);
-}
-
 int check_map_edges(char **map, t_point p, int max_x, int max_y)
 {
 	if (p.y == 0 && (map[p.y][p.x] == '1' || ft_isspace(map[p.y][p.x])))
@@ -56,6 +47,21 @@ int	is_closed(char **map, t_point p, int max_x, int max_y)
 	return (0);
 }
 
+void	check_orientation(t_data *data, char p, int x, int y)
+{
+	if (p == 'N' || p == 'E'
+		|| p == 'W' || p == 'S')
+	{
+		if (data->letter == 0)
+		{
+			data->letter = p;
+			data->posX = y;
+			data->posY = x;
+		}
+		else
+			error_msg(PLAYER_ERROR);
+	}
+}
 
 void    check_map(t_data *data)
 {
@@ -75,19 +81,8 @@ void    check_map(t_data *data)
             if (data->map[y][x] != '1' && !ft_isspace(data->map[y][x])
                 && !is_closed(data->map, (t_point){x,y}, width, data->map_height))
                 error_msg(INVALID_BORDER);
-				if (data->map[y][x] == 'N' || data->map[y][x] == 'E'
-					|| data->map[y][x] == 'W' || data->map[y][x] == 'S')
-				{
-					if (data->letter == 0)
-					{
-						data->letter = data->map[y][x];
-						data->posX = y;
-						data->posY = x;
-					}
-					else
-						error_msg(PLAYER_ERROR);
-				}
-			}
+			check_orientation(data, data->map[y][x], x, y);
+		}
     }
 	if (data->letter == 0)
 		error_msg(PLAYER_ERROR);

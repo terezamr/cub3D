@@ -98,33 +98,33 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
-	t_img	img;
 	double	posX;
 	double	posY;
-	char	letter;
 	double	dirX;
 	double	dirY;
 	double	dirX_init;
 	double	dirY_init;
 	double	planeX;
 	double	planeY;
-	int		*map_c;
-	char	*file_path;
-	char	**map;
-	int		map_width;
-	int		map_height;
-	int		**world_map;
 	double	distance;
 	double	height;
+	char	letter;
+	char	*file_path;
+	char	**map;
+	char	**textures;
+	int		map_width;
+	int		map_height;
 	int		start;
 	int		end;
 	int		hit;
 	int		step_x;
 	int		step_y;
 	int		side;
-	t_point	p;
-	char	**textures;
 	int		*colors;
+	int		*map_c;
+	int		**world_map;
+	t_point	p;
+	t_img	img;
 	t_wall	wall[4];
 }	t_data;
 
@@ -138,7 +138,13 @@ void	check_extension(char *path);
 void	check_map(t_data *data);
 char	*next_line(char *line, int fd);
 int		is_only_spaces(char *line);
-int		check_texture(t_data *data, char *line, int rgb);
+int		check_texture(t_data *data, char *line, int pos, int rgb);
+
+/* Utils */
+
+void	vars_init(t_data *data);
+int 	ft_isspace(int c);
+int		is_only_spaces(char *line);
 
 /* Events */
 
@@ -154,6 +160,7 @@ void	move_a(t_data *data);
 /* Math */
 
 void	calculations(t_data *data);
+double	*get_dist(t_data *data, double *ray);
 
 /* Picture */
 void	drawing(int x, t_data *data, double *dist, double *ray);

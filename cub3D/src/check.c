@@ -6,17 +6,6 @@ char	*next_line(char *line, int fd)
 	return (get_next_line(fd));
 }
 
-int	is_only_spaces(char *line)
-{
-	int	i;
-
-	i = 0;
-	while(line[i])
-		if (ft_isalnum(line[i++]))
-			return (0);
-	return (1);
-}
-
 void	check_extension(char *path)
 {
 	char	**splitted_path;
@@ -54,7 +43,7 @@ int check_rgb(t_data *data, char **splitted, int pos)
     return (1);
 }
 
-int check_texture(t_data *data, char *line, int rgb)
+int check_texture(t_data *data, char *line, int pos, int rgb)
 {
     char    **splitted;
     char    *texture_path;
@@ -74,6 +63,7 @@ int check_texture(t_data *data, char *line, int rgb)
     if (fd == -1)
         error_msg(INVALID_TEXTURE);
     close(fd);
+    data->textures[pos] = ft_strdup(texture_path);
     free(texture_path);
     ft_free_mtx(splitted);
     return (1);

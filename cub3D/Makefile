@@ -29,16 +29,18 @@ SRC = 	$(SRC_PATH)main.c \
 		$(SRC_PATH)events.c \
 		$(SRC_PATH)moves.c \
 		$(SRC_PATH)math.c \
+		$(SRC_PATH)distance.c \
 		$(SRC_PATH)picture.c \
 		$(SRC_PATH)picture_aux.c \
 		$(SRC_PATH)error_msg.c \
 		$(SRC_PATH)parse.c \
 		$(SRC_PATH)check.c \
 		$(SRC_PATH)check_map.c \
+		$(SRC_PATH)utils.c
 
 OBJ = $(SRC:.c=.o)
 LDLIBS = -g -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
-LEAKS_FLAG = -g #-fsanitize=address
+LEAKS_FLAG = -g -fsanitize=address
 C_FLAGS = -Wall -Wextra -Werror
 
 ########## 		   LIBFT 		##########
