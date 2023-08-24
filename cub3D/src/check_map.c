@@ -6,7 +6,7 @@
 /*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:38:28 by rade-sar          #+#    #+#             */
-/*   Updated: 2023/08/24 11:03:29 by rade-sar         ###   ########.fr       */
+/*   Updated: 2023/08/24 12:46:35 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	check_orientation(t_data *data, char p, int x, int y)
 		if (data->letter == 0)
 		{
 			data->letter = p;
-			data->pos_x = y;
-			data->pos_y = x;
+			data->pos_x = y + 0.5;
+			data->pos_y = x + 0.5;
 		}
 		else
 			error_msg(PLAYER_ERROR);
@@ -95,7 +95,7 @@ void	check_map(t_data *data)
 				error_msg(INVALID_BORDER);
 			check_orientation(data, data->map[y][x], x, y);
 		}
-	}
+	}	
 	if (data->letter == 0)
 		error_msg(PLAYER_ERROR);
 }

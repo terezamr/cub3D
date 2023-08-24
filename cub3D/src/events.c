@@ -6,7 +6,7 @@
 /*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:24:40 by mvicente          #+#    #+#             */
-/*   Updated: 2023/08/24 11:38:55 by rade-sar         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:10:24 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ void	rotate_right(t_data *data)
 
 int	handle_key(int key, t_data *data)
 {
+	printf("BEFORE\n");
+	printf("pos_x: %f, pos_y: %f\n", data->pos_x, data->pos_y);
+	printf("pos_x: %i, pos_y: %i\n", (int)data->pos_x, (int)data->pos_y);
+	printf("dir-x: %f, dir-y: %f\n", data->dir_x, data->dir_y);
+	printf("==========================================\n");
 	if (key == ESCAPE)
 		exit_cub(data);
 	else if (key == KEY_W)
@@ -77,5 +82,10 @@ int	handle_key(int key, t_data *data)
 		rotate_left(data);
 	else if (key == KEY_RIGHT)
 		rotate_right(data);
+	printf("AFTER\n");
+	printf("pos_x: %f, pos_y: %f\n", data->pos_x, data->pos_y);
+	printf("pos_x: %i, pos_y: %i\n", (int)data->pos_x, (int)data->pos_y);
+	printf("dir-x: %f, dir-y: %f\n", data->dir_x, data->dir_y);
+	printf("==========================================\n");
 	return (0);
 }

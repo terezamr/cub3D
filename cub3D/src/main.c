@@ -6,7 +6,7 @@
 /*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:10:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/08/24 11:38:45 by rade-sar         ###   ########.fr       */
+/*   Updated: 2023/08/24 12:50:33 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	get_dir(t_data *data)
 {
 	if (data->letter == 'E')
 		direction_values(data, 1);
-	else if (data->letter == 'O')
+	else if (data->letter == 'W')
 		direction_values(data, -1);
 	else if (data->letter == 'S')
 	{
@@ -85,7 +85,8 @@ int	main(int argc, char **argv)
 			&data.img.line_len, &data.img.endian);
 	init_tex_image(&data);
 	mlx_loop_hook(data.mlx, render, &data);
-	mlx_key_hook(data.win, handle_key, &data);
+	// mlx_key_hook(data.win, handle_key, &data);
+	mlx_hook(data.win, 02, (1L << 0), handle_key, &data);
 	mlx_hook(data.win, 17, 1L << 17, exit_cub, &data);
 	mlx_loop(data.mlx);
 }
