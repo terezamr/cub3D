@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:10:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/07/06 16:19:19 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:38:45 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	render(t_data *data)
 
 void	direction_values(t_data *data, int sig)
 {
-	data->dirX = 0;
-	data->dirY = sig;
-	data->planeX = 0.66 * sig;
-	data->planeY = 0;
+	data->dir_x = 0;
+	data->dir_y = sig;
+	data->plane_x = 0.66 * sig;
+	data->plane_y = 0;
 }
 
 void	get_dir(t_data *data)
@@ -36,32 +36,36 @@ void	get_dir(t_data *data)
 		direction_values(data, -1);
 	else if (data->letter == 'S')
 	{
-		data->dirX = 1;
-		data->dirY = 0;
-		data->planeX = 0;
-		data->planeY = -0.66;
+		data->dir_x = 1;
+		data->dir_y = 0;
+		data->plane_x = 0;
+		data->plane_y = -0.66;
 	}
 	else if (data->letter == 'N')
 	{
-		data->dirX = -1;
-		data->dirY = 0;
-		data->planeX = 0;
-		data->planeY = 0.66;
+		data->dir_x = -1;
+		data->dir_y = 0;
+		data->plane_x = 0;
+		data->plane_y = 0.66;
 	}
-	data->dirX_init = data->dirX;
-	data->dirY_init = data->dirY;
+	data->dir_x_init = data->dir_x;
+	data->dir_y_init = data->dir_y;
 }
 
 void	init_tex_image(t_data *data)
 {
 	int		i;
+
 	i = 0;
 	while (i < 4)
 	{
-		data->wall[i].img = mlx_xpm_file_to_image(data->mlx, data->textures[i], &data->wall[i].width, &data->wall[i].height);
+		data->wall[i].img = mlx_xpm_file_to_image(data->mlx, data->textures[i],
+				&data->wall[i].width, &data->wall[i].height);
 		if (!data->wall[i].img)
 			return ;
-		data->wall[i].addr = mlx_get_data_addr(data->wall[i].img, &data->wall[i].bpp, &data->wall[i].line_len, &data->wall[i].endian);
+		data->wall[i].addr = mlx_get_data_addr(data->wall[i].img,
+				&data->wall[i].bpp, &data->wall[i].line_len,
+				&data->wall[i].endian);
 		free(data->textures[i++]);
 	}
 }
@@ -73,8 +77,6 @@ int	main(int argc, char **argv)
 	vars_init(&data);
 	parse_all(&data, argc, argv[1]);
 	get_dir(&data);
-	data.map_width = 14;
-	data.map_height = 11;
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
 	data.img.mlx_img = mlx_new_image(data.mlx, WINDOW_WIDTH,

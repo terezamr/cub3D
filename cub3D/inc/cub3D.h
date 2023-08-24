@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:57:26 by mvicente          #+#    #+#             */
-/*   Updated: 2023/07/06 16:20:37 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:05:01 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define PINK2_PIXEL 0xcc99a2
 
 # define INF 1000000
-#define PI 3.141592654
+# define PI 3.141592654
 
 // ERROR MESSAGES
 
@@ -51,7 +51,7 @@
 # define PLAYER_ERROR "The map must have 1 player."
 # define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_EXTENSION "Invalid file extension. File must be a .cub file."
-# define INVALID_TEXTURE_TYPE "Texture type must be composed by one or two characters."
+# define INVALID_TEXTURE_TYPE "Type must be composed by one or two characters."
 # define INVALID_TEXTURE "Texture file not found."
 # define INVALID_RGB "Invalid RGB color."
 # define INVALID_ARGS "The program should take 1 argument."
@@ -92,20 +92,20 @@ typedef struct s_color
 	int	r;
 	int	g;
 	int	b;
-} t_color;
+}	t_color;
 
 typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	dirX_init;
-	double	dirY_init;
-	double	planeX;
-	double	planeY;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	dir_x_init;
+	double	dir_y_init;
+	double	plane_x;
+	double	plane_y;
 	double	distance;
 	double	height;
 	char	letter;
@@ -143,7 +143,7 @@ int		check_texture(t_data *data, char *line, int pos, int rgb);
 /* Utils */
 
 void	vars_init(t_data *data);
-int 	ft_isspace(int c);
+int		ft_isspace(int c);
 int		is_only_spaces(char *line);
 
 /* Events */

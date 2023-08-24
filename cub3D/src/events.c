@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:24:40 by mvicente          #+#    #+#             */
-/*   Updated: 2023/07/06 16:20:08 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:38:55 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,29 @@ int	exit_cub(t_data *data)
 
 void	rotate_left(t_data *data)
 {
-	double oldDirX;
-	double oldPlaneX;
-	
-	oldDirX = data->dirX;
-	oldPlaneX = data->planeX;
-	data->dirX = data->dirX * cos(PI / 15) - data->dirY * sin(PI / 15);
-    data->dirY = oldDirX * sin(PI / 15) + data->dirY * cos(PI / 15);
-	data->planeX = data->planeX * cos(PI / 15) - data->planeY * sin(PI / 15);
-	data->planeY = oldPlaneX * sin(PI / 15) + data->planeY * cos(PI / 15);
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = data->dir_x;
+	old_plane_x = data->plane_x;
+	data->dir_x = data->dir_x * cos(PI / 15) - data->dir_y * sin(PI / 15);
+	data->dir_y = old_dir_x * sin(PI / 15) + data->dir_y * cos(PI / 15);
+	data->plane_x = data->plane_x * cos(PI / 15) - data->plane_y * sin(PI / 15);
+	data->plane_y = old_plane_x * sin(PI / 15) + data->plane_y * cos(PI / 15);
 }
 
 void	rotate_right(t_data *data)
 {
-	double oldDirX;
-	double oldPlaneX;
-	
-	oldDirX = data->dirX;
-	oldPlaneX = data->planeX;
-	data->dirX = data->dirX * cos(-PI / 15) - data->dirY * sin(-PI / 15);
-    data->dirY = oldDirX * sin(-PI / 15) + data->dirY * cos(-PI / 15);
-	data->planeX = data->planeX * cos(-PI / 15) - data->planeY * sin(-PI / 15);
-	data->planeY = oldPlaneX * sin(-PI / 15) + data->planeY * cos(-PI / 15);
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = data->dir_x;
+	old_plane_x = data->plane_x;
+	data->dir_x = data->dir_x * cos(-PI / 15) - data->dir_y * sin(-PI / 15);
+	data->dir_y = old_dir_x * sin(-PI / 15) + data->dir_y * cos(-PI / 15);
+	data->plane_x = data->plane_x 
+		* cos(-PI / 15) - data->plane_y * sin(-PI / 15);
+	data->plane_y = old_plane_x * sin(-PI / 15) + data->plane_y * cos(-PI / 15);
 }
 
 int	handle_key(int key, t_data *data)

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/24 10:38:45 by rade-sar          #+#    #+#             */
+/*   Updated: 2023/08/24 10:56:07 by rade-sar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3D.h"
 
-int ft_isspace(int c)
+int	ft_isspace(int c)
 {
 	c = (unsigned char)c;
 	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
@@ -11,10 +23,10 @@ int ft_isspace(int c)
 
 int	is_only_spaces(char *line)
 {
-	int	i;
+	int		i;
 
 	i = 0;
-	while(line[i])
+	while (line[i])
 		if (ft_isalnum(line[i++]))
 			return (0);
 	return (1);

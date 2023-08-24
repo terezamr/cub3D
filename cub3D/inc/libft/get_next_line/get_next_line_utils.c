@@ -41,7 +41,7 @@ char	*ft_find_nl(char *str)
 		i++;
 	}
 	if (str[i] == '\n')
-	{		
+	{
 		temp[i] = str[i];
 		i++;
 	}
