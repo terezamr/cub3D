@@ -32,16 +32,16 @@ int	get_i(t_data *data, double *ray)
 	if (data->side == 1)
 	{
 		if (ray[1] < 0)
-			i = 0;
+			i = 2;
 		else
-			i = 1;
+			i = 3;
 	}
 	else
 	{
 		if (ray[0] < 0)
-			i = 2;
+			i = 0;
 		else
-			i = 3;
+			i = 1;
 	}
 	return (i);
 }

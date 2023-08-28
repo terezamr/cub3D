@@ -54,15 +54,15 @@ void	drawing(int x, t_data *data, double *dist, double *ray)
 	get_picture_vars(data, data->side, dist);
 	while (y < WINDOW_HEIGHT)
 	{
-		if (y >= 0 && y < data->start)
-			ft_mlx_pixel_put(data, x, y, data->colors[0]);
-		else if (y >= data->end)
+		if (y >= 0 && y <= data->start)
 			ft_mlx_pixel_put(data, x, y, data->colors[1]);
-		else if (y >= data->start && y < data->end)
+		else if (y > data->start && y < data->end)
 		{
 			color = get_pixel_texture(data, y, ray);
 			ft_mlx_pixel_put(data, x, y, color);
 		}
+		else if (y >= data->end)
+			ft_mlx_pixel_put(data, x, y, data->colors[0]);
 		y++;
 	}
 }
