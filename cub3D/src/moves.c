@@ -1,55 +1,96 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.c                                             :+:      :+:    :+:   */
+/*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:02:51 by mvicente          #+#    #+#             */
-/*   Updated: 2023/07/06 16:28:56 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:07:27 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void    move_w(t_data *data)
+double check_xy(t_data *data, double x, double y, char c)
 {
-    if (data->map[(int)(data->posX + data->dirX)][(int)data->posY] == '0')
-		data->posX += data->dirX;
-	if (data->map[(int)data->posX][(int)(data->posY + data->dirY)] == '0')
-		data->posY += data->dirY;
+	if (c == 'x')
+	{
+		if ((int)x <= 1)
+			x = 1.5;
+		if ((int)x + 1 >= data->map_height - 1)
+			x = data->map_height - 1.5;
+		return (x);
+	}
+	if ((int)y <= 1)
+		y = 1.5;
+	if (round(y) >= (int)ft_strlen(data->map[(int)x]) - 2)
+		y = ft_strlen(data->map[(int)x]) - 2.5;
+	return (y);
 }
 
-void    move_s(t_data *data)
+void	move_w(t_data *data)
 {
-    if (data->map[(int)(data->posX - data->dirX)][(int)data->posY] == '0')
-		data->posX -= data->dirX;
-	if (data->map[(int)data->posX][(int)(data->posY - data->dirY)] == '0')
-		data->posY -= data->dirY;
+	double	x;
+	double	y;
+
+	x = data->pos_x + data->dir_x;
+	y = data->pos_y + data->dir_y;
+	x = check_xy(data, x, y, 'x');
+	y = check_xy(data, x, y, 'y');
+	if (data->map[(int)x][(int)y] != '1')
+	{
+		data->pos_x = x;
+		data->pos_y = y;
+	}
+	
 }
 
-void    move_a(t_data *data)
+void	move_s(t_data *data)
 {
-	double dir1;
-	double dir2;
+	double	x;
+	double	y;
 
-	dir1 = data->dirX;
-	dir2 = -data->dirY;
-    if (data->map[(int)(data->posX + dir2)][(int)(data->posY)] == '0')
-		data->posX += dir2;
-	if (data->map[(int)(data->posX)][(int)(data->posY + dir1)] == '0')
-		data->posY += dir1;
+	x = data->pos_x - data->dir_x;
+	y = data->pos_y - data->dir_y;
+	x = check_xy(data, x, y, 'x');
+	y = check_xy(data, x, y, 'y');
+	if (data->map[(int)x][(int)y] != '1')
+	{
+		data->pos_x = x;
+		data->pos_y = y;
+	}
+	
 }
 
-void    move_d(t_data *data)
+void	move_a(t_data *data)
 {
-	double dir1;
-	double dir2;
+	double	x;
+	double	y;
 
-	dir1 = -data->dirX;
-	dir2 = data->dirY;
-    if (data->map[(int)(data->posX + dir2)][(int)(data->posY)] == '0')
-		data->posX += dir2;
-	if (data->map[(int)(data->posX)][(int)(data->posY + dir1)] == '0')
-		data->posY += dir1;
+	x = data->pos_x - data->dir_y;
+	y = data->pos_y + data->dir_x;
+	x = check_xy(data, x, y, 'x');
+	y = check_xy(data, x, y, 'y');
+	if (data->map[(int)x][(int)y] != '1')
+	{
+		data->pos_x = x;
+		data->pos_y = y;
+	}
+}
+
+void	move_d(t_data *data)
+{
+	double	x;
+	double	y;
+
+	x = data->pos_x + data->dir_y;
+	y = data->pos_y - data->dir_x;
+	x = check_xy(data, x, y, 'x');
+	y = check_xy(data, x, y, 'y');
+	if (data->map[(int)x][(int)y] != '1')
+	{
+		data->pos_x = x;
+		data->pos_y = y;
+	}
 }

@@ -1,15 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/24 10:38:28 by rade-sar          #+#    #+#             */
+/*   Updated: 2023/08/24 12:46:35 by rade-sar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3D.h"
 
-int ft_isspace(int c)
-{
-	c = (unsigned char)c;
-	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
-		|| c == ' ')
-		return (1);
-	return (0);
-}
-
-int check_map_edges(char **map, t_point p, int max_x, int max_y)
+int	check_map_edges(char **map, t_point p, int max_x, int max_y)
 {
 	if (p.y == 0 && (map[p.y][p.x] == '1' || ft_isspace(map[p.y][p.x])))
 		return (1);
@@ -56,40 +59,43 @@ int	is_closed(char **map, t_point p, int max_x, int max_y)
 	return (0);
 }
 
-
-void    check_map(t_data *data)
+void	check_orientation(t_data *data, char p, int x, int y)
 {
-    int x;
-    int y;
-    int width;
+	if (p == 'N' || p == 'E'
+		|| p == 'W' || p == 'S')
+	{
+		if (data->letter == 0)
+		{
+			data->letter = p;
+			data->pos_x = y + 0.5;
+			data->pos_y = x + 0.5;
+		}
+		else
+			error_msg(PLAYER_ERROR);
+	}
+}
 
-    y = -1;
-    if (ft_mtxlen(data->map) < 3)
-        error_msg(INVALID_MAP);   
-    while (++y != data->map_height)
-    {
-        x = -1;
-        width = ft_strlen(data->map[y]);
-        while (data->map[y][++x])
-        {
-            if (data->map[y][x] != '1' && !ft_isspace(data->map[y][x])
-                && !is_closed(data->map, (t_point){x,y}, width, data->map_height))
-                error_msg(INVALID_BORDER);
-				if (data->map[y][x] == 'N' || data->map[y][x] == 'E'
-					|| data->map[y][x] == 'W' || data->map[y][x] == 'S')
-				{
-					if (data->letter == 0)
-					{
-						data->letter = data->map[y][x];
-						data->posX = y;
-						data->posY = x;
-					}
-					else
-						error_msg(PLAYER_ERROR);
-				}
-			}
-    }
+void	check_map(t_data *data)
+{
+	int		x;
+	int		y;
+	int		w;
+
+	y = -1;
+	if (ft_mtxlen(data->map) < 3)
+		error_msg(INVALID_MAP);
+	while (++y != data->map_height)
+	{
+		x = -1;
+		w = ft_strlen(data->map[y]);
+		while (data->map[y][++x])
+		{
+			if (data->map[y][x] != '1' && !ft_isspace(data->map[y][x])
+				&& !is_closed(data->map, (t_point){x, y}, w, data->map_height))
+				error_msg(INVALID_BORDER);
+			check_orientation(data, data->map[y][x], x, y);
+		}
+	}	
 	if (data->letter == 0)
 		error_msg(PLAYER_ERROR);
 }
-

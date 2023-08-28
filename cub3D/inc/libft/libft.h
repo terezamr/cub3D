@@ -49,9 +49,7 @@ size_t		ft_strlen(const char *s);
 
 // t_list		*ft_lstnew(void *content);
 // t_list		*ft_lstlast(t_list *lst);
-// t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 // t_list		*ft_lstlast(t_list *lst);
-// t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 char		**ft_split(char const *s, char c);
 

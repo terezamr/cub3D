@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:24:40 by mvicente          #+#    #+#             */
-/*   Updated: 2023/07/06 16:20:08 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:10:24 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ int	exit_cub(t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
-	while (data->map[i])
-	{
-		free(data->map[i]);
-		i++;
-	}
+	while (i != data->map_height)
+		free(data->map[i++]);
 	free(data->map);
 	free(data->mlx);
 	free(data->colors);
@@ -39,32 +36,38 @@ int	exit_cub(t_data *data)
 
 void	rotate_left(t_data *data)
 {
-	double oldDirX;
-	double oldPlaneX;
-	
-	oldDirX = data->dirX;
-	oldPlaneX = data->planeX;
-	data->dirX = data->dirX * cos(PI / 15) - data->dirY * sin(PI / 15);
-    data->dirY = oldDirX * sin(PI / 15) + data->dirY * cos(PI / 15);
-	data->planeX = data->planeX * cos(PI / 15) - data->planeY * sin(PI / 15);
-	data->planeY = oldPlaneX * sin(PI / 15) + data->planeY * cos(PI / 15);
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = data->dir_x;
+	old_plane_x = data->plane_x;
+	data->dir_x = data->dir_x * cos(PI / 15) - data->dir_y * sin(PI / 15);
+	data->dir_y = old_dir_x * sin(PI / 15) + data->dir_y * cos(PI / 15);
+	data->plane_x = data->plane_x * cos(PI / 15) - data->plane_y * sin(PI / 15);
+	data->plane_y = old_plane_x * sin(PI / 15) + data->plane_y * cos(PI / 15);
 }
 
 void	rotate_right(t_data *data)
 {
-	double oldDirX;
-	double oldPlaneX;
-	
-	oldDirX = data->dirX;
-	oldPlaneX = data->planeX;
-	data->dirX = data->dirX * cos(-PI / 15) - data->dirY * sin(-PI / 15);
-    data->dirY = oldDirX * sin(-PI / 15) + data->dirY * cos(-PI / 15);
-	data->planeX = data->planeX * cos(-PI / 15) - data->planeY * sin(-PI / 15);
-	data->planeY = oldPlaneX * sin(-PI / 15) + data->planeY * cos(-PI / 15);
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = data->dir_x;
+	old_plane_x = data->plane_x;
+	data->dir_x = data->dir_x * cos(-PI / 15) - data->dir_y * sin(-PI / 15);
+	data->dir_y = old_dir_x * sin(-PI / 15) + data->dir_y * cos(-PI / 15);
+	data->plane_x = data->plane_x 
+		* cos(-PI / 15) - data->plane_y * sin(-PI / 15);
+	data->plane_y = old_plane_x * sin(-PI / 15) + data->plane_y * cos(-PI / 15);
 }
 
 int	handle_key(int key, t_data *data)
 {
+	printf("BEFORE\n");
+	printf("pos_x: %f, pos_y: %f\n", data->pos_x, data->pos_y);
+	printf("pos_x: %i, pos_y: %i\n", (int)data->pos_x, (int)data->pos_y);
+	printf("dir-x: %f, dir-y: %f\n", data->dir_x, data->dir_y);
+	printf("==========================================\n");
 	if (key == ESCAPE)
 		exit_cub(data);
 	else if (key == KEY_W)
@@ -79,5 +82,10 @@ int	handle_key(int key, t_data *data)
 		rotate_left(data);
 	else if (key == KEY_RIGHT)
 		rotate_right(data);
+	printf("AFTER\n");
+	printf("pos_x: %f, pos_y: %f\n", data->pos_x, data->pos_y);
+	printf("pos_x: %i, pos_y: %i\n", (int)data->pos_x, (int)data->pos_y);
+	printf("dir-x: %f, dir-y: %f\n", data->dir_x, data->dir_y);
+	printf("==========================================\n");
 	return (0);
 }

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_msg.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/24 10:38:33 by rade-sar          #+#    #+#             */
+/*   Updated: 2023/08/24 10:44:49 by rade-sar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3D.h"
 
-void    error_msg(char *message)
+void	error_msg(char *message)
 {
-    printf("%s%s%s\n", RED, "Error", RESET);
-    printf("%s\n", message);
-    exit(1);
+	printf("%s%s%s\n", RED, "Error", RESET);
+	printf("%s\n", message);
+	exit(1);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/24 10:38:41 by rade-sar          #+#    #+#             */
+/*   Updated: 2023/08/24 11:38:13 by rade-sar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3D.h"
 
 int	get_map_height(char *line, int fd)
@@ -21,7 +33,7 @@ int	get_map_height(char *line, int fd)
 	return (height);
 }
 
-void	parse_map(t_data *data, int lineOfMap)
+void	parse_map(t_data *data, int map_line)
 {
 	int		j;
 	int		i;
@@ -35,31 +47,32 @@ void	parse_map(t_data *data, int lineOfMap)
 	if (!data->map)
 		error_msg(MLC_ERROR);
 	line = get_next_line(fd);
-	while (j++ != lineOfMap)
+	while (j++ != map_line)
 		line = next_line(line, fd);
 	while (line && !is_only_spaces(line))
 	{
 		data->map[i++] = ft_strdup(line);
 		line = next_line(line, fd);
 	}
+	data->map[i] = 0;
 	free(line);
 	close(fd);
 }
 
 int	read_textures(t_data *data, char *line)
 {
-	if (!data->textures[0] && check_texture(data, line, 0))
-		data->textures[0] = ft_strdup(line);
-	else if (!data->textures[1] && check_texture(data, line, 0))
-		data->textures[1] = ft_strdup(line);
-	else if (!data->textures[2] && check_texture(data, line, 0))
-		data->textures[2] = ft_strdup(line);
-	else if (!data->textures[3] && check_texture(data, line, 0))
-		data->textures[3] = ft_strdup(line);
-	else if (!data->colors[0] && check_texture(data, line, 1))
-		(void)data->colors[0];
-	else if (!data->colors[1] && check_texture(data, line, 2))
-		(void)data->colors[1];
+	if (!data->textures[0])
+		check_texture(data, line, 0, 0);
+	else if (!data->textures[1])
+		check_texture(data, line, 1, 0);
+	else if (!data->textures[2])
+		check_texture(data, line, 2, 0);
+	else if (!data->textures[3])
+		check_texture(data, line, 3, 0);
+	else if (data->colors[0] == -1)
+		check_texture(data, line, 0, 1);
+	else if (data->colors[1] == -1)
+		check_texture(data, line, 0, 2);
 	else
 		return (0);
 	return (1);
@@ -67,45 +80,48 @@ int	read_textures(t_data *data, char *line)
 
 void	parse_file(t_data *data, int fd)
 {
-    char	*line;
-	int		lineOfMap;
+	char	*line;
+	int		h;
+	int		map_line;
 
-	lineOfMap = 0;
-    line = get_next_line(fd);
-    while (line)
+	map_line = 0;
+	line = get_next_line(fd);
+	while (line)
 	{
 		while (line && is_only_spaces(line))
 		{
 			line = next_line(line, fd);
-			lineOfMap++;
+			map_line++;
 		}
-		if (!read_textures(data, line)) {
-			data->map_height = get_map_height(line, fd);
+		if (!read_textures(data, line))
+		{
+			h = get_map_height(line, fd);
+			data->map_height = h;
 			break ;
 		}
 		line = next_line(line, fd);
-		lineOfMap++;
+		map_line++;
 	}
-	parse_map(data, lineOfMap);
+	parse_map(data, map_line);
 }
 
 void	parse_all(t_data *data, int argc, char *file_path)
 {
-    int		fd;
+	int		fd;
 
-    if (argc != 2)
+	if (argc != 2)
 		error_msg(INVALID_ARGS);
-    fd = open(file_path, __O_DIRECTORY);
-    if (fd != -1)
-        error_msg(DIR_ERROR);
-    fd = open(file_path, O_RDONLY);
-    if (fd == -1)
+	fd = open(file_path, __O_DIRECTORY);
+	if (fd != -1)
+		error_msg(DIR_ERROR);
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
 	{
-        error_msg(OPEN_ERROR);
+		error_msg(OPEN_ERROR);
 	}
 	check_extension(file_path);
 	data->file_path = file_path;
-    parse_file(data, fd);
+	parse_file(data, fd);
 	check_map(data);
-    close(fd);
+	close(fd);
 }

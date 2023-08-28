@@ -1,10 +1,10 @@
-N /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/wall_1.xpm
-S /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/wall_2.xpm  
-W /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/wall_3.xpm
-E /nfs/homes/mvicente/sgoinfre/cub3D/cub3D/inc/textures/wall_4.xpm
+N ./inc/textures/wall_1.xpm
+S ./inc/textures/wall_2.xpm  
+W ./inc/textures/wall_3.xpm
+E ./inc/textures/wall_4.xpm
 
-F 255,0,0
-C 255,0,0   
+F 255,255,255
+C 128,120,128   
 
 11111111111111111111111111111
 10000000000000000000000001001
