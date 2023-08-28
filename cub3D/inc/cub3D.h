@@ -134,8 +134,8 @@ typedef struct s_data
 /* Parsing & Check */
 
 void	parse_all(t_data *data, int argc, char *file_path);
-void	error_msg(char *message);
-void	check_extension(char *path);
+void	error_msg(t_data *data, char *message);
+void	check_extension(t_data *data, char *path);
 void	check_map(t_data *data);
 char	*next_line(char *line, int fd);
 int		is_only_spaces(char *line);

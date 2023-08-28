@@ -18,7 +18,7 @@ char	*next_line(char *line, int fd)
 	return (get_next_line(fd));
 }
 
-void	check_extension(char *path)
+void	check_extension(t_data *data, char *path)
 {
 	char	**splitted_path;
 
@@ -26,28 +26,43 @@ void	check_extension(char *path)
 	if (!ft_equals(splitted_path[ft_mtxlen(splitted_path) - 1], "cub"))
 	{
 		ft_free_mtx(splitted_path);
-		error_msg(INVALID_EXTENSION);
+		error_msg(data, INVALID_EXTENSION);
 	}
 	ft_free_mtx(splitted_path);
+}
+
+int	check_numbs(char **rgb, int i)
+{
+	char	*trim;
+
+	trim = ft_strtrim(rgb[i], "\n");
+	if (ft_atol(trim) < 0 || ft_atol(trim) > 255
+		|| (ft_atol(trim) == 0 && !ft_equals(trim, "0")))
+	{
+		free(trim);
+		return (1);
+	}
+	free(trim);
+	return (0);
 }
 
 int	check_rgb(t_data *data, char **splitted, int pos)
 {
 	char	**rgb;
-	char	*trim;
 	int		i;
 
 	rgb = ft_split(splitted[1], ',');
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
-		error_msg(INVALID_RGB);
+		error_msg(data, INVALID_RGB);
 	i = -1;
 	while (++i != 3)
 	{
-		trim = ft_strtrim(rgb[i], "\n");
-		if (ft_atol(trim) < 0 || ft_atol(trim) > 255
-			|| (ft_atol(trim) == 0 && !ft_equals(trim, "0")))
-			error_msg(INVALID_RGB);
-		free(trim);
+		if (check_numbs(rgb, i))
+		{
+			ft_free_mtx(rgb);
+			ft_free_mtx(splitted);			
+			error_msg(data, INVALID_RGB);
+		}
 	}
 	data->colors[pos - 1] = get_rgb(ft_atol(rgb[0]), ft_atol(rgb[1]),
 			ft_atol(rgb[2]));
@@ -63,18 +78,19 @@ int	check_texture(t_data *data, char *line, int pos, int rgb)
 	int		fd;
 
 	splitted = ft_split(line, ' ');
+	
 	if (!splitted || !splitted[0])
-		error_msg(INVALID_TEXTURE_TYPE);
+		error_msg(data, INVALID_TEXTURE_TYPE);
 	if (ft_strlen(splitted[0]) < 1 || ft_strlen(splitted[0]) > 2)
-		error_msg(INVALID_TEXTURE_TYPE);
+		error_msg(data, INVALID_TEXTURE_TYPE);
 	if (!splitted[1] || ft_mtxlen(splitted) > 3)
-		error_msg(INVALID_TEXTURE);
+		error_msg(data, INVALID_TEXTURE);
 	if (rgb)
 		return (check_rgb(data, splitted, rgb));
 	texture_path = ft_strtrim(splitted[1], "\n");
 	fd = open(texture_path, O_RDONLY);
 	if (fd == -1)
-		error_msg(INVALID_TEXTURE);
+		error_msg(data, INVALID_TEXTURE);
 	close(fd);
 	data->textures[pos] = ft_strdup(texture_path);
 	free(texture_path);

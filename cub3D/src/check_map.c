@@ -71,7 +71,7 @@ void	check_orientation(t_data *data, char p, int x, int y)
 			data->pos_y = x + 0.5;
 		}
 		else
-			error_msg(PLAYER_ERROR);
+			error_msg(data, PLAYER_ERROR);
 	}
 }
 
@@ -83,7 +83,7 @@ void	check_map(t_data *data)
 
 	y = -1;
 	if (ft_mtxlen(data->map) < 3)
-		error_msg(INVALID_MAP);
+		error_msg(data, INVALID_MAP);
 	while (++y != data->map_height)
 	{
 		x = -1;
@@ -92,10 +92,10 @@ void	check_map(t_data *data)
 		{
 			if (data->map[y][x] != '1' && !ft_isspace(data->map[y][x])
 				&& !is_closed(data->map, (t_point){x, y}, w, data->map_height))
-				error_msg(INVALID_BORDER);
+				error_msg(data, INVALID_BORDER);
 			check_orientation(data, data->map[y][x], x, y);
 		}
 	}
 	if (data->letter == 0)
-		error_msg(PLAYER_ERROR);
+		error_msg(data, PLAYER_ERROR);
 }

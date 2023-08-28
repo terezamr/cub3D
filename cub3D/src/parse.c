@@ -12,7 +12,7 @@
 
 #include "../inc/cub3D.h"
 
-int	get_map_height(char *line, int fd)
+int	get_map_height(t_data *data, char *line, int fd)
 {
 	int		height;
 
@@ -25,7 +25,7 @@ int	get_map_height(char *line, int fd)
 	while (line)
 	{
 		if (!is_only_spaces(line))
-			error_msg(INVALID_MAP);
+			error_msg(data, INVALID_MAP);
 		line = next_line(line, fd);
 	}
 	free(line);
@@ -45,7 +45,7 @@ void	parse_map(t_data *data, int map_line)
 	fd = open(data->file_path, O_RDONLY);
 	data->map = malloc(sizeof(char *) * (data->map_height + 1));
 	if (!data->map)
-		error_msg(MLC_ERROR);
+		error_msg(data, MLC_ERROR);
 	line = get_next_line(fd);
 	while (j++ != map_line)
 		line = next_line(line, fd);
@@ -95,7 +95,7 @@ void	parse_file(t_data *data, int fd)
 		}
 		if (!read_textures(data, line))
 		{
-			h = get_map_height(line, fd);
+			h = get_map_height(data, line, fd);
 			data->map_height = h;
 			break ;
 		}
@@ -110,16 +110,14 @@ void	parse_all(t_data *data, int argc, char *file_path)
 	int		fd;
 
 	if (argc != 2)
-		error_msg(INVALID_ARGS);
+		error_msg(data, INVALID_ARGS);
 	fd = open(file_path, __O_DIRECTORY);
 	if (fd != -1)
-		error_msg(DIR_ERROR);
+		error_msg(data, DIR_ERROR);
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
-	{
-		error_msg(OPEN_ERROR);
-	}
-	check_extension(file_path);
+		error_msg(data, OPEN_ERROR);
+	check_extension(data, file_path);
 	data->file_path = file_path;
 	parse_file(data, fd);
 	check_map(data);
