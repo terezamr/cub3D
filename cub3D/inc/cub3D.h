@@ -113,6 +113,7 @@ typedef struct s_data
 	char	*file_path;
 	char	**map;
 	char	**textures;
+	int		angle;
 	int		map_width;
 	int		map_height;
 	int		start;

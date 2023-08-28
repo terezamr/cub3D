@@ -63,5 +63,6 @@ void	vars_init(t_data *data)
 	data->map_c = malloc(sizeof(int) * 2);
 	data->textures = malloc(sizeof(char *) * 4);
 	data->colors = malloc(sizeof(int) * 2);
+	data->angle = 0;
 	vars_init2(data);
 }

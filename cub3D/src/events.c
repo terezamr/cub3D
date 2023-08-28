@@ -78,5 +78,6 @@ int	handle_key(int key, t_data *data)
 		rotate_left(data);
 	else if (key == KEY_RIGHT)
 		rotate_right(data);
+	printf("after x %f y %f\n\n", data->pos_x, data->pos_y);
 	return (0);
 }

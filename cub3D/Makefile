@@ -71,7 +71,7 @@ RED			=	\033[0;31m
 BLUE_PISK	=	\033[0;34;5;199m
 BLUE		=	\033[0;36m
 VIOLET		=	\033[0;38;5;199m
-RESET		=	\033[0mt
+RESET		=	\033[0m
 
 ########## 		   TARGETS 		##########
 
