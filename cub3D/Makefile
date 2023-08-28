@@ -40,7 +40,7 @@ SRC = 	$(SRC_PATH)main.c \
 
 OBJ = $(SRC:.c=.o)
 LDLIBS = -g -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
-LEAKS_FLAG = -g -fsanitize=address
+LEAKS_FLAG = -g 
 C_FLAGS = -Wall -Wextra -Werror
 
 ########## 		   LIBFT 		##########

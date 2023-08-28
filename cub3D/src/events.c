@@ -31,6 +31,7 @@ int	exit_cub(t_data *data)
 	free(data->mlx);
 	free(data->colors);
 	free(data->map_c);
+	free(data->textures);
 	exit(0);
 }
 
