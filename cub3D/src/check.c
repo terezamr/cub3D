@@ -71,29 +71,33 @@ int	check_rgb(t_data *data, char **splitted, int pos)
 	return (1);
 }
 
-int	check_texture(t_data *data, char *line, int pos, int rgb)
+int	check_texture(t_data *data, int pos, int rgb)
 {
 	char	**splitted;
 	char	*texture_path;
+	int		error;
 	int		fd;
 
-	splitted = ft_split(line, ' ');
-	
-	if (!splitted || !splitted[0])
-		error_msg(data, INVALID_TEXTURE_TYPE);
-	if (ft_strlen(splitted[0]) < 1 || ft_strlen(splitted[0]) > 2)
-		error_msg(data, INVALID_TEXTURE_TYPE);
-	if (!splitted[1] || ft_mtxlen(splitted) > 3)
-		error_msg(data, INVALID_TEXTURE);
+	error = 0;
+	splitted = ft_split(data->line, ' ');
+	if (!splitted || !splitted[0] 
+		|| ft_strlen(splitted[0]) < 1 || ft_strlen(splitted[0]) > 2
+		|| !splitted[1] || ft_mtxlen(splitted) > 3)
+		error = 1;
 	if (rgb)
 		return (check_rgb(data, splitted, rgb));
 	texture_path = ft_strtrim(splitted[1], "\n");
 	fd = open(texture_path, O_RDONLY);
 	if (fd == -1)
-		error_msg(data, INVALID_TEXTURE);
+		error = 1;
 	close(fd);
 	data->textures[pos] = ft_strdup(texture_path);
 	free(texture_path);
 	ft_free_mtx(splitted);
+	if (error)
+	{
+		free(data->line);
+		error_msg(data, INVALID_TEXTURE);
+	}
 	return (1);
 }

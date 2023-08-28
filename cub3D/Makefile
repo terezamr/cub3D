@@ -71,7 +71,7 @@ RED			=	\033[0;31m
 BLUE_PISK	=	\033[0;34;5;199m
 BLUE		=	\033[0;36m
 VIOLET		=	\033[0;38;5;199m
-RESET		=	\033[0mt
+RESET		=	\033[0m
 
 ########## 		   TARGETS 		##########
 
@@ -108,17 +108,17 @@ norm:
 	@cd ./inc && norminette -R CheckDefine *.h
 	${NORM_CORRECT}
 
-test_wrong_map:	all
-	@for map_file in ./inc/testes/wrong/*.cub; do \
-		echo "$$map_file"; \
-		./$(NAME) $$map_file; \
-	done
+# test_wrong_map:	all
+# 	@for map_file in ./inc/testes/wrong/*.cub; do \
+# 		echo "$$map_file"; \
+# 		./$(NAME) $$map_file; \
+# 	done
 
-test_good_map:	all
-	@for map_file in ./inc/testes/good/*.cub; do \
-		echo "$$map_file"; \
-		./$(NAME) $$map_file; \
-	done
+# test_good_map:	all
+# 	@for map_file in ./inc/testes/good/*.cub; do \
+# 		echo "$$map_file"; \
+# 		./$(NAME) $$map_file; \
+# 	done
 
 .SILENT: ${NAME} $(OBJ) clean fclean
 

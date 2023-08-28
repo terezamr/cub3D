@@ -41,13 +41,9 @@ int	is_closed(char **map, t_point p, int max_x, int max_y)
 		return (check_map_edges(map, p, max_x, max_y));
 	else
 	{
-		if (map[p.y - 1][p.x] && is_map_char(map[p.y - 1][p.x])
-			&& map[p.y - 1][p.x - 1] && is_map_char(map[p.y - 1][p.x - 1])
-			&& map[p.y - 1][p.x + 1] && is_map_char(map[p.y - 1][p.x + 1]))
+		if (map[p.y - 1][p.x] && is_map_char(map[p.y - 1][p.x]))
 			adjacent++;
-		if (map[p.y + 1] && map[p.y + 1][p.x] && is_map_char(map[p.y + 1][p.x])
-			&& map[p.y + 1][p.x - 1] && is_map_char(map[p.y + 1][p.x - 1])
-			&& map[p.y + 1][p.x + 1] && is_map_char(map[p.y + 1][p.x + 1]))
+		if (map[p.y + 1] && map[p.y + 1][p.x] && is_map_char(map[p.y + 1][p.x]))
 			adjacent++;
 		if (map[p.y][p.x - 1] && is_map_char(map[p.y][p.x - 1]))
 			adjacent++;
@@ -73,6 +69,8 @@ void	check_orientation(t_data *data, char p, int x, int y)
 		else
 			error_msg(data, PLAYER_ERROR);
 	}
+	else if (p != '1' && p != '0' && !ft_isspace(p))
+		error_msg(data, INVALID_CHAR);
 }
 
 void	check_map(t_data *data)

@@ -59,20 +59,20 @@ void	parse_map(t_data *data, int map_line)
 	close(fd);
 }
 
-int	read_textures(t_data *data, char *line)
+int	read_textures(t_data *data)
 {
 	if (!data->textures[0])
-		check_texture(data, line, 0, 0);
+		check_texture(data, 0, 0);
 	else if (!data->textures[1])
-		check_texture(data, line, 1, 0);
+		check_texture(data, 1, 0);
 	else if (!data->textures[2])
-		check_texture(data, line, 2, 0);
+		check_texture(data, 2, 0);
 	else if (!data->textures[3])
-		check_texture(data, line, 3, 0);
+		check_texture(data, 3, 0);
 	else if (data->colors[0] == -1)
-		check_texture(data, line, 0, 1);
+		check_texture(data, 0, 1);
 	else if (data->colors[1] == -1)
-		check_texture(data, line, 0, 2);
+		check_texture(data, 0, 2);
 	else
 		return (0);
 	return (1);
@@ -80,26 +80,25 @@ int	read_textures(t_data *data, char *line)
 
 void	parse_file(t_data *data, int fd)
 {
-	char	*line;
 	int		h;
 	int		map_line;
 
 	map_line = 0;
-	line = get_next_line(fd);
-	while (line)
+	data->line = next_line(data->line, fd);
+	while (data->line)
 	{
-		while (line && is_only_spaces(line))
+		while (data->line && is_only_spaces(data->line))
 		{
-			line = next_line(line, fd);
+			data->line = next_line(data->line, fd);
 			map_line++;
 		}
-		if (!read_textures(data, line))
+		if (!read_textures(data))
 		{
-			h = get_map_height(data, line, fd);
+			h = get_map_height(data, data->line, fd);
 			data->map_height = h;
 			break ;
 		}
-		line = next_line(line, fd);
+		data->line = next_line(data->line, fd);
 		map_line++;
 	}
 	parse_map(data, map_line);

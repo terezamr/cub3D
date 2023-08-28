@@ -60,6 +60,8 @@ void	vars_init(t_data *data)
 	data->step_y = 0;
 	data->side = -1;
 	data->letter = 0;
+	data->map = 0;
+	data->line = 0;
 	data->map_c = malloc(sizeof(int) * 2);
 	data->textures = malloc(sizeof(char *) * 4);
 	data->colors = malloc(sizeof(int) * 2);

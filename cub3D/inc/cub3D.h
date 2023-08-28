@@ -111,6 +111,7 @@ typedef struct s_data
 	double	height;
 	char	letter;
 	char	*file_path;
+	char	*line;
 	char	**map;
 	char	**textures;
 	int		map_width;
@@ -139,7 +140,7 @@ void	check_extension(t_data *data, char *path);
 void	check_map(t_data *data);
 char	*next_line(char *line, int fd);
 int		is_only_spaces(char *line);
-int		check_texture(t_data *data, char *line, int pos, int rgb);
+int		check_texture(t_data *data, int pos, int rgb);
 
 /* Utils */
 
