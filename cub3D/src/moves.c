@@ -12,7 +12,7 @@
 
 #include "../inc/cub3D.h"
 
-double check_xy(t_data *data, double x, double y, char c)
+double	check_xy(t_data *data, double x, double y, char c)
 {
 	if (c == 'x')
 	{
@@ -43,7 +43,6 @@ void	move_w(t_data *data)
 		data->pos_x = x;
 		data->pos_y = y;
 	}
-	
 }
 
 void	move_s(t_data *data)
@@ -60,7 +59,6 @@ void	move_s(t_data *data)
 		data->pos_x = x;
 		data->pos_y = y;
 	}
-	
 }
 
 void	move_a(t_data *data)

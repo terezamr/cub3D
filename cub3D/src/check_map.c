@@ -95,7 +95,7 @@ void	check_map(t_data *data)
 				error_msg(INVALID_BORDER);
 			check_orientation(data, data->map[y][x], x, y);
 		}
-	}	
+	}
 	if (data->letter == 0)
 		error_msg(PLAYER_ERROR);
 }

@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 			&data.img.line_len, &data.img.endian);
 	init_tex_image(&data);
 	mlx_loop_hook(data.mlx, render, &data);
-	// mlx_key_hook(data.win, handle_key, &data);
+	//mlx_key_hook(data.win, handle_key, &data);
 	mlx_hook(data.win, 02, (1L << 0), handle_key, &data);
 	mlx_hook(data.win, 17, 1L << 17, exit_cub, &data);
 	mlx_loop(data.mlx);

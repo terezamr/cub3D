@@ -20,11 +20,7 @@ void	get_picture_vars(t_data *data, int side, double *dist)
 		data->distance = (dist[3] - dist[1]);
 	data->height = WINDOW_HEIGHT / data->distance;
 	data->start = WINDOW_HEIGHT / 2 - data->height / 2;
-	if (data->start < 0)
-		data->start = 0;
 	data->end = WINDOW_HEIGHT / 2 + data->height / 2;
-	if (data->end >= WINDOW_HEIGHT)
-		data->end = WINDOW_HEIGHT - 1;
 }
 
 unsigned int	get_pixel_texture(t_data *data, int y, double *ray)
