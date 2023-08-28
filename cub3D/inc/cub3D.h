@@ -139,8 +139,8 @@ void	error_msg(t_data *data, char *message);
 void	check_extension(t_data *data, char *path);
 void	check_map(t_data *data);
 char	*next_line(char *line, int fd);
+void	check_texture_rgb(t_data *data, char **splitted, int pos, int rgb);
 int		is_only_spaces(char *line);
-int		check_texture(t_data *data, char *line, int pos, int rgb);
 
 /* Utils */
 

@@ -12,12 +12,6 @@
 
 #include "../inc/cub3D.h"
 
-char	*next_line(char *line, int fd)
-{
-	free(line);
-	return (get_next_line(fd));
-}
-
 void	check_extension(t_data *data, char *path)
 {
 	char	**splitted_path;
@@ -31,7 +25,7 @@ void	check_extension(t_data *data, char *path)
 	ft_free_mtx(splitted_path);
 }
 
-int	check_numbs(char **rgb, int i)
+void	check_numbs(t_data *data, char **rgb, int i)
 {
 	char	*trim;
 
@@ -40,60 +34,60 @@ int	check_numbs(char **rgb, int i)
 		|| (ft_atol(trim) == 0 && !ft_equals(trim, "0")))
 	{
 		free(trim);
-		return (1);
+		ft_free_mtx(rgb);
+		error_msg(data, INVALID_RGB);
 	}
 	free(trim);
-	return (0);
 }
 
-int	check_rgb(t_data *data, char **splitted, int pos)
+void	check_rgb(t_data *data, char **splitted, int pos)
 {
 	char	**rgb;
 	int		i;
 
 	rgb = ft_split(splitted[1], ',');
+	ft_free_mtx(splitted);			
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
 		error_msg(data, INVALID_RGB);
 	i = -1;
 	while (++i != 3)
-	{
-		if (check_numbs(rgb, i))
-		{
-			ft_free_mtx(rgb);
-			ft_free_mtx(splitted);			
-			error_msg(data, INVALID_RGB);
-		}
-	}
+		check_numbs(data, rgb, i);
 	data->colors[pos - 1] = get_rgb(ft_atol(rgb[0]), ft_atol(rgb[1]),
 			ft_atol(rgb[2]));
 	ft_free_mtx(rgb);
-	ft_free_mtx(splitted);
-	return (1);
 }
 
-int	check_texture(t_data *data, char *line, int pos, int rgb)
+void	check_texture(t_data *data, char **splitted, int pos)
 {
-	char	**splitted;
-	char	*texture_path;
 	int		fd;
+	int		fd2;
+	char	*path;
 
-	splitted = ft_split(line, ' ');
-	
-	if (!splitted || !splitted[0])
-		error_msg(data, INVALID_TEXTURE_TYPE);
-	if (ft_strlen(splitted[0]) < 1 || ft_strlen(splitted[0]) > 2)
-		error_msg(data, INVALID_TEXTURE_TYPE);
-	if (!splitted[1] || ft_mtxlen(splitted) > 3)
+	path = ft_strtrim(splitted[1], "\n");
+	ft_free_mtx(splitted);
+	fd = open(path, __O_DIRECTORY);
+	fd2 = open(path, O_RDONLY);
+	if (fd != -1 || fd2 == -1)
+	{
+		close(fd);
+		free(path);
 		error_msg(data, INVALID_TEXTURE);
+	}
+	close(fd2);
+	data->textures[pos] = ft_strdup(path);
+	free(path);
+}
+
+void	check_texture_rgb(t_data *data, char **splitted, int pos, int rgb)
+{
+	if (!splitted || !splitted[0]
+		|| ft_strlen(splitted[0]) < 1 || ft_strlen(splitted[0]) > 2
+		|| !splitted[1] || ft_mtxlen(splitted) > 3)
+	{
+		ft_free_mtx(splitted);
+		error_msg(data, INVALID_TEXTURE_TYPE);
+	}
 	if (rgb)
 		return (check_rgb(data, splitted, rgb));
-	texture_path = ft_strtrim(splitted[1], "\n");
-	fd = open(texture_path, O_RDONLY);
-	if (fd == -1)
-		error_msg(data, INVALID_TEXTURE);
-	close(fd);
-	data->textures[pos] = ft_strdup(texture_path);
-	free(texture_path);
-	ft_free_mtx(splitted);
-	return (1);
+	check_texture(data, splitted, pos);
 }

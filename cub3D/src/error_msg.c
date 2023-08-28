@@ -32,8 +32,7 @@ void	free_vars(t_data *data)
 
 void	error_msg(t_data* data, char *message)
 {
-	// free_vars(data);
-	(void)data;
+	free_vars(data);
 	printf("%s%s%s\n", RED, "Error", RESET);
 	printf("%s\n", message);
 	exit(1);
