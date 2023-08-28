@@ -65,7 +65,6 @@ void	move_a(t_data *data)
 {
 	double	x;
 	double	y;
-
 	x = data->pos_x - data->dir_y;
 	y = data->pos_y + data->dir_x;
 	x = check_xy(data, x, y, 'x');

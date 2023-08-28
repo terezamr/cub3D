@@ -42,10 +42,10 @@ void	rotate_left(t_data *data)
 
 	old_dir_x = data->dir_x;
 	old_plane_x = data->plane_x;
-	data->dir_x = data->dir_x * cos(PI / 15) - data->dir_y * sin(PI / 15);
-	data->dir_y = old_dir_x * sin(PI / 15) + data->dir_y * cos(PI / 15);
-	data->plane_x = data->plane_x * cos(PI / 15) - data->plane_y * sin(PI / 15);
-	data->plane_y = old_plane_x * sin(PI / 15) + data->plane_y * cos(PI / 15);
+	data->dir_x = data->dir_x * cos(PI / 80) - data->dir_y * sin(PI / 80);
+	data->dir_y = old_dir_x * sin(PI / 80) + data->dir_y * cos(PI / 80);
+	data->plane_x = data->plane_x * cos(PI / 80) - data->plane_y * sin(PI / 80);
+	data->plane_y = old_plane_x * sin(PI / 80) + data->plane_y * cos(PI / 80);
 }
 
 void	rotate_right(t_data *data)
@@ -55,11 +55,11 @@ void	rotate_right(t_data *data)
 
 	old_dir_x = data->dir_x;
 	old_plane_x = data->plane_x;
-	data->dir_x = data->dir_x * cos(-PI / 15) - data->dir_y * sin(-PI / 15);
-	data->dir_y = old_dir_x * sin(-PI / 15) + data->dir_y * cos(-PI / 15);
+	data->dir_x = data->dir_x * cos(-PI / 80) - data->dir_y * sin(-PI / 80);
+	data->dir_y = old_dir_x * sin(-PI / 80) + data->dir_y * cos(-PI / 80);
 	data->plane_x = data->plane_x 
-		* cos(-PI / 15) - data->plane_y * sin(-PI / 15);
-	data->plane_y = old_plane_x * sin(-PI / 15) + data->plane_y * cos(-PI / 15);
+		* cos(-PI / 80) - data->plane_y * sin(-PI / 80);
+	data->plane_y = old_plane_x * sin(-PI / 80) + data->plane_y * cos(-PI / 80);
 }
 
 int	handle_key(int key, t_data *data)

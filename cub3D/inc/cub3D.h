@@ -42,6 +42,7 @@
 
 # define INF 1000000
 # define PI 3.141592654
+# define STEP 0.1
 
 // ERROR MESSAGES
 
