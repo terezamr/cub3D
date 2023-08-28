@@ -14,13 +14,10 @@
 
 int	check_xy(t_data *data, int x, int y)
 {
-	if ((data->map[(int)x][(int)y] != '1'
+	if (data->map[(int)x][(int)y] != '1'
 		&& data->map[(int)(x + 0.1)][(int)y] != '1'
 		&& data->map[(int)x][(int)(y + 0.1)] != '1'
 		&& data->map[(int)(x + 0.1)][(int)(y + 0.1)] != '1')
-		|| (data->map[(int)(x - 0.1)][(int)y] != '1'
-		&& data->map[(int)x][(int)(y - 0.1)] != '1'
-		&& data->map[(int)(x - 0.1)][(int)(y - 0.1)] != '1'))
 		return (1);
 	return (0);
 }
@@ -46,7 +43,7 @@ void	move_s(t_data *data)
 
 	x = data->pos_x - STEP * data->dir_x;
 	y = data->pos_y - STEP * data->dir_y;
-	if (check_xy(data, x, y))
+	if (data->map[(int)x][(int)y] != '1' && data->map[(int)(x + 0.1)][(int)y] != '1')
 	{
 		data->pos_x = x;
 		data->pos_y = y;
@@ -59,7 +56,8 @@ void	move_a(t_data *data)
 	double	y;
 	x = data->pos_x - STEP * data->dir_y;
 	y = data->pos_y + STEP * data->dir_x;
-	if (check_xy(data, x, y))
+	if (data->map[(int)x][(int)y] != '1' && data->map[(int)(x + 0.1)][(int)(y)] != '1'
+		&& data->map[(int)(x)][(int)(y + 0.1)] != '1')
 	{
 		data->pos_x = x;
 		data->pos_y = y;
@@ -73,7 +71,8 @@ void	move_d(t_data *data)
 
 	x = data->pos_x + STEP * data->dir_y;
 	y = data->pos_y - STEP * data->dir_x;
-	if (check_xy(data, x, y))
+	if (data->map[(int)x][(int)y] != '1' && data->map[(int)(x + 0.1)][(int)(y)] != '1'
+		&& data->map[(int)(x)][(int)(y + 0.1)] != '1')
 	{
 		data->pos_x = x;
 		data->pos_y = y;

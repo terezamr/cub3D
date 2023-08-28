@@ -24,7 +24,7 @@
 // DEFINES
 
 # define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 800
+# define WINDOW_HEIGHT 600
 # define ESCAPE 65307
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
