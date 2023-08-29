@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:38:41 by rade-sar          #+#    #+#             */
-/*   Updated: 2023/08/29 13:43:40 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/08/29 13:53:10 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	parse_file(t_data *data, int fd)
 		line = next_line(line, fd);
 		map_line++;
 	}
-	//free(line);
+	// free(line);
 	parse_map(data, map_line);
 }
 
@@ -114,12 +114,6 @@ void	parse_all(t_data *data, int argc, char *file_path)
 
 	if (argc != 2)
 		error_msg(data, INVALID_ARGS);
-	fd = open(file_path, __O_DIRECTORY);
-	if (fd != -1)
-	{
-		close(fd);
-		error_msg(data, DIR_ERROR);
-	}
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		error_msg(data, OPEN_ERROR);

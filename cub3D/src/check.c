@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:38:24 by rade-sar          #+#    #+#             */
-/*   Updated: 2023/08/29 13:52:08 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/08/29 13:53:05 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_numbs(t_data *data, char **rgb, int i, char *line)
 {
 	char	*trim;
 
-	trim = ft_strtrim(rgb[i], "\n");
+	trim = rgb[i];
 	if (ft_atol(trim) < 0 || ft_atol(trim) > 255
 		|| (ft_atol(trim) == 0 && !ft_equals(trim, "0")))
 	{
@@ -67,13 +67,15 @@ void	check_texture(t_data *data, char **splitted, int pos, char *line)
 	int		fd2;
 	char	*path;
 
-	path = ft_strtrim(splitted[1], "\n");
+	path = splitted[1];
 	ft_free_mtx(splitted);
 	fd = open(path, __O_DIRECTORY);
 	fd2 = open(path, O_RDONLY);
 	if (fd != -1 || fd2 == -1)
 	{
-		close(fd);
+		if (fd != -1)
+			close(fd);
+		free(line);
 		free(path);
 		free(line);
 		error_msg(data, INVALID_TEXTURE);
@@ -86,15 +88,18 @@ void	check_texture(t_data *data, char **splitted, int pos, char *line)
 void	check_texture_rgb(t_data *data, char *line, int pos, int rgb)
 {
 	char	**splitted;
+	char	*trim;
 
-	splitted = ft_split(line, ' ');
+	trim = ft_strtrim(line, "\n");
+	splitted = ft_split(trim, ' ');
+	free(trim);
 	if (!splitted || !splitted[0]
 		|| ft_strlen(splitted[0]) < 1 || ft_strlen(splitted[0]) > 2
 		|| !splitted[1] || ft_mtxlen(splitted) >= 3)
 	{
 		ft_free_mtx(splitted);
 		free(line);
-		error_msg(data, INVALID_TEXTURE_TYPE);
+		error_msg(data, INVALID_TEXTURE);
 	}
 	if (rgb)
 		return (check_rgb(data, splitted, rgb, line));
