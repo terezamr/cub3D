@@ -29,7 +29,7 @@ void	check_numbs(t_data *data, char **rgb, int i, char *line)
 {
 	char	*trim;
 
-	trim = rgb[i];
+	trim = ft_strdup(rgb[i]);
 	if (ft_atol(trim) < 0 || ft_atol(trim) > 255
 		|| (ft_atol(trim) == 0 && !ft_equals(trim, "0")))
 	{
@@ -67,7 +67,7 @@ void	check_texture(t_data *data, char **splitted, int pos, char *line)
 	int		fd2;
 	char	*path;
 
-	path = splitted[1];
+	path = ft_strdup(splitted[1]);
 	ft_free_mtx(splitted);
 	fd = open(path, __O_DIRECTORY);
 	fd2 = open(path, O_RDONLY);

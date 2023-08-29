@@ -53,7 +53,7 @@
 # define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_EXTENSION "Invalid file extension. File must be a .cub file."
 # define INVALID_TEXTURE_TYPE "Type must be composed by one or two characters."
-# define INVALID_TEXTURE "Texture file not found."
+# define INVALID_TEXTURE "Invalid texture."
 # define INVALID_RGB "Invalid RGB color."
 # define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_MAP "Invalid map."
