@@ -1,7 +1,7 @@
-N ./inc/textures/wall_1.xpm
-S ./inc/textures/wall_2.xpm  
-W ./inc/textures/wall_3.xpm
-E ./inc/textures/wall_4.xpm
+NO ./inc/textures/wall_1.xpm
+SO ./inc/textures/wall_2.xpm  
+WE ./inc/textures/wall_3.xpm
+EA ./inc/textures/wall_4.xpm
 
 F 128,120,128   
 C 200,255,255
@@ -15,5 +15,5 @@ C 200,255,255
 100001000000000W0000000000001
 10000000000000000000000000001
 10000100000000000000000010001
-10000000000000000000000000001
+10000000000010000000000000001
 11111111111111111111111111111

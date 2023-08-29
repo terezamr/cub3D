@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:02:51 by mvicente          #+#    #+#             */
-/*   Updated: 2023/08/24 14:07:27 by rade-sar         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:37:11 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@
 // data->pos_y < y => east
 // data->pos_y > y => west
 
-// printf("XY : x: %f, y: %f\n", x, y);
-// printf("(int)XY : x: %d, y: %d\n", (int)ceil(x), (int)ceil(y));
-// printf("char: %c\n", data->map[(int)x][(int)y]);
-
 int	check_xy(t_data *data, double x, double y)
 {
-	if (data->map[(int)x][(int)y] == '\0' || ft_isspace(data->map[(int)x][(int)y]))
+	if (data->map[(int)x][(int)y] == '\0'
+		|| ft_isspace(data->map[(int)x][(int)y]))
 		return (0);
 	if ((data->pos_x > x && data->pos_y > y
 			&& data->map[(int)(x - 0.1)][(int)(y - 0.1)] != '1')

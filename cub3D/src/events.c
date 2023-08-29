@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:24:40 by mvicente          #+#    #+#             */
-/*   Updated: 2023/08/24 13:10:24 by rade-sar         ###   ########.fr       */
+/*   Updated: 2023/08/29 18:10:27 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,5 @@ int	handle_key(int key, t_data *data)
 		rotate_left(data);
 	else if (key == KEY_RIGHT)
 		rotate_right(data);
-	printf("x: %f, y: %f\n", data->pos_x, data->pos_y);
 	return (0);
 }

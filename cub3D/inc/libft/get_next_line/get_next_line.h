@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 18:55:22 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/05/05 18:55:23 by rade-sar         ###   ########.fr       */
+/*   Created: 2022/03/10 22:54:08 by gafreita          #+#    #+#             */
+/*   Updated: 2023/08/29 18:45:10 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-char	*get_next_line(int fd);
-char	*ft_find_nl(char *str);
-char	*ft_strcat(char *dest, char *src);
-char	*ft_new_save(char *str);
-int		ft_count_nl(char *str);
+int		get_count(char **temp);
+int		check_n(char *string, int *flag);
+void	*ft_calloc(size_t nmemb, size_t size);
 
 #endif

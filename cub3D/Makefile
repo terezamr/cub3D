@@ -6,7 +6,7 @@
 #    By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:41:51 by mvicente          #+#    #+#              #
-#    Updated: 2023/06/29 15:26:07 by mvicente         ###   ########.fr        #
+#    Updated: 2023/08/29 19:34:41 by mvicente         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,18 +108,6 @@ norm:
 	@cd ./src && norminette -R CheckForbiddenSourceHeader *.c
 	@cd ./inc && norminette -R CheckDefine *.h
 	${NORM_CORRECT}
-
-test_wrong_map:	all
-	@for map_file in ./inc/testes/wrong/*.cub; do \
-		echo "$$map_file"; \
-		./$(NAME) $$map_file; \
-	done
-
-test_good_map:	all
-	@for map_file in ./inc/testes/good/*.cub; do \
-		echo "$$map_file"; \
-		./$(NAME) $$map_file; \
-	done
 
 .SILENT: ${NAME} $(OBJ) clean fclean
 

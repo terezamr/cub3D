@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:38:24 by rade-sar          #+#    #+#             */
-/*   Updated: 2023/08/24 10:40:55 by rade-sar         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:05:50 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ int	check_line(t_data *data, char **splitted, char *line)
 		check_texture(data, splitted, line);
 	else
 		return (1);
+	if (data->error)
+	{
+		free(line);
+		error_msg(data, data->error);
+	}
 	return (0);
 }
 
@@ -57,7 +62,7 @@ void	check_texture_rgb(t_data *data, char *line)
 	{
 		ft_free_mtx(splitted);
 		free(line);
-		error_msg(data, INVALID_TEXTURE_TYPE);
+		error_msg(data, INVALID_ELEMENT);
 	}
 	ft_free_mtx(splitted);
 }

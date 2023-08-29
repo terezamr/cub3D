@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:38:33 by rade-sar          #+#    #+#             */
-/*   Updated: 2023/08/29 17:51:28 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:05:30 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_vars(t_data *data)
 	if (data->textures[1])
 		free(data->textures[1]);
 	if (data->textures[2])
-		free(data->textures[2]);	
+		free(data->textures[2]);
 	if (data->textures[3])
 		free(data->textures[3]);
 	free(data->textures);
