@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:38:41 by rade-sar          #+#    #+#             */
-/*   Updated: 2023/08/24 11:38:13 by rade-sar         ###   ########.fr       */
+/*   Updated: 2023/08/29 13:43:40 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	get_map_height(t_data *data, char *line, int fd)
 	while (line)
 	{
 		if (!is_only_spaces(line))
+		{
+			free(line);
 			error_msg(data, INVALID_MAP);
+		}
 		line = next_line(line, fd);
 	}
 	close(fd);
@@ -101,7 +104,7 @@ void	parse_file(t_data *data, int fd)
 		line = next_line(line, fd);
 		map_line++;
 	}
-	free(line);
+	//free(line);
 	parse_map(data, map_line);
 }
 
