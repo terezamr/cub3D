@@ -28,7 +28,6 @@ int	get_map_height(t_data *data, char *line, int fd)
 			error_msg(data, INVALID_MAP);
 		line = next_line(line, fd);
 	}
-	free(line);
 	close(fd);
 	return (height);
 }
@@ -61,21 +60,18 @@ void	parse_map(t_data *data, int map_line)
 
 int	read_textures(t_data *data, char *line)
 {
-	char	**splitted;
-
-	splitted = ft_split(line, ' ');
 	if (!data->textures[0])
-		check_texture_rgb(data, splitted, 0, 0);
+		check_texture_rgb(data, line, 0, 0);
 	else if (!data->textures[1])
-		check_texture_rgb(data, splitted, 1, 0);
+		check_texture_rgb(data, line, 1, 0);
 	else if (!data->textures[2])
-		check_texture_rgb(data, splitted, 2, 0);
+		check_texture_rgb(data, line, 2, 0);
 	else if (!data->textures[3])
-		check_texture_rgb(data, splitted, 3, 0);
+		check_texture_rgb(data, line, 3, 0);
 	else if (data->colors[0] == -1)
-		check_texture_rgb(data, splitted, 0, 1);
+		check_texture_rgb(data, line, 0, 1);
 	else if (data->colors[1] == -1)
-		check_texture_rgb(data, splitted, 0, 2);
+		check_texture_rgb(data, line, 0, 2);
 	else
 		return (0);
 	return (1);
@@ -124,9 +120,9 @@ void	parse_all(t_data *data, int argc, char *file_path)
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		error_msg(data, OPEN_ERROR);
-	close(fd);
 	check_extension(data, file_path);
 	data->file_path = file_path;
 	parse_file(data, fd);
 	check_map(data);
+	close(fd);
 }

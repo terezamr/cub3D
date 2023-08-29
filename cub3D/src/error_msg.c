@@ -16,18 +16,17 @@ void	free_vars(t_data *data)
 {
 	int	i;
 
+	free(data->colors);
+	free(data->map_c);
 	i = 0;
 	while (i != 4 && data->textures[i])
 		free(data->textures[i++]);
-	if (data->textures)
-		free(data->textures);
+	free(data->textures);
 	i = 0;
 	while (data->map && data->map[i])
 		free(data->map[i++]);
 	if (data->map)
 		free(data->map);
-	free(data->colors);
-	free(data->map_c);
 }
 
 void	error_msg(t_data* data, char *message)

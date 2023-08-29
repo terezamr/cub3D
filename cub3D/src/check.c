@@ -78,8 +78,11 @@ void	check_texture(t_data *data, char **splitted, int pos)
 	free(path);
 }
 
-void	check_texture_rgb(t_data *data, char **splitted, int pos, int rgb)
+void	check_texture_rgb(t_data *data, char *line, int pos, int rgb)
 {
+	char	**splitted;
+
+	splitted = ft_split(line, ' ');
 	if (!splitted || !splitted[0]
 		|| ft_strlen(splitted[0]) < 1 || ft_strlen(splitted[0]) > 2
 		|| !splitted[1] || ft_mtxlen(splitted) > 3)
