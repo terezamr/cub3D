@@ -25,7 +25,10 @@ int	get_map_height(t_data *data, char *line, int fd)
 	while (line)
 	{
 		if (!is_only_spaces(line))
+		{
+			free(line);
 			error_msg(data, INVALID_MAP);
+		}
 		line = next_line(line, fd);
 	}
 	close(fd);
@@ -101,7 +104,7 @@ void	parse_file(t_data *data, int fd)
 		line = next_line(line, fd);
 		map_line++;
 	}
-	free(line);
+	// free(line);
 	parse_map(data, map_line);
 }
 
@@ -111,12 +114,6 @@ void	parse_all(t_data *data, int argc, char *file_path)
 
 	if (argc != 2)
 		error_msg(data, INVALID_ARGS);
-	fd = open(file_path, __O_DIRECTORY);
-	if (fd != -1)
-	{
-		close(fd);
-		error_msg(data, DIR_ERROR);
-	}
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		error_msg(data, OPEN_ERROR);
