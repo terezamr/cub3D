@@ -59,6 +59,7 @@
 # define INVALID_MAP "Invalid map."
 # define INVALID_BORDER "Invalid border."
 # define INVALID_CHAR "Invalid character found."
+# define INVALID_ELEMENT "Invalid element in file."
 
 // STRUCTS
 
@@ -129,11 +130,16 @@ typedef struct s_data
 
 void	parse_all(t_data *data, int argc, char *file_path);
 void	error_msg(t_data *data, char *message);
+char	*next_line(char *line, int fd);
+int		is_only_spaces(char *line);
+
+/* Check */
+
 void	check_extension(t_data *data, char *path);
 void	check_map(t_data *data);
-char	*next_line(char *line, int fd);
-void	check_texture_rgb(t_data *data, char *line, int pos, int rgb);
-int		is_only_spaces(char *line);
+void	check_texture_rgb(t_data *data, char *line);
+void	check_rgb(t_data *data, char **splitted, char *line);
+void	check_texture(t_data *data, char **splitted, char *line);
 
 /* Utils */
 

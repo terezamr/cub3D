@@ -1,9 +1,9 @@
-			WE	 ./inc/textures/wall_3.xpm
-   F 255,255,255		
-NO ./inc/textures/aaaa.xpm	  		   	    	
- SO 			./inc/textures/wall_2.xpm  	
-EA ./inc/textures/wall_4.xpm	
+Na ./inc/textures/wall_1.xpm		  		   	    	
+S 			./inc/textures/wall_2.xpm	
+			W	 ./inc/textures/wall_3.xpm
+E ./inc/textures/wall_4.xpm	
 
+F 255,255,255		
 C 016,128,128   
 
 
@@ -16,7 +16,7 @@ C 016,128,128
 
 
 
-1111111111111111111111111111
+11111111111111111111111111111
 100000000011000000000000000011
 1101100000111000000000000100011111
 	11111111111111111001000000000011

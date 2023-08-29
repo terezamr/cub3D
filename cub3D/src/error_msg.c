@@ -29,7 +29,7 @@ void	free_vars(t_data *data)
 		free(data->map);
 }
 
-void	error_msg(t_data* data, char *message)
+void	error_msg(t_data *data, char *message)
 {
 	free_vars(data);
 	printf("%s%s%s\n", RED, "Error", RESET);

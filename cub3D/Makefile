@@ -36,7 +36,8 @@ SRC = 	$(SRC_PATH)main.c \
 		$(SRC_PATH)parse.c \
 		$(SRC_PATH)check.c \
 		$(SRC_PATH)check_map.c \
-		$(SRC_PATH)utils.c
+		$(SRC_PATH)utils.c \
+		$(SRC_PATH)textures.c \
 
 OBJ = $(SRC:.c=.o)
 LDLIBS = -g -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
