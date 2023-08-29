@@ -1,6 +1,6 @@
 			WE	 ./inc/textures/wall_3.xpm
    F 255,255,255		
-NO ./inc/textures/aaaa.xpm	  		   	    	
+NO ./inc/textures/wall_1.xpm	  		   	    	
  SO 			./inc/textures/wall_2.xpm  	
 EA ./inc/textures/wall_4.xpm	
 
