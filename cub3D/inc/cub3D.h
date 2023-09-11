@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:57:26 by mvicente          #+#    #+#             */
-/*   Updated: 2023/08/24 13:33:47 by rade-sar         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:41:57 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@
 # define KEY_A 97
 # define KEY_D 100
 
-# define WHITE_PIXEL 0xFFFFFF
-# define BLACK_PIXEL 0x000000
-# define GREY_PIXEL 0x808080
-# define PINK_PIXEL 0xFFC0CB
-# define PINK1_PIXEL 0xe5acb6
-# define PINK2_PIXEL 0xcc99a2
-
 # define INF 1000000
 # define PI 3.141592654
 # define STEP 0.1
@@ -49,16 +42,11 @@
 # define OPEN_ERROR "File not found or permission denied."
 # define DIR_ERROR "File path is a directory"
 # define MLC_ERROR "Allocation problem."
-# define PLAYER_ERROR "The map must have 1 player."
 # define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_EXTENSION "Invalid file extension. File must be a .cub file."
-# define INVALID_TEXTURE_TYPE "Type must be composed by one or two characters."
-# define INVALID_TEXTURE "Invalid texture."
-# define INVALID_RGB "Invalid RGB color."
 # define INVALID_ARGS "The program should take 1 argument."
 # define INVALID_MAP "Invalid map."
-# define INVALID_BORDER "Invalid border."
-# define INVALID_CHAR "Invalid character found."
+# define INVALID_ELEMENT "Invalid element in file."
 
 // STRUCTS
 
@@ -96,18 +84,15 @@ typedef struct s_data
 	double	pos_y;
 	double	dir_x;
 	double	dir_y;
-	double	dir_x_init;
-	double	dir_y_init;
 	double	plane_x;
 	double	plane_y;
 	double	distance;
 	double	height;
 	char	letter;
-	char	*line;
+	char	*error;
 	char	*file_path;
 	char	**map;
 	char	**textures;
-	int		angle;
 	int		map_width;
 	int		map_height;
 	int		start;
@@ -129,11 +114,16 @@ typedef struct s_data
 
 void	parse_all(t_data *data, int argc, char *file_path);
 void	error_msg(t_data *data, char *message);
+char	*next_line(char *line, int fd);
+int		is_only_spaces(char *line);
+
+/* Check */
+
 void	check_extension(t_data *data, char *path);
 void	check_map(t_data *data);
-char	*next_line(char *line, int fd);
-void	check_texture_rgb(t_data *data, char *line, int pos, int rgb);
-int		is_only_spaces(char *line);
+void	check_texture_rgb(t_data *data, char *line);
+void	check_rgb(t_data *data, char **splitted, char *line);
+void	check_texture(t_data *data, char **splitted, char *line);
 
 /* Utils */
 

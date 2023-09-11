@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:38:33 by rade-sar          #+#    #+#             */
-/*   Updated: 2023/08/24 10:44:49 by rade-sar         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:05:30 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@ void	free_vars(t_data *data)
 
 	free(data->colors);
 	free(data->map_c);
-	i = 0;
-	while (i != 4 && data->textures[i])
-		free(data->textures[i++]);
+	if (data->textures[0])
+		free(data->textures[0]);
+	if (data->textures[1])
+		free(data->textures[1]);
+	if (data->textures[2])
+		free(data->textures[2]);
+	if (data->textures[3])
+		free(data->textures[3]);
 	free(data->textures);
 	i = 0;
 	while (data->map && data->map[i])
@@ -29,7 +34,7 @@ void	free_vars(t_data *data)
 		free(data->map);
 }
 
-void	error_msg(t_data* data, char *message)
+void	error_msg(t_data *data, char *message)
 {
 	free_vars(data);
 	printf("%s%s%s\n", RED, "Error", RESET);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:38:45 by rade-sar          #+#    #+#             */
-/*   Updated: 2023/08/24 12:02:01 by rade-sar         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:40:14 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	vars_init(t_data *data)
 	data->side = -1;
 	data->letter = 0;
 	data->map = 0;
+	data->error = 0;
 	data->map_c = malloc(sizeof(int) * 2);
 	data->textures = malloc(sizeof(char *) * 4);
 	data->colors = malloc(sizeof(int) * 2);
-	data->angle = 0;
 	vars_init2(data);
 }

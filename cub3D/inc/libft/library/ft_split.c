@@ -21,12 +21,12 @@ static int	count_words(const char *str, char c)
 	trigger = 0;
 	while (*str)
 	{
-		if (*str != c && trigger == 0)
+		if (trigger == 0 && *str != c && *str != '\t')
 		{
 			trigger = 1;
 			i++;
 		}
-		else if (*str == c)
+		else if (*str == c || (c == ' ' && *str == '\t'))
 			trigger = 0;
 		str++;
 	}
@@ -71,12 +71,12 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	while (s[i] != '\0')
 	{
-		while (s[i] == c)
+		while (s[i] == c || (c == ' ' && s[i] == '\t'))
 			i++;
 		j = i;
-		while (s[i] != c && s[i] != '\0')
+		while (s[i] != '\0' && s[i] != c && s[i] != '\t')
 			i++;
-		if (s[i - 1] != c)
+		if (s[i - 1] != c && s[i - 1] != '\t')
 			split[x++] = ft_strdup1((char *)s, j, i);
 	}
 	split[x] = 0;

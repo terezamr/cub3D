@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:10:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/08/24 12:50:33 by rade-sar         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:41:40 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	get_dir(t_data *data)
 		data->plane_x = 0;
 		data->plane_y = 0.66;
 	}
-	data->dir_x_init = data->dir_x;
-	data->dir_y_init = data->dir_y;
 }
 
 void	init_tex_image(t_data *data)

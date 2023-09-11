@@ -25,66 +25,24 @@ void	check_extension(t_data *data, char *path)
 	ft_free_mtx(splitted_path);
 }
 
-void	check_numbs(t_data *data, char **rgb, int i, char *line)
+int	check_line(t_data *data, char **splitted, char *line)
 {
-	char	*trim;
-
-	trim = ft_strdup(rgb[i]);
-	if (ft_atol(trim) < 0 || ft_atol(trim) > 255
-		|| (ft_atol(trim) == 0 && !ft_equals(trim, "0")))
-	{
-		free(trim);
-		free(line);
-		ft_free_mtx(rgb);
-		error_msg(data, INVALID_RGB);
-	}
-	free(trim);
-}
-
-void	check_rgb(t_data *data, char **splitted, int pos, char *line)
-{
-	char	**rgb;
-	int		i;
-
-	rgb = ft_split(splitted[1], ',');
-	ft_free_mtx(splitted);			
-	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
+	if (ft_equals(splitted[0], "F") || ft_equals(splitted[0], "C"))
+		check_rgb(data, splitted, line);
+	else if (ft_equals(splitted[0], "NO") || ft_equals(splitted[0], "SO")
+		|| ft_equals(splitted[0], "WE") || ft_equals(splitted[0], "EA"))
+		check_texture(data, splitted, line);
+	else
+		return (1);
+	if (data->error)
 	{
 		free(line);
-		error_msg(data, INVALID_RGB);
+		error_msg(data, data->error);
 	}
-	i = -1;
-	while (++i != 3)
-		check_numbs(data, rgb, i, line);
-	data->colors[pos - 1] = get_rgb(ft_atol(rgb[0]), ft_atol(rgb[1]),
-			ft_atol(rgb[2]));
-	ft_free_mtx(rgb);
+	return (0);
 }
 
-void	check_texture(t_data *data, char **splitted, int pos, char *line)
-{
-	int		fd;
-	int		fd2;
-	char	*path;
-
-	path = ft_strdup(splitted[1]);
-	ft_free_mtx(splitted);
-	fd = open(path, __O_DIRECTORY);
-	fd2 = open(path, O_RDONLY);
-	if (fd != -1 || fd2 == -1)
-	{
-		if (fd != -1)
-			close(fd);
-		free(line);
-		free(path);
-		error_msg(data, INVALID_TEXTURE);
-	}
-	close(fd2);
-	data->textures[pos] = ft_strdup(path);
-	free(path);
-}
-
-void	check_texture_rgb(t_data *data, char *line, int pos, int rgb)
+void	check_texture_rgb(t_data *data, char *line)
 {
 	char	**splitted;
 	char	*trim;
@@ -98,9 +56,13 @@ void	check_texture_rgb(t_data *data, char *line, int pos, int rgb)
 	{
 		ft_free_mtx(splitted);
 		free(line);
-		error_msg(data, INVALID_TEXTURE);
+		error_msg(data, INVALID_ELEMENT);
 	}
-	if (rgb)
-		return (check_rgb(data, splitted, rgb, line));
-	check_texture(data, splitted, pos, line);
+	if (check_line(data, splitted, line))
+	{
+		ft_free_mtx(splitted);
+		free(line);
+		error_msg(data, INVALID_ELEMENT);
+	}
+	ft_free_mtx(splitted);
 }

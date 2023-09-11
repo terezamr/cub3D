@@ -19,7 +19,7 @@ static int	search_set(char c, char const *set)
 	i = 0;
 	while (set[i])
 	{
-		if (set[i] == c)
+		if (set[i] == c || (c == ' '))
 			return (1);
 		i++;
 	}

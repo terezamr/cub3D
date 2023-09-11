@@ -64,17 +64,17 @@ void	parse_map(t_data *data, int map_line)
 int	read_textures(t_data *data, char *line)
 {
 	if (!data->textures[0])
-		check_texture_rgb(data, line, 0, 0);
+		check_texture_rgb(data, line);
 	else if (!data->textures[1])
-		check_texture_rgb(data, line, 1, 0);
+		check_texture_rgb(data, line);
 	else if (!data->textures[2])
-		check_texture_rgb(data, line, 2, 0);
+		check_texture_rgb(data, line);
 	else if (!data->textures[3])
-		check_texture_rgb(data, line, 3, 0);
+		check_texture_rgb(data, line);
 	else if (data->colors[0] == -1)
-		check_texture_rgb(data, line, 0, 1);
+		check_texture_rgb(data, line);
 	else if (data->colors[1] == -1)
-		check_texture_rgb(data, line, 0, 2);
+		check_texture_rgb(data, line);
 	else
 		return (0);
 	return (1);

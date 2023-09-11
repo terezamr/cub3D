@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rade-sar <rade-sar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:38:28 by rade-sar          #+#    #+#             */
-/*   Updated: 2023/08/24 12:46:35 by rade-sar         ###   ########.fr       */
+/*   Updated: 2023/08/29 18:42:37 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,9 @@ int	is_closed(char **map, t_point p, int max_x, int max_y)
 		return (check_map_edges(map, p, max_x, max_y));
 	else
 	{
-		if (map[p.y - 1][p.x] && is_map_char(map[p.y - 1][p.x])
-			&& map[p.y - 1][p.x - 1] && is_map_char(map[p.y - 1][p.x - 1])
-			&& map[p.y - 1][p.x + 1] && is_map_char(map[p.y - 1][p.x + 1]))
+		if (map[p.y - 1][p.x] && is_map_char(map[p.y - 1][p.x]))
 			adjacent++;
-		if (map[p.y + 1] && map[p.y + 1][p.x] && is_map_char(map[p.y + 1][p.x])
-			&& map[p.y + 1][p.x - 1] && is_map_char(map[p.y + 1][p.x - 1])
-			&& map[p.y + 1][p.x + 1] && is_map_char(map[p.y + 1][p.x + 1]))
+		if (map[p.y + 1] && map[p.y + 1][p.x] && is_map_char(map[p.y + 1][p.x]))
 			adjacent++;
 		if (map[p.y][p.x - 1] && is_map_char(map[p.y][p.x - 1]))
 			adjacent++;
@@ -71,8 +67,10 @@ void	check_orientation(t_data *data, char p, int x, int y)
 			data->pos_y = x + 0.5;
 		}
 		else
-			error_msg(data, PLAYER_ERROR);
+			error_msg(data, INVALID_MAP);
 	}
+	else if (p != '0' && p != '1' && !ft_isspace(p))
+		error_msg(data, INVALID_MAP);
 }
 
 void	check_map(t_data *data)
@@ -83,7 +81,7 @@ void	check_map(t_data *data)
 
 	y = -1;
 	if (ft_mtxlen(data->map) < 3)
-		error_msg(data, INVALID_MAP);
+		error_msg(data, INVALID_ELEMENT);
 	while (++y != data->map_height)
 	{
 		x = -1;
@@ -92,10 +90,10 @@ void	check_map(t_data *data)
 		{
 			if (data->map[y][x] != '1' && !ft_isspace(data->map[y][x])
 				&& !is_closed(data->map, (t_point){x, y}, w, data->map_height))
-				error_msg(data, INVALID_BORDER);
+				error_msg(data, INVALID_MAP);
 			check_orientation(data, data->map[y][x], x, y);
 		}
 	}
 	if (data->letter == 0)
-		error_msg(data, PLAYER_ERROR);
+		error_msg(data, INVALID_MAP);
 }
