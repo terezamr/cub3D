@@ -27,10 +27,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-char	*get_next_line(int fd);
-char	*ft_find_nl(char *str);
-char	*ft_strcat(char *dest, char *src);
-char	*ft_new_save(char *str);
-int		ft_count_nl(char *str);
+int		get_count(char **temp);
+int		check_n(char *string, int *flag);
+void	*ft_calloc(size_t nmemb, size_t size);
 
 #endif

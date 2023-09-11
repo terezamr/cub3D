@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:38:24 by rade-sar          #+#    #+#             */
-/*   Updated: 2023/08/29 13:53:05 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:00:01 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	check_texture(t_data *data, char **splitted, int pos, char *line)
 			close(fd);
 		free(line);
 		free(path);
-		free(line);
 		error_msg(data, INVALID_TEXTURE);
 	}
 	close(fd2);

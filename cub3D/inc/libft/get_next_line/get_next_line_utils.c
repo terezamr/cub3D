@@ -12,73 +12,57 @@
 
 #include "get_next_line.h"
 
-static size_t	ft_strlen(char *str)
+size_t	ft_strlen1(const char *s)
 {
-	size_t	i;
+	size_t	len;
 
-	i = 0;
-	if (!str)
+	if (!s || s[0] == 0)
 		return (0);
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
 
-char	*ft_find_nl(char *str)
+int	check_n(char *string, int *flag)
 {
-	char	*temp;
-	int		i;
+	int	a;
 
-	if (!str[0])
-		return (NULL);
-	temp = malloc(sizeof(char) * ft_count_nl(str) + 2);
-	if (temp == NULL)
-		return (NULL);
-	i = 0;
-	while (str[i] != '\n' && str[i])
+	a = -1;
+	while (string[++a] != 0)
 	{
-		temp[i] = str[i];
-		i++;
+		if (string[a] == '\n')
+		{
+			*flag = 1;
+			return (a);
+		}
 	}
-	if (str[i] == '\n')
-	{		
-		temp[i] = str[i];
-		i++;
-	}
-	temp[i] = '\0';
-	return (temp);
+	return (a);
 }
 
-int	ft_count_nl(char *str)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	int		i;
+	char		*ptr;
+	size_t		i;
 
 	i = 0;
-	while (str[i] && str[i] != '\n')
+	ptr = malloc(size * nmemb);
+	if (!ptr)
+		return (NULL);
+	while (i < nmemb * size)
+	{
+		ptr[i] = '\0';
 		i++;
-	return (i);
+	}
+	return ((void *)ptr);
 }
 
-char	*ft_new_save(char *str)
+int	get_count(char **temp)
 {
-	char	*new_save;
-	int		i;
-	int		j;
+	int		count;
 
-	i = ft_count_nl(str);
-	if (!str[i])
-	{
-		free(str);
-		return (NULL);
-	}
-	new_save = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
-	if (!new_save)
-		return (NULL);
-	i++;
-	j = 0;
-	while (str[i])
-		new_save[j++] = str[i++];
-	new_save[j] = '\0';
-	free(str);
-	return (new_save);
+	count = 0;
+	if (temp != (void *)0)
+		count = (int)ft_strlen1(*temp);
+	return (count);
 }

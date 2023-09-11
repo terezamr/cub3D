@@ -1,5 +1,5 @@
 N ./inc/textures/wall_1.xpm
-S ./inc/textures/wall_2.xpm  
+S ./inc/textures/wall_2.xpm
 W ./inc/textures/wall_3.xpm
 E ./inc/textures/wall_4.xpm
 

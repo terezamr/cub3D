@@ -12,86 +12,90 @@
 
 #include "get_next_line.h"
 
-static size_t	ft_strlen(char *str)
-{
-	size_t	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-static char	*ft_strchr(char *str, char c)
+void	fill_buffer(char *buffer, int len)
 {
 	int	i;
+	int	remain_b;
 
+	remain_b = BUFFER_SIZE - len;
 	i = 0;
-	if (!str)
-		return (NULL);
-	while (str[i] != '\0')
+	while (buffer[i])
 	{
-		if (str[i] == c)
-			return (&str[i]);
+		if (i < remain_b)
+			buffer[i] = buffer[i + len];
+		else
+			buffer[i] = '\0';
 		i++;
 	}
-	return (NULL);
 }
 
-char	*ft_strcat(char *dest, char *src)
+char	*new_join(char *temp, char *buffer, int len)
 {
-	size_t	id;
-	size_t	is;
-	char	*new;
+	char	*new_temp;
+	int		i;
+	int		d;
+	int		count;
 
-	if (!dest)
+	d = 0;
+	if (!temp)
+		temp = ft_calloc(1, 1);
+	new_temp = NULL;
+	count = get_count(&temp) + 1;
+	new_temp = malloc(count + len + 1);
+	if (!new_temp)
+		return (NULL);
+	i = -1;
+	while (temp[++i] != 0)
+		new_temp[i] = temp[i];
+	while (d < len)
+		new_temp[i++] = buffer[d++];
+	new_temp[i] = '\0';
+	fill_buffer(buffer, len);
+	free(temp);
+	return (new_temp);
+}
+
+char	*get_line_aux(char *buffer, char *temp, int *flag, int fd)
+{
+	int	r;
+	int	len;
+
+	while (1)
 	{
-		dest = malloc(sizeof(char));
-		dest[0] = '\0';
+		r = read(fd, buffer, BUFFER_SIZE);
+		if (r == 0 && !buffer[0])
+		{
+			break ;
+		}
+		len = check_n(buffer, flag);
+		temp = new_join(temp, buffer, len + 1);
+		if (*flag == 1)
+			break ;
 	}
-	if (!dest || !src)
-		return (NULL);
-	new = malloc(sizeof(char) * (ft_strlen(dest) + ft_strlen(src) + 1));
-	if (!new)
-		return (NULL);
-	id = -1;
-	is = 0;
-	if (dest)
-		while (dest[++id] != '\0')
-			new[id] = dest[id];
-	while (src[is] != '\0')
-		new[id++] = src[is++];
-	new[id] = '\0';
-	free(dest);
-	return (new);
+	return (temp);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*save;
-	char		*line;
-	char		*nl;
-	int			res;
+	int			flag;
+	int			len;
+	char		*temp;
+	static char	buffer[BUFFER_SIZE + 1];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	line = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	res = BUFFER_SIZE;
-	while (!ft_strchr(save, '\n') && res != 0)
+	flag = 0;
+	temp = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
-		res = read(fd, line, BUFFER_SIZE);
-		if (res < 0)
-		{
-			free(line);
-			return (NULL);
-		}
-		line[res] = '\0';
-		save = ft_strcat(save, line);
+		buffer[0] = 0;
+		return (0);
 	}
-	free(line);
-	nl = ft_find_nl(save);
-	save = ft_new_save(save);
-	return (nl);
+	if (buffer[0])
+	{
+		len = check_n(buffer, &flag);
+		temp = new_join(temp, buffer, len + 1);
+		if (flag == 1)
+			return (temp);
+	}
+	temp = get_line_aux(buffer, temp, &flag, fd);
+	return (temp);
 }

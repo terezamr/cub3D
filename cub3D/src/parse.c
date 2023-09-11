@@ -104,7 +104,6 @@ void	parse_file(t_data *data, int fd)
 		line = next_line(line, fd);
 		map_line++;
 	}
-	// free(line);
 	parse_map(data, map_line);
 }
 
