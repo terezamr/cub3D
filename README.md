@@ -1,9 +1,25 @@
-# Cub3d
+## Cub3d
 
-## Goal
+The goal of the cub3d is to simulate a 3D environment like Wolfenstein 3D using raycasting. This project is written in c using mini-libx library. 
 
-This project’s objectives are similar to all this first year’s objectives: Rigor, use of C, use
-of basic algorithms, information research etc.
+Implemented features: 4 different wall textures, according to the direction (present in ``inc/``), forward and back movement + rotation.
 
-As a graphic design project, cub3D will enable you to improve your skills in these
-areas: windows, colors, events, fill shapes, etc
+### Usage
+
+```shell
+./cub3D <map.cub>
+```
+
+ KEY           | Action        |
+| ------------- |:-------------:|
+| `A`           | rotate left     |
+| `D`           | rotate right    |
+| `W`           | move forward  |
+| `S`           | move backward |
+| `→`           |   |
+| `←`           |    |
+| `MOUSE RIGHT CLICK`           |  |
+| `MOUSE LEFT CLICK`           | |
+| `MOUSE SCROLL`      |  |
+
+### Screenshots
