@@ -23,3 +23,6 @@ Implemented features: 4 different wall textures, according to the direction (pre
 | `MOUSE SCROLL`      |  |
 
 ### Screenshots
+
+### References
+- https://lodev.org/cgtutor/raycasting.html
