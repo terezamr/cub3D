@@ -1,6 +1,6 @@
 ## Cub3d
 
-The goal of cub3d is to create a realistic 3D graphical environment from a first-person perspective, inspired in Wolfenstein 3D. The Ray-Casting principles must be used. This project is written in c using mini-libx library. Co-developed in July 2023 with Rafael Coias
+The goal of cub3d is to create a realistic 3D graphical environment from a first-person perspective, inspired in Wolfenstein 3D. The Ray-Casting principles must be used. This project is written in c using mini-libx library. Co-developed in July 2023 with Rafael Coias.
 
 Implemented features: 4 different wall textures, according to the direction (present in ``inc/textures/``), movement in the 4 directions + rotation.
 
